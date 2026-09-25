@@ -33,6 +33,8 @@
         <activity android:name=".ui.event.EventEditorActivity" android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.event.EventsAgendaActivity" android:exported="false" />
+        <activity android:name=".ui.SettingsActivity" android:exported="false"
+            android:label="@string/settings_title" />
         <activity android:name=".ui.placeholder.PlaceholderActivity" android:exported="false" />
 
         <receiver

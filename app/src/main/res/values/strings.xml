@@ -46,7 +46,7 @@
     <string name="age_birthdate">Birth date</string>
     <string name="age_pick">Pick birth date</string>
     <string name="age_result_placeholder">Pick your birth date to see your exact age</string>
-    <string name="age_next_birthday">Next birthday</string>
+    <string name="age_next_birthday">Next birthday: %1$s (%2$d days)</string>
     <string name="age_years_months_days">%1$d years, %2$d months, %3$d days</string>
     <string name="age_error_future">Birth date cannot be in the future</string>
 
@@ -118,4 +118,24 @@
     <string name="action_back">Back</string>
     <string name="copy">Copy</string>
     <string name="share">Share</string>
+    <string-array name="inspiration_quotes">
+        <item>Better than a thousand days of diligent study is one day with a great teacher.</item>
+        <item>The best way to predict the future is to create it.</item>
+        <item>Time is the most valuable thing a man can spend.</item>
+        <item>A goal without a plan is just a wish.</item>
+        <item>Every moment is a fresh beginning.</item>
+    </string-array>
+    <string-array name="calendar_systems">
+        <item>Gregorian</item>
+        <item>Bengali</item>
+        <item>Hijri</item>
+    </string-array>
+
+    <string-array name="inspiration_authors">
+        <item>Japanese Proverb</item>
+        <item>Peter Drucker</item>
+        <item>Theophrastus</item>
+        <item>Antoine de Saint-Exupéry</item>
+        <item>T. S. Eliot</item>
+    </string-array>
 </resources>
