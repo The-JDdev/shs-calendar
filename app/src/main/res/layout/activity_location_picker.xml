@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/picker_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/location_picker_title"
+        app:titleTextColor="@color/shs_text_primary" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shs_screen_padding"
+        android:hint="@string/location_search_hint"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/shs_cyan"
+        app:startIconDrawable="@drawable/ic_location">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/picker_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_sm"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/shs_screen_padding">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/picker_use_gps"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/location_use_gps"
+            app:cornerRadius="@dimen/shs_space_md" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/picker_city_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/shs_space_sm"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/shs_space_xxs"
+        android:scrollbars="none" />
+
+    <TextView
+        android:id="@+id/picker_empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/location_empty_search"
+        android:textColor="@color/shs_text_muted"
+        android:visibility="gone" />
+
+    <!-- Manual free-text lat/lon fallback: works with zero permissions. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/shs_surface"
+        android:orientation="vertical"
+        android:padding="@dimen/shs_screen_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_manual_title"
+            android:textColor="@color/shs_text_secondary"
+            android:textSize="@dimen/shs_text_caption" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shs_space_xxs"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/picker_latitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/location_latitude_hint"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLines="1" />
+
+            <EditText
+                android:id="@+id/picker_longitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/shs_space_sm"
+                android:layout_weight="1"
+                android:hint="@string/location_longitude_hint"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/picker_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shs_space_xs"
+            android:text="@string/location_save" />
+    </LinearLayout>
+</LinearLayout>

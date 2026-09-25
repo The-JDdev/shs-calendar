@@ -3,7 +3,7 @@
 STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TASK.md)
 
 ## Phase 2 — Location, Prayer, Islamic toolkit, Traditional view
-- [ ] M1 Location layer (optional permission, manual fallback, travel mode)
+- [x] M1 Location layer (optional permission, manual fallback, travel mode)
 - [ ] M2 Prayer engine + UI (methods, madhab, high-lat, offsets, tests)
 - [ ] M3 Qibla + Tasbih + Dua collection
 - [ ] M4 Traditional Bangla calendar view + World clock

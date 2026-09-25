@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         bindNavigation()
         bindCalendarControls()
+        bindLocationPill()
         bindQuickTools()
         bindInspiration()
 
@@ -246,6 +247,12 @@ class MainActivity : AppCompatActivity() {
             .forEach { chip ->
                 chip.setOnClickListener { render() }
             }
+    }
+
+    private fun bindLocationPill() {
+        findViewById<android.view.View>(R.id.location_pill).setOnClickListener {
+            startActivity(Intent(this, com.shs.calendar.location.LocationPickerActivity::class.java))
+        }
     }
 
     private fun bindNavigation() {

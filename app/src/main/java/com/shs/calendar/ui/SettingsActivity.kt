@@ -34,6 +34,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var defaultSystemSpinner: Spinner
     private lateinit var switchBengaliNumerals: SwitchMaterial
     private lateinit var hijriAdjustText: TextView
+    private lateinit var travelModeSwitch: SwitchMaterial
     private var updatingUi = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +51,7 @@ class SettingsActivity : AppCompatActivity() {
         defaultSystemSpinner = findViewById(R.id.settings_calendar_spinner)
         switchBengaliNumerals = findViewById(R.id.settings_bengali_numerals_switch)
         hijriAdjustText = findViewById(R.id.settings_hijri_value)
+        travelModeSwitch = findViewById(R.id.settings_travel_mode_switch)
 
         firstDaySpinner.adapter = ArrayAdapter(
             this,
@@ -81,6 +83,7 @@ class SettingsActivity : AppCompatActivity() {
                     }
                 )
                 switchBengaliNumerals.isChecked = s.bengaliNumerals
+                travelModeSwitch.isChecked = s.useDeviceTimezone
                 hijriAdjustText.text = (s.hijriAdjustment.coerceIn(-3, 3)).toString()
                 updatingUi = false
             }
@@ -107,6 +110,9 @@ class SettingsActivity : AppCompatActivity() {
         }
         switchBengaliNumerals.setOnCheckedChangeListener { _, checked ->
             if (!updatingUi) persist { it.copy(bengaliNumerals = checked) }
+        }
+        travelModeSwitch.setOnCheckedChangeListener { _, checked ->
+            if (!updatingUi) persist { it.copy(useDeviceTimezone = checked) }
         }
         findViewById<android.view.View>(R.id.settings_hijri_minus)?.setOnClickListener {
             adjustHijri(-1)

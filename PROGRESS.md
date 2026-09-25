@@ -13,3 +13,5 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
 ## Next
 - M1 Location layer: LocationRepository + optional permission flow + manual city picker +
   timezone detection + travel mode.
+
+- M1 complete: assembleDebug + testDebugUnitTest green (41/41 tests).

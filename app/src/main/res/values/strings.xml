@@ -138,4 +138,25 @@
         <item>Antoine de Saint-Exupéry</item>
         <item>T. S. Eliot</item>
     </string-array>
+
+    <!-- Location (M1) -->
+    <string name="location_picker_title">Choose location</string>
+    <string name="location_search_hint">Search city or country</string>
+    <string name="location_use_gps">Use current location</string>
+    <string name="location_manual_title">Enter coordinates</string>
+    <string name="location_latitude_hint">Latitude (-90 to 90)</string>
+    <string name="location_longitude_hint">Longitude (-180 to 180)</string>
+    <string name="location_save">Save location</string>
+    <string name="location_invalid_coords">Enter a valid latitude and longitude</string>
+    <string name="location_saved">Location saved</string>
+    <string name="location_permission_rationale_title">Location is optional</string>
+    <string name="location_permission_rationale">SHS Calendar can use your GPS position to fill in prayer and sun times automatically. You can always set a city manually instead - nothing is uploaded.</string>
+    <string name="location_permission_denied">Location permission denied - pick a city manually</string>
+    <string name="location_gps_disabled">Location services are off - pick a city manually</string>
+    <string name="location_fix_failed">Could not get a location fix - pick a city manually</string>
+    <string name="location_empty_search">No matching city</string>
+    <string name="travel_mode">Travel mode</string>
+    <string name="travel_mode_summary">Follow the device timezone while travelling; recalculate prayer and sun times</string>
+    <string name="travel_mode_recalc">Timezone changed while travelling - times refreshed</string>
+    <string name="location_timezone_label">Timezone: %1$s</string>
 </resources>
