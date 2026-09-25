@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Date Converter: Gregorian <-> Bengali <-> Hijri.
+  Editing any field updates the other two (DateConverterActivity).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/converter_toolbar"
+        style="@style/SHS.TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/converter_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/shs_screen_padding">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SHS.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/shs_space_lg">
+
+                <TextView
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/converter_gregorian"
+                    android:textColor="@color/shs_text_muted" />
+
+                <TextView
+                    android:id="@+id/conv_gregorian"
+                    style="@style/SHS.Text.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xxs"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingTop="@dimen/shs_space_xs"
+                    android:paddingBottom="@dimen/shs_space_xs" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/shs_divider_height"
+                    android:layout_marginTop="@dimen/shs_space_sm"
+                    android:layout_marginBottom="@dimen/shs_space_sm"
+                    android:background="@color/shs_stroke" />
+
+                <TextView
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/converter_bengali"
+                    android:textColor="@color/shs_bengali_green" />
+
+                <TextView
+                    android:id="@+id/conv_bengali"
+                    style="@style/SHS.Text.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xxs"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingTop="@dimen/shs_space_xs"
+                    android:paddingBottom="@dimen/shs_space_xs" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/shs_divider_height"
+                    android:layout_marginTop="@dimen/shs_space_sm"
+                    android:layout_marginBottom="@dimen/shs_space_sm"
+                    android:background="@color/shs_stroke" />
+
+                <TextView
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/converter_hijri"
+                    android:textColor="@color/shs_hijri_blue" />
+
+                <TextView
+                    android:id="@+id/conv_hijri"
+                    style="@style/SHS.Text.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xxs"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingTop="@dimen/shs_space_xs"
+                    android:paddingBottom="@dimen/shs_space_xs" />
+
+                <TextView
+                    android:id="@+id/conv_invalid"
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xs"
+                    android:text="@string/converter_invalid"
+                    android:textColor="@color/shs_danger"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/conv_copy"
+            style="@style/SHS.Button.Ghost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/shs_space_lg"
+            android:text="@string/converter_copy" />
+
+        <TextView
+            android:id="@+id/conv_picked_date"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/shs_space_md"
+            android:textColor="@color/shs_text_muted" />
+    </LinearLayout>
+</LinearLayout>

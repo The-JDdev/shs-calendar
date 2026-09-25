@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  One day cell of the dashboard month grid.
+  Gregorian day is dominant; Bengali + Hijri render as small sub-lines.
+  Today / selected highlighting is applied by the adapter (bg_cell_selected).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cell_root"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/shs_calendar_cell_height"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/shs_space_xxs"
+    android:paddingBottom="@dimen/shs_space_xxs">
+
+    <TextView
+        android:id="@+id/cell_day"
+        style="@style/SHS.Calendar.Day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="25" />
+
+    <TextView
+        android:id="@+id/cell_bengali"
+        style="@style/SHS.Calendar.Sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="১১" />
+
+    <TextView
+        android:id="@+id/cell_hijri"
+        style="@style/SHS.Calendar.Sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="11" />
+</LinearLayout>

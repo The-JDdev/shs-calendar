@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/dashboard_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/shs_bottom_nav_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/shs_screen_padding">
+
+            <!-- ============ HEADER ============ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/header_title"
+                    style="@style/SHS.Text.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/app_name"
+                    android:textColor="@color/shs_text_primary"
+                    android:textSize="@dimen/shs_text_title" />
+
+                <TextView
+                    android:id="@+id/chip_lang_en"
+                    style="@style/SHS.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header_language_en" />
+
+                <TextView
+                    android:id="@+id/chip_lang_bn"
+                    style="@style/SHS.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/shs_space_xs"
+                    android:text="@string/header_language_bn" />
+
+                <TextView
+                    android:id="@+id/chip_lang_ar"
+                    style="@style/SHS.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/shs_space_xs"
+                    android:text="@string/header_language_ar" />
+
+                <ImageButton
+                    android:id="@+id/btn_widget"
+                    android:layout_width="@dimen/shs_min_touch_target"
+                    android:layout_height="@dimen/shs_min_touch_target"
+                    android:layout_marginStart="@dimen/shs_space_xs"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/header_widget"
+                    android:src="@drawable/ic_widget"
+                    app:tint="@color/shs_text_secondary" />
+            </LinearLayout>
+
+            <!-- ============ HERO DATE ============ -->
+            <LinearLayout
+                android:id="@+id/hero_card"
+                style="@style/SHS.Card.Hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:orientation="vertical"
+                android:padding="@dimen/shs_space_lg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/hero_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/shs_text_primary"
+                        android:textSize="@dimen/shs_text_hero"
+                        tools:text="25"
+                        xmlns:tools="http://schemas.android.com/tools" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/shs_space_md"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hero_month_year"
+                            style="@style/SHS.Text.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/shs_text_primary"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            tools:text="September 2026" />
+
+                        <TextView
+                            android:id="@+id/hero_weekday"
+                            style="@style/SHS.Text.Subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/shs_cyan"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            tools:text="Friday" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/hero_bengali_line"
+                    style="@style/SHS.Text.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_sm"
+                    android:textColor="@color/shs_text_on_accent"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    tools:text="১০ আশ্বিন ১৪৩৩, শুক্র" />
+
+                <TextView
+                    android:id="@+id/hero_hijri_line"
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xxs"
+                    android:textColor="@color/shs_text_secondary"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    tools:text="11 Rabi al-Akhir 1448" />
+            </LinearLayout>
+
+            <!-- ============ LIVE CLOCK CARD ============ -->
+            <LinearLayout
+                android:id="@+id/clock_card"
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/shs_space_lg">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/clock_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/shs_text_primary"
+                        android:textSize="@dimen/shs_text_display"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        tools:text="10:25:33" />
+
+                    <TextView
+                        android:id="@+id/clock_zone"
+                        style="@style/SHS.Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/shs_text_muted"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        tools:text="Asia/Dhaka" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/clock_countdown"
+                    style="@style/SHS.Text.Accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    tools:text="Ramadan in 118 days" />
+            </LinearLayout>
+
+            <!-- ============ LOCATION PILL ============ -->
+            <LinearLayout
+                android:id="@+id/location_pill"
+                style="@style/SHS.Pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/shs_text_body"
+                    android:layout_height="@dimen/shs_text_body"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_location"
+                    app:tint="@color/shs_cyan"
+                    xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                <TextView
+                    android:id="@+id/location_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/shs_space_xs"
+                    android:text="@string/location_none_hint"
+                    android:textColor="@color/shs_text_secondary"
+                    android:textSize="@dimen/shs_text_caption" />
+            </LinearLayout>
+
+            <!-- ============ SUNRISE / SUNSET ============ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/sunrise_card"
+                    style="@style/SHS.Card.Compact"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/shs_space_sm"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/shs_space_md">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/shs_text_subtitle"
+                            android:layout_height="@dimen/shs_text_subtitle"
+                            android:contentDescription="@string/sunrise"
+                            android:src="@drawable/ic_sunrise"
+                            app:tint="@color/shs_orange"
+                            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                        <TextView
+                            style="@style/SHS.Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/shs_space_xs"
+                            android:text="@string/sunrise"
+                            android:textColor="@color/shs_text_muted" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/sunrise_time"
+                        style="@style/SHS.Text.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_xxs"
+                        android:textColor="@color/shs_text_primary"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        tools:text="05:42" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sunset_card"
+                    style="@style/SHS.Card.Compact"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/shs_space_md">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/shs_text_subtitle"
+                            android:layout_height="@dimen/shs_text_subtitle"
+                            android:contentDescription="@string/sunset"
+                            android:src="@drawable/ic_sunset"
+                            app:tint="@color/shs_magenta"
+                            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                        <TextView
+                            style="@style/SHS.Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/shs_space_xs"
+                            android:text="@string/sunset"
+                            android:textColor="@color/shs_text_muted" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/sunset_time"
+                        style="@style/SHS.Text.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_xxs"
+                        android:textColor="@color/shs_text_primary"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        tools:text="18:07" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============ DAILY INSPIRATION ============ -->
+            <LinearLayout
+                android:id="@+id/inspiration_card"
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:orientation="vertical"
+                android:padding="@dimen/shs_space_lg">
+
+                <TextView
+                    style="@style/SHS.Text.Accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inspiration_title" />
+
+                <TextView
+                    android:id="@+id/inspiration_text"
+                    style="@style/SHS.Text.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_sm"
+                    android:fontFamily="serif"
+                    android:italic="true"
+                    android:textColor="@color/shs_text_primary" />
+
+                <TextView
+                    android:id="@+id/inspiration_author"
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xs"
+                    android:textColor="@color/shs_text_muted" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_sm"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/inspiration_refresh"
+                        android:layout_width="@dimen/shs_min_touch_target"
+                        android:layout_height="@dimen/shs_min_touch_target"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/inspiration_refresh"
+                        android:src="@drawable/ic_widget"
+                        app:tint="@color/shs_text_secondary"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                    <ImageButton
+                        android:id="@+id/inspiration_copy"
+                        android:layout_width="@dimen/shs_min_touch_target"
+                        android:layout_height="@dimen/shs_min_touch_target"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/inspiration_copy"
+                        android:src="@drawable/ic_copy"
+                        app:tint="@color/shs_text_secondary"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                    <ImageButton
+                        android:id="@+id/inspiration_share"
+                        android:layout_width="@dimen/shs_min_touch_target"
+                        android:layout_height="@dimen/shs_min_touch_target"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/inspiration_share"
+                        android:src="@drawable/ic_share"
+                        app:tint="@color/shs_text_secondary"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============ QUICK TOOLS ============ -->
+            <TextView
+                style="@style/SHS.Text.Accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:text="@string/quick_tools" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_sm"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/quick_tools_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Tool items are inflated by MainActivity (real handlers). -->
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ============ PREMIUM CALENDAR CARD ============ -->
+            <LinearLayout
+                android:id="@+id/calendar_card"
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:orientation="vertical"
+                android:padding="@dimen/shs_space_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cal_month_title"
+                        style="@style/SHS.Text.Title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/shs_text_primary"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        tools:text="September 2026" />
+
+                    <TextView
+                        android:id="@+id/btn_prev_month"
+                        style="@style/SHS.Button.Ghost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/prev_month"
+                        android:text="‹"
+                        android:textSize="@dimen/shs_text_title" />
+
+                    <TextView
+                        android:id="@+id/btn_today"
+                        style="@style/SHS.Button.Accent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/shs_space_xs"
+                        android:layout_marginEnd="@dimen/shs_space_xs"
+                        android:text="@string/today" />
+
+                    <TextView
+                        android:id="@+id/btn_next_month"
+                        style="@style/SHS.Button.Ghost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/next_month"
+                        android:text="›"
+                        android:textSize="@dimen/shs_text_title" />
+                </LinearLayout>
+
+                <!-- Weekday headers (7 equal columns, filled by MainActivity). -->
+                <LinearLayout
+                    android:id="@+id/cal_weekdays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_sm"
+                    android:orientation="horizontal">
+
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Sun" android:textColor="@color/shs_text_muted" />
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Mon" android:textColor="@color/shs_text_muted" />
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Tue" android:textColor="@color/shs_text_muted" />
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Wed" android:textColor="@color/shs_text_muted" />
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Thu" android:textColor="@color/shs_text_muted" />
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Fri" android:textColor="@color/shs_text_muted" />
+                    <TextView style="@style/SHS.Calendar.Sub" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Sat" android:textColor="@color/shs_text_muted" />
+                </LinearLayout>
+
+                <!-- Month grid: Gregorian day dominant + small Bengali + Hijri sub-lines. -->
+                <GridView
+                    android:id="@+id/cal_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xxs"
+                    android:columnWidth="0dp"
+                    android:horizontalSpacing="@dimen/shs_space_xxs"
+                    android:numColumns="7"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/shs_space_xxs" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Center-tab bottom navigation: Tools · Prayer · Calendar (emphasized) · Accounts · Settings -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu"
+        style="@style/SHS.BottomNav"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+</FrameLayout>
+

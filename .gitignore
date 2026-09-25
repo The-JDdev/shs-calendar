@@ -12,3 +12,6 @@ externalNativeBuild/
 *.keystore
 !debug.keystore
 secrets.properties
+workspace/
+logs/
+PROGRESS.md

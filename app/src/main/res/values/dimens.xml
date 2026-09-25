@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SHS Calendar spacing / radius / typography scale. -->
+<resources>
+    <!-- Screen -->
+    <dimen name="shs_screen_padding">16dp</dimen>
+
+    <!-- Card radius: spec says 20–28dp -->
+    <dimen name="shs_radius_card">22dp</dimen>
+    <dimen name="shs_radius_card_large">28dp</dimen>
+    <dimen name="shs_radius_card_small">16dp</dimen>
+    <dimen name="shs_radius_pill">100dp</dimen>
+    <dimen name="shs_radius_chip">14dp</dimen>
+    <dimen name="shs_radius_cell">12dp</dimen>
+
+    <!-- Spacing scale -->
+    <dimen name="shs_space_xxs">4dp</dimen>
+    <dimen name="shs_space_xs">8dp</dimen>
+    <dimen name="shs_space_sm">12dp</dimen>
+    <dimen name="shs_space_md">16dp</dimen>
+    <dimen name="shs_space_lg">20dp</dimen>
+    <dimen name="shs_space_xl">24dp</dimen>
+    <dimen name="shs_space_xxl">32dp</dimen>
+
+    <!-- Text sizes (sp, dynamic-font friendly) -->
+    <dimen name="shs_text_hero">56sp</dimen>
+    <dimen name="shs_text_display">34sp</dimen>
+    <dimen name="shs_text_title">22sp</dimen>
+    <dimen name="shs_text_subtitle">18sp</dimen>
+    <dimen name="shs_text_body">15sp</dimen>
+    <dimen name="shs_text_caption">13sp</dimen>
+    <dimen name="shs_text_micro">11sp</dimen>
+    <dimen name="shs_text_calendar_day">17sp</dimen>
+    <dimen name="shs_text_calendar_sub">10sp</dimen>
+
+    <!-- Components -->
+    <dimen name="shs_min_touch_target">48dp</dimen>
+    <dimen name="shs_bottom_nav_height">68dp</dimen>
+    <dimen name="shs_fab_center_size">60dp</dimen>
+    <dimen name="shs_calendar_cell_height">52dp</dimen>
+    <dimen name="shs_header_height">56dp</dimen>
+    <dimen name="shs_elevation_card">6dp</dimen>
+    <dimen name="shs_divider_height">1dp</dimen>
+</resources>

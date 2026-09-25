@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Phase 1 Settings: first day of week, time format, default calendar system,
+     Bengali numerals, Hijri adjustment stepper. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/settings_toolbar"
+        style="@style/SHS.TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/settings_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/shs_bottom_nav_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/shs_screen_padding">
+
+            <!-- ===== Calendar section ===== -->
+            <TextView
+                style="@style/SHS.Text.Accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_calendar_section" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_xs">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/shs_space_md">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/SHS.Text.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/settings_first_day_of_week" />
+
+                        <Spinner
+                            android:id="@+id/settings_first_day_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_sm"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/SHS.Text.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/settings_time_format" />
+
+                        <RadioGroup
+                            android:id="@+id/settings_time_format_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/settings_time_12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/settings_time_format_12" />
+
+                            <RadioButton
+                                android:id="@+id/settings_time_24"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/shs_space_sm"
+                                android:text="@string/settings_time_format_24" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_sm"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/SHS.Text.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/settings_default_calendar" />
+
+                        <Spinner
+                            android:id="@+id/settings_calendar_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Bengali section ===== -->
+            <TextView
+                style="@style/SHS.Text.Accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:text="@string/settings_bengali_section" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_xs">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/shs_space_md">
+
+                    <TextView
+                        style="@style/SHS.Text.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_bengali_numerals" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/settings_bengali_numerals_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Hijri section ===== -->
+            <TextView
+                style="@style/SHS.Text.Accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:text="@string/settings_hijri_section" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_xs">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/shs_space_md">
+
+                    <TextView
+                        style="@style/SHS.Text.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_hijri_adjustment" />
+
+                    <ImageButton
+                        android:id="@+id/settings_hijri_minus"
+                        android:layout_width="@dimen/shs_min_touch_target"
+                        android:layout_height="@dimen/shs_min_touch_target"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/settings_hijri_adjustment"
+                        android:src="@android:drawable/ic_input_delete"
+                        app:tint="@color/shs_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/settings_hijri_value"
+                        style="@style/SHS.Text.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/shs_space_sm"
+                        android:layout_marginEnd="@dimen/shs_space_sm"
+                        android:minWidth="48dp"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/shs_cyan" />
+
+                    <ImageButton
+                        android:id="@+id/settings_hijri_plus"
+                        android:layout_width="@dimen/shs_min_touch_target"
+                        android:layout_height="@dimen/shs_min_touch_target"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/settings_hijri_adjustment"
+                        android:src="@android:drawable/ic_input_add"
+                        app:tint="@color/shs_text_secondary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

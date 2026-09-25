@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  One tile in the dashboard QUICK TOOLS horizontal row.
+  Emoji glyph + label; the adapter sets the glyph, label and click target.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/quick_tool_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_chip_selector"
+    android:gravity="center_horizontal"
+    android:minWidth="@dimen/shs_min_touch_target"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/shs_space_md"
+    android:paddingTop="@dimen/shs_space_sm"
+    android:paddingRight="@dimen/shs_space_md"
+    android:paddingBottom="@dimen/shs_space_sm">
+
+    <TextView
+        android:id="@+id/quick_tool_glyph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/shs_text_primary"
+        android:textSize="22sp"
+        tools:text="🎂" />
+
+    <TextView
+        android:id="@+id/quick_tool_label"
+        style="@style/SHS.Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_xxs"
+        android:maxLines="1"
+        android:textColor="@color/shs_text_secondary"
+        tools:text="@string/tool_age_calculator" />
+</LinearLayout>

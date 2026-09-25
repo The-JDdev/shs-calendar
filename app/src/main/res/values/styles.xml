@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SHS Calendar component styles: cards, chips, pills, text presets. -->
+<resources>
+
+    <!-- Card -->
+    <style name="SHS.Card" parent="MaterialCardView">
+        <item name="cardBackgroundColor">@color/shs_surface</item>
+        <item name="cardCornerRadius">@dimen/shs_radius_card</item>
+        <item name="cardElevation">@dimen/shs_elevation_card</item>
+        <item name="strokeColor">@color/shs_stroke</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="SHS.Card.Compact" parent="SHS.Card">
+        <item name="cardCornerRadius">@dimen/shs_radius_card_small</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="SHS.Card.Hero" parent="SHS.Card">
+        <item name="cardCornerRadius">@dimen/shs_radius_card_large</item>
+        <item name="cardBackgroundColor">@color/shs_hero_end</item>
+    </style>
+
+    <!-- Chip (language selector, day selectors) -->
+    <style name="SHS.Chip" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@drawable/bg_chip_selector</item>
+        <item name="chipCornerRadius">@dimen/shs_radius_chip</item>
+        <item name="android:textColor">@color/shs_text_primary</item>
+        <item name="chipStrokeColor">@color/shs_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="android:textSize">@dimen/shs_text_caption</item>
+    </style>
+
+    <!-- Pill (location) -->
+    <style name="SHS.Pill" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/bg_pill</item>
+        <item name="android:textColor">@color/shs_text_primary</item>
+        <item name="android:textSize">@dimen/shs_text_caption</item>
+        <item name="android:paddingLeft">@dimen/shs_space_md</item>
+        <item name="android:paddingRight">@dimen/shs_space_md</item>
+        <item name="android:minHeight">@dimen/shs_min_touch_target</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Filled accent button -->
+    <style name="SHS.Button.Accent" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/shs_cyan</item>
+        <item name="android:textColor">@color/shs_text_on_accent</item>
+        <item name="cornerRadius">@dimen/shs_radius_chip</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="SHS.Button.Ghost" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/shs_cyan</item>
+        <item name="cornerRadius">@dimen/shs_radius_chip</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Text presets -->
+    <style name="SHS.Text.Hero" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textSize">@dimen/shs_text_hero</item>
+        <item name="android:textColor">@color/shs_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="SHS.Text.Title" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/shs_text_title</item>
+        <item name="android:textColor">@color/shs_text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SHS.Text.Subtitle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/shs_text_subtitle</item>
+        <item name="android:textColor">@color/shs_text_primary</item>
+    </style>
+
+    <style name="SHS.Text.Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/shs_text_body</item>
+        <item name="android:textColor">@color/shs_text_secondary</item>
+    </style>
+
+    <style name="SHS.Text.Caption" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/shs_text_caption</item>
+        <item name="android:textColor">@color/shs_text_secondary</item>
+    </style>
+
+    <style name="SHS.Text.Accent" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/shs_text_body</item>
+        <item name="android:textColor">@color/shs_cyan</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SHS.Text.Micro" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/shs_text_micro</item>
+        <item name="android:textColor">@color/shs_text_muted</item>
+    </style>
+
+    <!-- Calendar cell labels -->
+    <style name="SHS.Calendar.Day" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/shs_text_calendar_day</item>
+        <item name="android:textColor">@color/shs_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="SHS.Calendar.Sub" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/shs_text_calendar_sub</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Toolbar / top app bar -->
+    <style name="SHS.TopBar" parent="Widget.Material3.MaterialToolbar">
+        <item name="android:background">@color/shs_night</item>
+        <item name="titleTextColor">@color/shs_text_primary</item>
+        <item name="titleTextAppearance">@style/SHS.Text.Title</item>
+    </style>
+
+    <!-- Bottom navigation -->
+    <style name="SHS.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/shs_nav_item_selector</item>
+        <item name="itemTextColor">@color/shs_nav_item_selector</item>
+        <item name="itemActiveIndicatorStyle">@style/SHS.BottomNav.Indicator</item>
+        <item name="android:background">@color/shs_nav_bg</item>
+        <item name="itemTextAppearanceActive">@style/SHS.BottomNav.Label</item>
+        <item name="itemTextAppearanceInactive">@style/SHS.BottomNav.Label</item>
+    </style>
+
+    <style name="SHS.BottomNav.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/shs_cyan</item>
+        <item name="android:alpha">0.18</item>
+    </style>
+
+    <style name="SHS.BottomNav.Label" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">@dimen/shs_text_micro</item>
+    </style>
+
+</resources>

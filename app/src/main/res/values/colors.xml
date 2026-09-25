@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SHS Calendar design system — deep navy / cyan-teal premium dark identity.
+     Product spec: SPEC.md "App identity" + "Premium dark theme". -->
+<resources>
+    <!-- Core surfaces -->
+    <color name="shs_night">#0B1026</color>          <!-- app background, deep navy -->
+    <color name="shs_night_deep">#070B1B</color>     <!-- AMOLED-leaning edge -->
+    <color name="shs_surface">#121A36</color>        <!-- card surface -->
+    <color name="shs_surface_high">#1A2447</color>   <!-- raised surface / input -->
+    <color name="shs_surface_low">#0E1530</color>    <!-- sunken surface -->
+    <color name="shs_stroke">#243059</color>         <!-- hairline stroke -->
+
+    <!-- Accents -->
+    <color name="shs_cyan">#22D3EE</color>           <!-- primary accent -->
+    <color name="shs_teal">#2DD4BF</color>           <!-- secondary accent -->
+    <color name="shs_cyan_deep">#0891B2</color>
+    <color name="shs_teal_deep">#0D9488</color>
+    <color name="shs_indigo">#818CF8</color>         <!-- secondary / today (Gregorian) -->
+    <color name="shs_purple">#A78BFA</color>
+    <color name="shs_magenta">#F472B6</color>
+    <color name="shs_orange">#FB923C</color>         <!-- alerts / holidays -->
+    <color name="shs_amber">#FBBF24</color>
+
+    <!-- Text -->
+    <color name="shs_text_primary">#F5F8FF</color>
+    <color name="shs_text_secondary">#9AA6C9</color>
+    <color name="shs_text_muted">#64709B</color>
+    <color name="shs_text_on_accent">#06121F</color>
+
+    <!-- Semantic -->
+    <color name="shs_success">#34D399</color>
+    <color name="shs_danger">#FB7185</color>
+    <color name="shs_warning">#FBBF24</color>
+
+    <!-- Bengali day cell accent (deep green printed-calendar look, Phase 2 friendly) -->
+    <color name="shs_bengali_green">#0F7B4F</color>
+    <color name="shs_hijri_blue">#60A5FA</color>
+
+    <!-- Gradient endpoints -->
+    <color name="shs_gradient_start">#14204A</color>
+    <color name="shs_gradient_end">#0B1026</color>
+    <color name="shs_hero_start">#1B2B5E</color>
+    <color name="shs_hero_end">#101737</color>
+
+    <!-- Icon scrims -->
+    <color name="shs_scrim">#66000000</color>
+    <color name="shs_transparent">#00000000</color>
+
+    <!-- Bottom navigation -->
+    <color name="shs_nav_bg">#0D132C</color>
+    <color name="shs_nav_inactive">#64709B</color>
+
+    <!-- Focus / ripple -->
+    <color name="shs_ripple">#3322D3EE</color>
+</resources>

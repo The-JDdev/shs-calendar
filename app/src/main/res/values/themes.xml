@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SHS Calendar premium dark theme: deep navy, cyan/teal accents, Material Components. -->
+<resources>
+
+    <style name="Theme.SHSCalendar" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/shs_cyan</item>
+        <item name="colorOnPrimary">@color/shs_text_on_accent</item>
+        <item name="colorPrimaryContainer">@color/shs_cyan_deep</item>
+        <item name="colorOnPrimaryContainer">@color/shs_text_primary</item>
+
+        <item name="colorSecondary">@color/shs_teal</item>
+        <item name="colorOnSecondary">@color/shs_text_on_accent</item>
+        <item name="colorSecondaryContainer">@color/shs_teal_deep</item>
+        <item name="colorOnSecondaryContainer">@color/shs_text_primary</item>
+
+        <item name="colorTertiary">@color/shs_indigo</item>
+        <item name="colorOnTertiary">@color/shs_text_on_accent</item>
+
+        <item name="colorError">@color/shs_danger</item>
+        <item name="colorOnError">@color/shs_text_on_accent</item>
+
+        <item name="android:colorBackground">@color/shs_night</item>
+        <item name="colorSurface">@color/shs_surface</item>
+        <item name="colorSurfaceVariant">@color/shs_surface_high</item>
+        <item name="colorOnSurface">@color/shs_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/shs_text_secondary</item>
+        <item name="colorOutline">@color/shs_stroke</item>
+
+        <item name="android:statusBarColor">@color/shs_night</item>
+        <item name="android:navigationBarColor">@color/shs_nav_bg</item>
+        <item name="android:windowBackground">@color/shs_night</item>
+        <item name="android:textColorPrimary">@color/shs_text_primary</item>
+        <item name="android:textColorSecondary">@color/shs_text_secondary</item>
+        <item name="android:textColorHint">@color/shs_text_muted</item>
+
+        <item name="materialAlertDialogTheme">@style/Theme.SHSCalendar.Dialog</item>
+    </style>
+
+    <style name="Theme.SHSCalendar.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/shs_surface_high</item>
+        <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.SHSCalendar.Large</item>
+    </style>
+
+    <style name="ShapeAppearance.SHSCalendar.Large" parent="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerSize">@dimen/shs_radius_card</item>
+    </style>
+
+</resources>
