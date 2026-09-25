@@ -15,3 +15,10 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   timezone detection + travel mode.
 
 - M1 complete: assembleDebug + testDebugUnitTest green (41/41 tests).
+
+- M2 complete: assembleDebug + testDebugUnitTest green (48/48 tests).
+  PrayerEngine (10 methods, madhab, high-lat rules, manual offsets, compact
+  wrap-around fast path), PrayerSettings mapper, DB v1->v2 migration,
+  Settings spinners + offsets dialog, PrayerActivity countdown/timetable,
+  nav + quick-tools routing. Dhaka fajr window validated against an
+  independent NOAA derivation (04:41 vs engine 04:41:34).
