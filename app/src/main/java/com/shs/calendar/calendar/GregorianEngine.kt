@@ -60,7 +60,11 @@ object GregorianEngine {
             val d = yearMonth.atDay(day)
             cells += MonthCell(d, inMonth = true, isToday = d == today)
         }
-        val trail = (7 - cells.size % 7) % 7
+        // Pad to whole weeks, always showing at least 5 rows (35 cells),
+        // so short months like Feb 2026 (28 days, Sunday-aligned) still
+        // render a full 5×7 grid.
+        var trail = (7 - cells.size % 7) % 7
+        if (cells.size + trail < 35) trail += 7
         var next = first.plusDays(daysInMonth.toLong())
         for (i in 0 until trail) {
             cells += MonthCell(next, inMonth = false, isToday = next == today)

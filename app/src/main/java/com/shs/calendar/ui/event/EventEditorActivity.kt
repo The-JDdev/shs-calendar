@@ -145,32 +145,28 @@ class EventEditorActivity : AppCompatActivity() {
     private fun pickDateTime(current: LocalDateTime, onPicked: (LocalDateTime) -> Unit) {
         val dateMs = current.toLocalDate()
             .atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
-        MaterialDatePicker.Builder.datePicker()
+        val datePicker = MaterialDatePicker.Builder.datePicker()
             .setSelection(dateMs)
             .build()
-            .show(supportFragmentManager, "event_date")
-            .addOnSuccessListener { selection ->
-                val date = Instant.ofEpochMilli(selection as Long)
-                    .atZone(ZoneId.systemDefault()).toLocalDate()
-                MaterialTimePicker.Builder()
-                    .setHour(current.hour)
-                    .setMinute(current.minute)
-                    .setTimeFormat(
-                        if (hour24()) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
-                    )
-                    .build()
-                    .show(supportFragmentManager, "event_time")
-                    .addOnSuccessListener { picker ->
-                        onPicked(LocalDateTime.of(date, LocalTime.of(picker.hour, picker.minute)))
-                    }
+        datePicker.addOnPositiveButtonClickListener { selection ->
+            val date = Instant.ofEpochMilli(selection as Long)
+                .atZone(ZoneId.systemDefault()).toLocalDate()
+            val timePicker = MaterialTimePicker.Builder()
+                .setHour(current.hour)
+                .setMinute(current.minute)
+                .setTimeFormat(
+                    if (hour24()) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+                )
+                .build()
+            timePicker.addOnPositiveButtonClickListener { _view ->
+                onPicked(LocalDateTime.of(date, LocalTime.of(timePicker.hour, timePicker.minute)))
             }
+            timePicker.show(supportFragmentManager, "event_time")
+        }
+        datePicker.show(supportFragmentManager, "event_date")
     }
 
-    private fun hour24(): Boolean = runCatching {
-        // Clock preference mirrors the settings row; default to 24h (app default).
-        java.util.TimeZone.getDefault().useDaylightTime()
-        true
-    }.getOrDefault(true)
+    private fun hour24(): Boolean = android.text.format.DateFormat.is24HourFormat(this)
 
     private fun formatDateTime(dt: LocalDateTime): String {
         val time = if (allDayChecked()) "" else " " + dt.toLocalTime().toString().substring(0, 5)
@@ -184,6 +180,8 @@ class EventEditorActivity : AppCompatActivity() {
         Toast.makeText(this, res, Toast.LENGTH_SHORT).show()
 
     companion object {
+        /** Optional pre-filled start date (ISO-YYYY-MM-DD) from the dashboard grid. */
+        const val EXTRA_DATE = "extra_date"
         const val EXTRA_EVENT_ID = "event_id"
     }
 }

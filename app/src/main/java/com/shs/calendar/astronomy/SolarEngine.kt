@@ -114,11 +114,16 @@ object SolarEngine {
         return eTime * 4.0 // minutes
     }
 
-    /** Hour angle (degrees) of the sun at elevation [angleDeg]; NaN if never reached. */
-    private fun hourAngle(latDeg: Double, angleDeg: Double, declDeg: Double): Double {
+    /** cos of the hour angle of the sun at elevation [angleDeg]; may fall outside [-1, 1]. */
+    private fun cosHourAngle(latDeg: Double, angleDeg: Double, declDeg: Double): Double {
         val lat = latDeg * RAD
         val decl = declDeg * RAD
-        val cosH = (sin(angleDeg * RAD) - sin(lat) * sin(decl)) / (cos(lat) * cos(decl))
+        return (sin(angleDeg * RAD) - sin(lat) * sin(decl)) / (cos(lat) * cos(decl))
+    }
+
+    /** Hour angle (degrees) of the sun at elevation [angleDeg]; NaN if never reached. */
+    private fun hourAngle(latDeg: Double, angleDeg: Double, declDeg: Double): Double {
+        val cosH = cosHourAngle(latDeg, angleDeg, declDeg)
         if (cosH < -1.0 || cosH > 1.0) return Double.NaN
         return acosDeg(cosH)
     }
@@ -213,8 +218,14 @@ object SolarEngine {
         )
     }
 
-    /** True when sun stays below horizon all day (polar night at this angle). */
-    fun neverRises(date: LocalDate, lat: Double, lon: Double, zone: ZoneId): Boolean =
-        compute(date, lat, lon, zone).sunrise == null &&
-        compute(date, lat, lon, zone).sunset == null
+    /**
+     * True only for polar night: the sun never reaches the official rise
+     * angle because it stays below the horizon all day (cos H > 1).
+     * Midnight sun (cos H < −1) is NOT "never rises" — it never sets.
+     */
+    fun neverRises(date: LocalDate, lat: Double, lon: Double, zone: ZoneId): Boolean {
+        val utcHourNoon = 12.0 - lon / 15.0
+        val t = julianCentury(julianDay(date.year, date.monthValue, date.dayOfMonth, utcHourNoon))
+        return cosHourAngle(lat, -0.833, sunDeclination(t)) > 1.0
+    }
 }

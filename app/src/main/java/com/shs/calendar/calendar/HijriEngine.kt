@@ -5,6 +5,7 @@ import java.time.chrono.HijrahDate
 import java.time.chrono.HijrahEra
 import java.time.chrono.ChronoLocalDate
 import java.time.temporal.ChronoField
+import java.time.temporal.ChronoUnit
 
 /**
  * Hijri calendar built on java.time.chrono.HijrahDate (Umm al-Qura-style
@@ -69,22 +70,22 @@ object HijriEngine {
         require(h.month in 1..12) { "Hijri month must be 1..12, was ${h.month}" }
         require(h.day in 1..30) { "Hijri day must be 1..30, was ${h.day}" }
         val adj = clampAdjustment(h.adjustment)
-        val hd = HijrahDate.of(HijrahEra.AH, h.year, h.month, h.day)
+        val hd = HijrahDate.of(h.year, h.month, h.day)
         return LocalDate.from(hd).minusDays(adj.toLong())
     }
 
     /** Non-throwing validity check (e.g. 30 Ramadan does not exist). */
     fun isValid(h: HijriDate): Boolean = try {
         h.month in 1..12 && h.day in 1..30 &&
-            HijrahDate.of(HijrahEra.AH, h.year, h.month, h.day) != null
+            HijrahDate.of(h.year, h.month, h.day) != null
     } catch (_: Exception) {
         false
     }
 
     /** Length in days of a Hijri month in the underlying calendar (29 or 30). */
     fun monthLength(hijriYear: Int, month: Int): Int {
-        val first = HijrahDate.of(HijrahEra.AH, hijriYear, month, 1)
-        val nextMonth = first.plusDays(29)
+        val first = HijrahDate.of(hijriYear, month, 1)
+        val nextMonth = first.plus(29, ChronoUnit.DAYS)
         return if (nextMonth.get(ChronoField.MONTH_OF_YEAR) == month) 30 else 29
     }
 

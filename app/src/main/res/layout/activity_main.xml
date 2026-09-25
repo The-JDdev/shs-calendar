@@ -336,7 +336,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/shs_space_sm"
                     android:fontFamily="serif"
-                    android:italic="true"
+                    android:textStyle="italic"
                     android:textColor="@color/shs_text_primary" />
 
                 <TextView

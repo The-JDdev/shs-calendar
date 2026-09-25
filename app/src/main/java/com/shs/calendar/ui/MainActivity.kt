@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            runCatching { ReminderScheduler.rescheduleAll() }
+            runCatching { ReminderScheduler.rescheduleAll(this@MainActivity) }
         }
     }
 
@@ -254,7 +254,7 @@ class MainActivity : AppCompatActivity() {
         nav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_calendar -> {
-                    findViewById<android.view.View>(R.id.dashboard_scroll).smoothScrollTo(0, 0)
+                    findViewById<android.view.View>(R.id.dashboard_scroll).scrollTo(0, 0)
                     true
                 }
                 R.id.nav_tools -> {

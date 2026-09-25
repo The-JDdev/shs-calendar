@@ -3,7 +3,7 @@
 <resources>
 
     <!-- Card -->
-    <style name="SHS.Card" parent="MaterialCardView">
+    <style name="SHS.Card" parent="Widget.Material3.CardView.Elevated">
         <item name="cardBackgroundColor">@color/shs_surface</item>
         <item name="cardCornerRadius">@dimen/shs_radius_card</item>
         <item name="cardElevation">@dimen/shs_elevation_card</item>
@@ -112,7 +112,7 @@
     </style>
 
     <!-- Toolbar / top app bar -->
-    <style name="SHS.TopBar" parent="Widget.Material3.MaterialToolbar">
+    <style name="SHS.TopBar" parent="Widget.Material3.Toolbar">
         <item name="android:background">@color/shs_night</item>
         <item name="titleTextColor">@color/shs_text_primary</item>
         <item name="titleTextAppearance">@style/SHS.Text.Title</item>

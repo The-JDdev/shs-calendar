@@ -107,9 +107,17 @@ class ReminderScheduler(private val context: Context) {
 
     companion object {
         /** Reminder offsets commonly present in events — used for cancellation sweeps. */
-        private val COMMON_OFFSETS = intArrayOf(0, 5, 10, 15, 30, 60, 120, 1440)
+        private val COMMON_OFFSETS: List<Int> = listOf(0, 5, 10, 15, 30, 60, 120, 1440)
 
         /** Restore window: 30 days of upcoming events. */
         const val DEFAULT_LOOKAHEAD = 30L * 24 * 60 * 60 * 1000
+
+        /**
+         * Convenience entry point for callers without an instance (dashboard
+         * startup): re-arm every future reminder alarm from the database.
+         */
+        fun rescheduleAll(context: Context) {
+            ReminderScheduler(context).rescheduleAll()
+        }
     }
 }

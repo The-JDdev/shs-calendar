@@ -67,17 +67,17 @@ class AgeCalculatorActivity : AppCompatActivity() {
 
         birthValue.setText(R.string.age_result_placeholder)
         findViewById<MaterialButton>(R.id.age_pick).setOnClickListener {
-            MaterialDatePicker.Builder.datePicker()
+            val picker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText(R.string.age_birthdate)
                 .build()
-                .show(supportFragmentManager, "age_pick")
-                .addOnPositiveButtonClickListener { millis ->
-                    birthDate = java.time.Instant.ofEpochMilli(millis)
-                        .atZone(java.time.ZoneOffset.UTC)
-                        .toLocalDate()
-                    birthValue.text = birthDate.toString()
-                    recompute()
-                }
+            picker.addOnPositiveButtonClickListener { millis ->
+                birthDate = java.time.Instant.ofEpochMilli(millis)
+                    .atZone(java.time.ZoneOffset.UTC)
+                    .toLocalDate()
+                birthValue.text = birthDate.toString()
+                recompute()
+            }
+            picker.show(supportFragmentManager, "age_pick")
         }
     }
 

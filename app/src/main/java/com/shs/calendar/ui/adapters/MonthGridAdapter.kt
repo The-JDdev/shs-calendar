@@ -11,6 +11,7 @@ import com.shs.calendar.R
 import com.shs.calendar.calendar.BengaliEngine
 import com.shs.calendar.calendar.BengaliNumerals
 import com.shs.calendar.calendar.HijriEngine
+import com.shs.calendar.calendar.GregorianEngine
 import java.time.LocalDate
 
 /**
@@ -25,19 +26,14 @@ import java.time.LocalDate
  * @param hijriAdjustment settings-driven moon-sighting offset (−3..+3)
  * @param bengaliNumerals render digits in Bengali numerals when true
  */
+typealias GridCell = GregorianEngine.MonthCell
+
 class MonthGridAdapter(
     context: Context,
     private var cells: List<GridCell>,
     private var hijriAdjustment: Int = 0,
     private var bengaliNumerals: Boolean = false
 ) : BaseAdapter() {
-
-    /** View-model decoupled from engine types so the adapter stays testable. */
-    data class GridCell(
-        val date: LocalDate,
-        val inMonth: Boolean,
-        val isToday: Boolean
-    )
 
     private val inflater = LayoutInflater.from(context)
 

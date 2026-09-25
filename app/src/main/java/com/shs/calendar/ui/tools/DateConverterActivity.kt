@@ -71,16 +71,16 @@ class DateConverterActivity : AppCompatActivity() {
         }
 
         findViewById<MaterialButton>(R.id.conv_picked_date).setOnClickListener {
-            MaterialDatePicker.Builder.datePicker()
+            val picker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText(R.string.converter_title)
                 .setSelection(picked.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli())
                 .build()
-                .show(supportFragmentManager, "conv_pick")
-                .addOnPositiveButtonClickListener { millis ->
-                    render(
-                        Instant.ofEpochMilli(millis).atZone(ZoneOffset.UTC).toLocalDate()
-                    )
-                }
+            picker.addOnPositiveButtonClickListener { millis ->
+                render(
+                    Instant.ofEpochMilli(millis).atZone(ZoneOffset.UTC).toLocalDate()
+                )
+            }
+            picker.show(supportFragmentManager, "conv_pick")
         }
     }
 }

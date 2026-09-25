@@ -55,20 +55,26 @@ data class RRule(
             return RRule(freq, interval, count, until, byDay, byMonthDay)
         }
 
-        private fun parseUntil(raw: String?): Long? = when {
-            raw.isNullOrBlank() -> null
-            raw.length == 8 && raw.all { it.isDigit() } ->
-                runCatching {
-                    LocalDate.parse(raw).atTime(23, 59).atZone(ZoneId.of("UTC"))
-                        .toInstant().toEpochMilli()
-                }.getOrNull()
-            raw.endsWith("Z") ->
-                runCatching { Instant.parse(raw).toEpochMilli() }.getOrNull()
-            else ->
-                runCatching {
-                    LocalDate.parse(raw).atTime(23, 59).atZone(ZoneId.of("UTC"))
-                        .toInstant().toEpochMilli()
-                }.getOrNull()
+        private fun parseUntil(raw: String?): Long? {
+            if (raw.isNullOrBlank()) return null
+            if (raw.endsWith("Z")) {
+                return runCatching { Instant.parse(raw).toEpochMilli() }.getOrNull()
+            }
+            if (raw.all { it.isDigit() }) {
+                return when (raw.length) {
+                    // yyyyMMdd → inclusive end of that day (UTC).
+                    8 -> runCatching {
+                        LocalDate.parse(raw).atTime(23, 59).atZone(ZoneId.of("UTC"))
+                            .toInstant().toEpochMilli()
+                    }.getOrNull()
+                    // Already epoch milliseconds (clients pass raw millis).
+                    else -> raw.toLongOrNull()
+                }
+            }
+            return runCatching {
+                LocalDate.parse(raw).atTime(23, 59).atZone(ZoneId.of("UTC"))
+                    .toInstant().toEpochMilli()
+            }.getOrNull()
         }
 
         private fun parseByDay(raw: String?): List<ByDay> =
@@ -115,20 +121,21 @@ object RecurrenceExpander {
             else emptyList()
         }
 
-        val duration = durationMs.coerceAtLeast(0)
         val results = ArrayList<Long>()
         val startDate = Instant.ofEpochMilli(startUtcMillis).atZone(zone).toLocalDate()
         var produced = 0
 
         // Candidate dates for each frequency, walked in ascending order.
         for (date in candidateDates(rrule, startDate, zone)) {
-            val occStart = date.atZone(zone).toInstant().toEpochMilli()
+            val occStart = date.atStartOfDay(zone).toInstant().toEpochMilli()
             if (rrule.untilUtcMillis != null && occStart > rrule.untilUtcMillis!!) break
             // COUNT applies from the first occurrence (the master start).
             if (rrule.count != null && produced >= rrule.count!!) break
             produced++
             if (occStart >= toUtcMillis) break
-            if (occStart + duration > fromUtcMillis && occStart < toUtcMillis) {
+            // Window filters on the occurrence START instant: an occurrence is
+            // included iff it starts inside [from, to).
+            if (occStart >= fromUtcMillis && occStart < toUtcMillis) {
                 if (occStart >= startUtcMillis) results.add(occStart)
             }
             if (results.size >= MAX_OCCURRENCES) break
