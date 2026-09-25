@@ -215,6 +215,7 @@ class MainActivity : AppCompatActivity() {
                 "age" -> startActivity(Intent(this, AgeCalculatorActivity::class.java))
                 "convert" -> startActivity(Intent(this, DateConverterActivity::class.java))
                 "events" -> startActivity(Intent(this, EventsAgendaActivity::class.java))
+                "prayer" -> startActivity(Intent(this, com.shs.calendar.ui.prayer.PrayerActivity::class.java))
                 else -> openPlaceholder(tool.id)
             }
         }
@@ -268,7 +269,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, AgeCalculatorActivity::class.java)); true
                 }
                 R.id.nav_prayer -> {
-                    openPlaceholder("prayer"); true
+                    startActivity(Intent(this, com.shs.calendar.ui.prayer.PrayerActivity::class.java)); true
                 }
                 R.id.nav_accounts -> {
                     openPlaceholder("accounts"); true

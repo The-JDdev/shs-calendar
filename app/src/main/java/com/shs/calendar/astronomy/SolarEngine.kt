@@ -219,9 +219,32 @@ object SolarEngine {
     }
 
     /**
+     * Local time the sun crosses [angleDeg] (negative = below horizon) on [date].
+     * [isSunrise] selects the rising branch. Null when unreachable (polar day/night).
+     */
+    fun elevationEvent(
+        date: LocalDate,
+        latDeg: Double,
+        lonDeg: Double,
+        angleDeg: Double,
+        isSunrise: Boolean,
+        zone: ZoneId
+    ): LocalTime? {
+        val ut = eventMinutesUT(date, latDeg, lonDeg, angleDeg, isSunrise)
+        if (ut.isNaN()) return null
+        return minutesToLocal(date, ut, lonDeg, zone)
+    }
+
+    /** Sun declination in degrees for [date] evaluated near local solar noon. */
+    fun declinationDegrees(date: LocalDate, lonDeg: Double): Double {
+        val t = julianCentury(julianDay(date.year, date.monthValue, date.dayOfMonth, 12.0 - lonDeg / 15.0))
+        return sunDeclination(t)
+    }
+
+    /**
      * True only for polar night: the sun never reaches the official rise
      * angle because it stays below the horizon all day (cos H > 1).
-     * Midnight sun (cos H < −1) is NOT "never rises" — it never sets.
+     * Midnight sun (cos H < -1) is NOT "never rises" — it never sets.
      */
     fun neverRises(date: LocalDate, lat: Double, lon: Double, zone: ZoneId): Boolean {
         val utcHourNoon = 12.0 - lon / 15.0

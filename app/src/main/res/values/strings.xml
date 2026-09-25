@@ -85,6 +85,60 @@
     <string name="settings_default_calendar">Default calendar system</string>
     <string name="settings_bengali_numerals">Bengali numerals</string>
     <string name="settings_hijri_adjustment">Hijri adjustment (days)</string>
+    <!-- M2: prayer screen -->
+    <string name="prayer_next">Next prayer</string>
+    <string name="prayer_countdown_in">in %1$s</string>
+    <string name="prayer_countdown_past">started %1$s ago</string>
+    <string name="prayer_unavailable">Unavailable</string>
+    <string name="prayer_empty_location">Set a location to calculate prayer times.</string>
+    <string name="prayer_set_location">Set location</string>
+    <string name="prayer_no_location">No location set</string>
+    <string name="prayer_imsak">Imsak</string>
+    <string name="prayer_fajr">Fajr</string>
+    <string name="prayer_sunrise">Sunrise</string>
+    <string name="prayer_dhuhr">Dhuhr</string>
+    <string name="prayer_asr">Asr</string>
+    <string name="prayer_sunset">Sunset</string>
+    <string name="prayer_maghrib">Maghrib</string>
+    <string name="prayer_isha">Isha</string>
+    <string name="prayer_midnight">Midnight</string>
+    <string name="prayer_tahajjud">Tahajjud (last third)</string>
+    <string name="prayer_note_suhoor">Suhoor ends at Fajr</string>
+    <string name="prayer_note_iftar">Iftar</string>
+
+    <!-- M2: prayer calculation settings -->
+    <string name="settings_prayer_section">Prayer calculation</string>
+    <string name="settings_prayer_method">Calculation method</string>
+    <string name="settings_prayer_madhab">Asr madhab</string>
+    <string name="settings_prayer_high_lat">High-latitude rule</string>
+    <string name="settings_prayer_offsets">Manual offsets (min)</string>
+    <string name="settings_prayer_offsets_adjust">Adjust</string>
+
+    <string-array name="prayer_methods">
+        <item>Muslim World League</item>
+        <item>ISNA (North America)</item>
+        <item>Egyptian General Authority</item>
+        <item>Umm al-Qura, Makkah</item>
+        <item>University of Islamic Sciences, Karachi</item>
+        <item>Dubai</item>
+        <item>Kuwait</item>
+        <item>Qatar</item>
+        <item>Majlis Ugama Islam, Singapura</item>
+        <item>Diyanet İşleri, Turkey</item>
+    </string-array>
+
+    <string-array name="prayer_madhabs">
+        <item>Standard (Shafi&#8217;i, Maliki, Hanbali)</item>
+        <item>Hanafi</item>
+    </string-array>
+
+    <string-array name="prayer_high_lat_rules">
+        <item>None</item>
+        <item>Angle-based</item>
+        <item>One-seventh of night</item>
+        <item>Midnight sun</item>
+    </string-array>
+
     <string name="settings_calendar_section">Calendar</string>
     <string name="settings_bengali_section">Bengali</string>
     <string name="settings_hijri_section">Hijri</string>

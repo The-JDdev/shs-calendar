@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.shs.calendar.data.dao.EventDao
 import com.shs.calendar.data.dao.NoteDao
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
  */
 @Database(
     entities = [EventEntity::class, TaskEntity::class, NoteEntity::class, SettingsEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class CalendarDatabase : RoomDatabase() {
@@ -35,6 +36,19 @@ abstract class CalendarDatabase : RoomDatabase() {
     abstract fun settingsDao(): SettingsDao
 
     companion object {
+        /**
+         * 1 -> 2 (M2): prayer settings columns. Nullable with NULL = documented
+         * default, so no data rewrite is needed and schema validation matches.
+         */
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE settings ADD COLUMN prayerMethod TEXT")
+                db.execSQL("ALTER TABLE settings ADD COLUMN prayerMadhab TEXT")
+                db.execSQL("ALTER TABLE settings ADD COLUMN highLatitudeRule TEXT")
+                db.execSQL("ALTER TABLE settings ADD COLUMN prayerOffsetsCsv TEXT")
+            }
+        }
+
         @Volatile
         private var instance: CalendarDatabase? = null
 
@@ -47,6 +61,7 @@ abstract class CalendarDatabase : RoomDatabase() {
 
         private fun build(context: Context): CalendarDatabase =
             Room.databaseBuilder(context.applicationContext, CalendarDatabase::class.java, "shs_calendar.db")
+                .addMigrations(MIGRATION_1_2)
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         seedScope.launch {

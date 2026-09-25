@@ -35,6 +35,9 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var switchBengaliNumerals: SwitchMaterial
     private lateinit var hijriAdjustText: TextView
     private lateinit var travelModeSwitch: SwitchMaterial
+    private lateinit var prayerMethodSpinner: Spinner
+    private lateinit var prayerMadhabSpinner: Spinner
+    private lateinit var prayerHighLatSpinner: Spinner
     private var updatingUi = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +67,25 @@ class SettingsActivity : AppCompatActivity() {
             resources.getStringArray(R.array.calendar_systems)
         )
 
+        prayerMethodSpinner = findViewById(R.id.settings_prayer_method_spinner)
+        prayerMadhabSpinner = findViewById(R.id.settings_prayer_madhab_spinner)
+        prayerHighLatSpinner = findViewById(R.id.settings_prayer_high_lat_spinner)
+        prayerMethodSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.prayer_methods)
+        )
+        prayerMadhabSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.prayer_madhabs)
+        )
+        prayerHighLatSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.prayer_high_lat_rules)
+        )
+
         bindControls()
 
         lifecycleScope.launch {
@@ -85,6 +107,15 @@ class SettingsActivity : AppCompatActivity() {
                 switchBengaliNumerals.isChecked = s.bengaliNumerals
                 travelModeSwitch.isChecked = s.useDeviceTimezone
                 hijriAdjustText.text = (s.hijriAdjustment.coerceIn(-3, 3)).toString()
+                prayerMethodSpinner.setSelection(
+                    com.shs.calendar.prayer.PrayerSettings.methodOf(s).ordinal
+                )
+                prayerMadhabSpinner.setSelection(
+                    com.shs.calendar.prayer.PrayerSettings.madhabOf(s).ordinal
+                )
+                prayerHighLatSpinner.setSelection(
+                    com.shs.calendar.prayer.PrayerSettings.highLatitudeRuleOf(s).ordinal
+                )
                 updatingUi = false
             }
         }
@@ -119,6 +150,104 @@ class SettingsActivity : AppCompatActivity() {
         }
         findViewById<android.view.View>(R.id.settings_hijri_plus)?.setOnClickListener {
             adjustHijri(+1)
+        }
+        prayerMethodSpinner.onItemSelectedListener = simpleSelection { pos ->
+            persist {
+                it.copy(
+                    prayerMethod = com.shs.calendar.prayer.PrayerMethod.values()
+                        .getOrElse(pos) { com.shs.calendar.prayer.PrayerMethod.MWL }.name
+                )
+            }
+        }
+        prayerMadhabSpinner.onItemSelectedListener = simpleSelection { pos ->
+            persist {
+                it.copy(
+                    prayerMadhab = com.shs.calendar.prayer.Madhab.values()
+                        .getOrElse(pos) { com.shs.calendar.prayer.Madhab.HANAFI }.name
+                )
+            }
+        }
+        prayerHighLatSpinner.onItemSelectedListener = simpleSelection { pos ->
+            persist {
+                it.copy(
+                    highLatitudeRule = com.shs.calendar.prayer.HighLatitudeRule.values()
+                        .getOrElse(pos) { com.shs.calendar.prayer.HighLatitudeRule.NONE }.name
+                )
+            }
+        }
+        findViewById<android.view.View>(R.id.settings_prayer_offsets_button)?.setOnClickListener {
+            showOffsetsDialog()
+        }
+    }
+
+    /** Manual minute offsets per prayer, six signed fields in one dialog. */
+    private fun showOffsetsDialog() {
+        lifecycleScope.launch {
+            val current = com.shs.calendar.prayer.PrayerSettings.offsetsOf(
+                repo.get() ?: com.shs.calendar.data.entity.SettingsEntity()
+            )
+            val labels = arrayOf("Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha")
+            val start = intArrayOf(
+                current.fajr, current.sunrise, current.dhuhr,
+                current.asr, current.maghrib, current.isha
+            )
+            val inputs = arrayOfNulls<android.widget.EditText>(labels.size)
+
+            val grid = android.widget.LinearLayout(this@SettingsActivity).apply {
+                orientation = android.widget.LinearLayout.VERTICAL
+                val pad = (16 * resources.displayMetrics.density).toInt()
+                setPadding(pad, pad / 2, pad, 0)
+            }
+            labels.forEachIndexed { i, label ->
+                val row = android.widget.LinearLayout(this@SettingsActivity).apply {
+                    orientation = android.widget.LinearLayout.HORIZONTAL
+                    gravity = android.view.Gravity.CENTER_VERTICAL
+                }
+                row.addView(
+                    android.widget.TextView(this@SettingsActivity).apply {
+                        text = label
+                        textSize = 15f
+                    },
+                    android.widget.LinearLayout.LayoutParams(0,
+                        android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+                )
+                val edit = android.widget.EditText(this@SettingsActivity).apply {
+                    inputType = android.text.InputType.TYPE_CLASS_NUMBER or
+                        android.text.InputType.TYPE_NUMBER_FLAG_SIGNED
+                    setText(start[i].toString())
+                    setSingleLine()
+                    gravity = android.view.Gravity.END
+                }
+                inputs[i] = edit
+                row.addView(
+                    edit,
+                    android.widget.LinearLayout.LayoutParams(
+                        (72 * resources.displayMetrics.density).toInt(),
+                        android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+                    )
+                )
+                grid.addView(row)
+            }
+
+            androidx.appcompat.app.AlertDialog.Builder(this@SettingsActivity)
+                .setTitle(R.string.settings_prayer_offsets)
+                .setView(grid)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    val vals = IntArray(labels.size) { i ->
+                        inputs[i]?.text?.toString()?.trim()?.toIntOrNull() ?: start[i]
+                    }
+                    persist {
+                        it.copy(
+                            prayerOffsetsCsv = com.shs.calendar.prayer.PrayerSettings.encodeOffsets(
+                                com.shs.calendar.prayer.PrayerOffsets(
+                                    vals[0], vals[1], vals[2], vals[3], vals[4], vals[5]
+                                )
+                            )
+                        )
+                    }
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
     }
 
