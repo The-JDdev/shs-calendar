@@ -44,6 +44,17 @@ data class SyncAccountEntity(
      */
 
 
+    /**
+     * Server-set calendar colour as #RRGGBB, or "" when there is none.
+     *
+     * Persisted rather than re-fetched so the swatch is stable offline and
+     * identical across restarts. Only values that survive
+     * [com.shs.calendar.sync.DavDiscovery.normalizeColor] are written, so
+     * this column never holds a named CSS colour or a 0x-prefixed value that
+     * Color.parseColor would throw on.
+     */
+    val colorHex: String = "",
+
     /** Server collection tag cached for the next conditional pull. */
     val syncToken: String? = null,
 

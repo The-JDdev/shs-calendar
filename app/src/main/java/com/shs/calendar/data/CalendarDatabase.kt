@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
         SettingsEntity::class,
         SyncAccountEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 abstract class CalendarDatabase : RoomDatabase() {
@@ -148,6 +148,29 @@ abstract class CalendarDatabase : RoomDatabase() {
          * so is created here too — Room's identity hash covers the index, and a
          * mismatch fails validation at runtime, not at compile time.
          */
+        /**
+         * 6 -> 7 (M9): per-calendar colour.
+         *
+         * A plain ADD COLUMN, not the create/copy/drop rebuild MIGRATION_5_6
+         * needed: SQLite supports ADD COLUMN from 3.2, and adding a column
+         * touches no existing row, so there is nothing to copy and nothing
+         * that can be lost. The rebuild is only required when dropping or
+         * retyping a column, which no longer happens here.
+         *
+         * NOT NULL DEFAULT '' matters twice over: the column is declared
+         * non-null on the entity, and an existing account has no server colour,
+         * so it falls back to the app's own palette rather than to null — the
+         * same "honest empty" rule the syncToken column follows.
+         */
+        private val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "ALTER TABLE sync_accounts " +
+                        "ADD COLUMN colorHex TEXT NOT NULL DEFAULT ''"
+                )
+            }
+        }
+
         private val MIGRATION_4_5 = object : Migration(4, 5) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(
@@ -188,6 +211,11 @@ abstract class CalendarDatabase : RoomDatabase() {
                 .addMigrations(MIGRATION_3_4)
                 .addMigrations(MIGRATION_4_5)
                 .addMigrations(MIGRATION_5_6)
+                // Registered, not merely defined: an unregistered migration is
+                // dead code that still changes the entity's expected schema, so
+                // Room would fail validation on the first open of an existing
+                // install rather than at compile time.
+                .addMigrations(MIGRATION_6_7)
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         seedScope.launch {

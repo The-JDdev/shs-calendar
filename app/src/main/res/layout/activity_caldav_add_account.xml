@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Add-account form. A single scrolling column, because the whole flow is one
+  linear decision: type an address, find the calendars, pick one, save.
+
+  The calendar picker is a Spinner rather than a second screen, so a user can
+  see the chosen calendar next to the fields that produced it. The
+  password field is a real EditText, never a pre-filled value from anywhere:
+  the user types it here and it goes straight to SyncCredentialStore.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/caldav_add_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:title="@string/caldav_add_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/shs_space_md">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/caldav_add_server_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/caldav_add_server">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/caldav_add_server"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/caldav_add_username_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_sm"
+                android:hint="@string/caldav_add_username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/caldav_add_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/caldav_add_password_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_sm"
+                android:hint="@string/caldav_add_password"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/caldav_add_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/SHS.Text.Micro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/caldav_add_password_optional"
+                android:textColor="@color/shs_text_muted" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/caldav_add_discover"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_sm"
+                android:minHeight="48dp"
+                android:text="@string/caldav_add_discover" />
+
+            <TextView
+                android:id="@+id/caldav_add_status"
+                style="@style/SHS.Text.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/shs_text_muted" />
+
+            <TextView
+                android:id="@+id/caldav_add_pick_label"
+                style="@style/SHS.Text.Accent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:text="@string/caldav_add_pick_calendar"
+                android:textColor="@color/shs_text_primary"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/caldav_add_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_xs"
+                android:minHeight="48dp"
+                android:visibility="gone" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/caldav_add_label_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:hint="@string/caldav_add_label"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/caldav_add_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/SHS.Text.Micro"
+                android:id="@+id/caldav_add_label_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/caldav_add_label_hint"
+                android:textColor="@color/shs_text_muted"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/caldav_add_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:minHeight="48dp"
+                android:enabled="false"
+                android:text="@string/caldav_add_save" />
+
+            <TextView
+                style="@style/SHS.Text.Micro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_sm"
+                android:text="@string/caldav_add_offline_hint"
+                android:textColor="@color/shs_text_muted" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

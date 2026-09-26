@@ -54,6 +54,8 @@
         <!-- ============ M9 CALDAV ============ -->
         <activity android:name=".ui.caldav.CalDavAccountsActivity" android:exported="false"
             android:label="@string/caldav_accounts_title" />
+        <activity android:name=".ui.caldav.CalDavAddAccountActivity" android:exported="false"
+            android:label="@string/caldav_add_title" />
         <!-- AlarmManager delivers via an explicit-component PendingIntent, so no
              intent-filter is needed or wanted here: adding BOOT_COMPLETED would
              also deliver boot broadcasts to this receiver, whose onReceive does

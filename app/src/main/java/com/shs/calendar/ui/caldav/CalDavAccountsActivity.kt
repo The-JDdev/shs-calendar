@@ -3,7 +3,6 @@ package com.shs.calendar.ui.caldav
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -76,12 +75,15 @@ class CalDavAccountsActivity : AppCompatActivity() {
         list.adapter = adapter
 
         findViewById<FloatingActionButton>(R.id.caldav_accounts_add)?.setOnClickListener {
-            // The add-account form needs a live PROPFIND against a real server
-            // to offer a calendar list, which cannot be validated in the
-            // sandbox. Until it exists, say so instead of opening a screen that
-            // cannot finish — and say it in a toast, not by relabelling the
-            // Sync button, which would hide a control that does work.
-            Toast.makeText(this, R.string.caldav_add_unavailable, Toast.LENGTH_SHORT).show()
+            // The form exists and is registered; discovery is the only network
+            // call and it is behind its own button, so opening this screen
+            // always succeeds even with no connection.
+            startActivity(
+                android.content.Intent(
+                    this,
+                    CalDavAddAccountActivity::class.java
+                )
+            )
         }
 
         syncNow.setOnClickListener { runSync() }

@@ -266,5 +266,46 @@ executed; SyncScheduler.class + SyncReceiver.class present; 25 suites,
 real but scoped — only changed files recompiled, and they emit no warnings;
 the 4 pre-existing warnings belong to untouched files.
 
-STILL MISSING: add-account form (needs live PROPFIND, unverifiable in
-sandbox), per-calendar colour, offline UI states.
+STILL MISSING: offline UI states, and a WorkManager migration to lift the
+goAsync ~10s ceiling (documented above).
+
+M9 — add-account form, per-calendar colour.
+
+  The "unverifiable without a live PROPFIND" blocker was a design error, not
+  a limit. Discovery already returns a list; the missing piece was a screen.
+  CalDavAddAccountActivity: server, username, password, a calendar Spinner
+  and a name field. The accounts FAB navigated to a dead-end toast before and
+  now opens it.
+
+  Discovery is behind an explicit "Find calendars" button, never on text
+  change: a PROPFIND per keystroke would hammer the user's server and would
+  send the password to a host the user had not finished typing. The password
+  is read only at the moment of the request, never logged, and never
+  persisted anywhere but SyncCredentialStore. Because the credential key is
+  (serverUrl, username) and not a row id, the secret is written before the
+  row and removed again if the insert fails, so a failed save cannot strand a
+  credential no account refers to.
+
+  Per-calendar colour: colorHex on SyncAccountEntity, migrated by
+  MIGRATION_6_7 (v6 -> v7) using the server's own normalised #rrggbb or "".
+
+  AccountInput holds the rules the form enforces about a typed address —
+  scheme defaulting to https, plain http respected, path/port preserved,
+  non-http schemes rejected before they reach the transport, username
+  trimmed (it is half of a Basic "user:password" pair), label falling back
+  to the calendar name and then the host. Kept out of the Activity on
+  purpose: the project has no Robolectric, so pure logic is the only part
+  that can be tested. 19 tests, including one that asserts the validated
+  result has no field which could hold a password.
+
+  The accounts list shows serverUrl verbatim, so it is stored as the origin
+  rather than a pasted deep path — otherwise the accounts screen would
+  display a collection URL as though it were a server. Sync reads the column
+  only as the credential key; fetches go through calendarUrl, so the two
+  strings cannot drift apart.
+
+Verified: detached gradlew compileDebugKotlin + testDebugUnitTest; 26
+suites, 295 tests, 0 failures, 0 errors, 0 skipped read from fresh JUnit
+XML. AccountInputTest alone is 19 tests. CalDavAddAccountActivity.class and
+AccountInput$Validated.class both present, so the new code really compiled
+rather than being skipped as up-to-date.
