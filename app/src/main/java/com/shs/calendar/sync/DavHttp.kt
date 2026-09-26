@@ -48,6 +48,24 @@ class DavHttp(
     fun propfind(url: String, auth: String? = null): Result =
         send(url, DavRequest.PROPFIND_METHOD, DavRequest.propfindHeaders(), DavRequest.PROPFIND_BODY, auth)
 
+    /**
+     * PROPFIND with an explicit body and Depth.
+     *
+     * Account discovery needs both: each hop asks for a different single
+     * property ([DavRequest.PRINCIPAL_BODY] and friends), and the two single
+     * property hops need Depth 0 while the calendar listing needs Depth 1.
+     * The one-arg [propfind] above stays for the event pull, which always
+     * uses the same body and depth.
+     */
+    fun propfind(url: String, auth: String?, body: String, depth: String): Result =
+        send(
+            url,
+            DavRequest.PROPFIND_METHOD,
+            DavRequest.propfindHeaders(depth),
+            body,
+            auth
+        )
+
     /** Creates or replaces one VEVENT, guarded by If-Match when [localEtag] is known. */
     fun put(url: String, body: String, localEtag: String?, auth: String? = null): Result =
         send(url, "PUT", DavRequest.putHeaders(localEtag), body, auth)

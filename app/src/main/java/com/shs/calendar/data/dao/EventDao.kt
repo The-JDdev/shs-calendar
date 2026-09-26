@@ -80,4 +80,55 @@ interface EventDao {
         """
     )
     suspend fun upcoming(fromUtcMillis: Long, limit: Int): List<EventEntity>
+
+    // ---------------------------------------------------------------------
+    // CalDAV (M9)
+    //
+    // The five dav* columns on EventEntity are what separate a purely local
+    // event from a mirrored one, so every sync query keys off davUid or
+    // davDirty. davUid is deliberately NULLABLE: a local event has no
+    // davUid at all, and "davUid IS NULL" is therefore the entire
+    // never-synced population.
+    // ---------------------------------------------------------------------
+
+    /**
+     * Local edits waiting to be pushed.
+     *
+     * Scoped to one account so a failure on one server cannot stall another's
+     * queue. A null [accountId] row is claimed by [claimOrphanDirty] instead:
+     * a user can mark an event dirty before any account exists.
+     */
+    @Query(
+        """
+        SELECT * FROM events
+        WHERE davDirty = 1 AND davAccountId = :accountId
+        ORDER BY startUtcMillis ASC
+        """
+    )
+    suspend fun dirtyForAccount(accountId: String): List<EventEntity>
+
+    /** Local edits not yet attached to any account. */
+    @Query("SELECT * FROM events WHERE davDirty = 1 AND (davAccountId IS NULL OR davAccountId = '')")
+    suspend fun dirtyWithoutAccount(): List<EventEntity>
+
+    /** The already-mirrored copy of one remote event, matched by UID + account. */
+    @Query("SELECT * FROM events WHERE davUid = :uid AND davAccountId = :accountId LIMIT 1")
+    suspend fun findByDavUid(uid: String, accountId: String): EventEntity?
+
+    /**
+     * Every local copy of one remote event across all accounts.
+     *
+     * A delete has to remove the row in each subscribed account, since the
+     * same UID is mirrored once per server. Matching on UID alone would
+     * delete the user's copy on an unrelated server.
+     */
+    @Query("SELECT * FROM events WHERE davUid = :uid")
+    suspend fun findAllByDavUid(uid: String): List<EventEntity>
+
+    /** Rows whose remote href the server reported as gone, for this account. */
+    @Query("SELECT * FROM events WHERE davAccountId = :accountId AND davCalendarHref = :href LIMIT 1")
+    suspend fun findByCalendarHref(href: String, accountId: String): EventEntity?
+
+    @Query("DELETE FROM events WHERE davAccountId = :accountId")
+    suspend fun deleteAllForAccount(accountId: String)
 }
