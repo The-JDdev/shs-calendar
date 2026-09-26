@@ -137,4 +137,11 @@
         <item name="android:textSize">@dimen/shs_text_micro</item>
     </style>
 
+    <!-- M3: outlined action button (Tasbih reset, etc.) -->
+    <style name="SHS.Button.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/shs_cyan</item>
+        <item name="strokeColor">@color/shs_cyan</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
 </resources>

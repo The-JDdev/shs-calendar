@@ -85,6 +85,39 @@
     <string name="settings_default_calendar">Default calendar system</string>
     <string name="settings_bengali_numerals">Bengali numerals</string>
     <string name="settings_hijri_adjustment">Hijri adjustment (days)</string>
+    <!-- M3: Tasbih -->
+    <string name="tasbih_dhikr_label">Dhikr</string>
+    <string name="tasbih_target_label">Target</string>
+    <string name="tasbih_target_custom">Custom\u2026</string>
+    <string name="tasbih_target_custom_title">Custom target</string>
+    <string name="tasbih_tap_to_count">Tap</string>
+    <string name="tasbih_reset">Reset</string>
+    <string name="tasbih_progress_format">%1$d / %2$d</string>
+    <string-array name="tasbih_presets">
+        <item>SubhanAllah</item>
+        <item>Alhamdulillah</item>
+        <item>Allahu Akbar</item>
+        <item>Astaghfirullah</item>
+        <item>La ilaha illallah</item>
+    </string-array>
+
+    <!-- M3: Qibla -->
+    <string name="qibla_calibrate">Move your phone in a figure-8 to calibrate the compass.</string>
+    <string name="qibla_no_sensor">No compass sensor found — use the bearing number above as your manual direction.</string>
+    <string name="qibla_location_missing">Set a location to compute the Qibla bearing.</string>
+    <string name="qibla_distance_format">%1$.0f km to the Kaaba</string>
+
+    <!-- M3: Dua -->
+    <string name="dua_category_label">Category</string>
+    <string name="dua_category_all">All</string>
+    <string name="dua_copy">Copy</string>
+    <string name="dua_share">Share</string>
+    <string name="dua_copied">Dua copied to clipboard</string>
+    <string name="dua_copy_failed">Clipboard unavailable on this device</string>
+    <string name="dua_reference_format">Reference: %1$s</string>
+    <string name="dua_count_format">%1$d duas</string>
+    <string name="dua_empty">No duas match this category</string>
+
     <!-- M2: prayer screen -->
     <string name="prayer_next">Next prayer</string>
     <string name="prayer_countdown_in">in %1$s</string>

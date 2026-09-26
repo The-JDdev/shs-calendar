@@ -11,8 +11,11 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
 - After every milestone: update PHASES.md checkboxes, git commit, green builds get pushed.
 
 ## Next
-- M1 Location layer: LocationRepository + optional permission flow + manual city picker +
-  timezone detection + travel mode.
+- M3 RESUME (coordinator note): dua/DuaCollection.kt has been PROVIDED by the coordinator
+  (32 duas, categories, byCategory/search helpers). Remaining M3 work: DuaActivity + list/detail
+  adapter wired to DuaCollection (copy/share per dua), register QiblaActivity/TasbihActivity/
+  DuaActivity in AndroidManifest, Tasbih count persistence, QiblaEngine unit test (Dhaka bearing
+  ~291-293 deg), then commit M3. Qibla engine/activity/view + Tasbih activity already exist in WIP.
 
 - M1 complete: assembleDebug + testDebugUnitTest green (41/41 tests).
 
@@ -22,3 +25,11 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   Settings spinners + offsets dialog, PrayerActivity countdown/timetable,
   nav + quick-tools routing. Dhaka fajr window validated against an
   independent NOAA derivation (04:41 vs engine 04:41:34).
+
+- M3 complete: assembleDebug + testDebugUnitTest green (57/57 tests).
+  QiblaEngine (great-circle bearing/distance to Kaaba 21.4225,39.8262, shortestDelta)
+  + QiblaCompassView dial + QiblaActivity (magnetometer, calibration hint,
+  manual bearing fallback, distance readout); TasbihActivity (5 presets,
+  custom target, vibration tick, persisted count); DuaActivity
+  (RecyclerView, 10-category spinner filter, copy/share per dua) over the
+  32-dua DuaCollection. All three activities registered in AndroidManifest.

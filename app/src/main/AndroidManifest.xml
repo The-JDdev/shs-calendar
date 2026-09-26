@@ -41,6 +41,9 @@
             android:name=".ui.prayer.PrayerActivity"
             android:exported="false" />
         <activity android:name=".ui.placeholder.PlaceholderActivity" android:exported="false" />
+        <activity android:name=".ui.qibla.QiblaActivity" android:exported="false" />
+        <activity android:name=".ui.tasbih.TasbihActivity" android:exported="false" />
+        <activity android:name=".ui.dua.DuaActivity" android:exported="false" />
         <activity android:name=".location.LocationPickerActivity" android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

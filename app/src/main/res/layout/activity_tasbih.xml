@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M3 Tasbih: big count, preset dhikr spinner, target spinner (custom via
+     dialog), tap circle, reset. Count persists across restarts. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tasbih_toolbar"
+        style="@style/SHS.TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/tool_tasbih" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/shs_bottom_nav_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/shs_screen_padding">
+
+            <TextView
+                android:id="@+id/tasbih_dhikr_name"
+                style="@style/SHS.Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="SubhanAllah" />
+
+            <TextView
+                android:id="@+id/tasbih_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:textColor="@color/shs_cyan"
+                android:textSize="72sp"
+                android:textStyle="bold"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/tasbih_progress"
+                style="@style/SHS.Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="0 / 33" />
+
+            <!-- Tap circle -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/tasbih_tap_area"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/shs_surface_high"
+                app:cardCornerRadius="98dp"
+                app:strokeColor="@color/shs_cyan"
+                app:strokeWidth="2dp">
+
+                <TextView
+                    android:id="@+id/tasbih_tap_label"
+                    style="@style/SHS.Text.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/tasbih_tap_to_count" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Preset dhikr + target -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_lg"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SHS.Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tasbih_dhikr_label" />
+
+                    <Spinner
+                        android:id="@+id/tasbih_preset_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SHS.Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tasbih_target_label" />
+
+                    <Spinner
+                        android:id="@+id/tasbih_target_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tasbih_reset"
+                style="@style/SHS.Button.Outline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_md"
+                android:text="@string/tasbih_reset" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

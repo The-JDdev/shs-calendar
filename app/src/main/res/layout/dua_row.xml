@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M3: one dua card — title, Arabic, transliteration, Bengali + English
+     meanings, reference, per-card copy/share actions. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/shs_surface_high"
+    android:orientation="vertical"
+    android:padding="@dimen/shs_space_md">
+
+    <TextView
+        android:id="@+id/dua_row_title"
+        style="@style/SHS.Text.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/shs_cyan" />
+
+    <TextView
+        android:id="@+id/dua_row_arabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_sm"
+        android:textColor="@color/shs_cyan"
+        android:textDirection="rtl"
+        android:textSize="20sp"
+        android:lineSpacingExtra="6dp" />
+
+    <TextView
+        android:id="@+id/dua_row_transliteration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:textColor="@color/shs_text_secondary"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/dua_row_bengali"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_sm"
+        android:textColor="@color/shs_text_primary"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/dua_row_english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:textColor="@color/shs_text_secondary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/dua_row_reference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_sm"
+        android:textColor="@color/shs_cyan"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_sm"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dua_row_copy"
+            style="@style/SHS.Button.Outline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="@dimen/shs_min_touch_target"
+            android:text="@string/dua_copy" />
+
+        <Button
+            android:id="@+id/dua_row_share"
+            style="@style/SHS.Button.Outline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/shs_space_sm"
+            android:layout_weight="1"
+            android:minHeight="@dimen/shs_min_touch_target"
+            android:text="@string/dua_share" />
+    </LinearLayout>
+</LinearLayout>

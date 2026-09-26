@@ -5,7 +5,7 @@ STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TAS
 ## Phase 2 — Location, Prayer, Islamic toolkit, Traditional view
 - [x] M1 Location layer (optional permission, manual fallback, travel mode)
 - [x] M2 Prayer engine + UI (methods, madhab, high-lat, offsets, tests) — 48/48 green
-- [ ] M3 Qibla + Tasbih + Dua collection
+- [x] M3 Qibla + Tasbih + Dua collection — 57/57 green (assembleDebug + testDebugUnitTest)
 - [ ] M4 Traditional Bangla calendar view + World clock
 
 ## Phase 3 — Weather, Holidays, Widgets, Tasks/Notes, Search, Portability
