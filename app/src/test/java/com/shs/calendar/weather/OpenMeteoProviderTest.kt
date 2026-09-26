@@ -74,7 +74,9 @@ class OpenMeteoProviderTest {
     fun `parseSnapshot preserves array ordering and per-point fields`() {
         val snapshot = OpenMeteoProvider.parseSnapshot(payload, 23.81, 90.41, fetchedAt)!!
         assertEquals(3, snapshot.hourly.size)
-        assertEquals(3, snapshot.hourly[0].precipitationChancePercent)
+        // Fixture precipitation_probability is [20, 30, 55]; index 0 is 20,
+        // not the array length (3) that the first draft of this test asserted.
+        assertEquals(20, snapshot.hourly[0].precipitationChancePercent)
         assertEquals(55, snapshot.hourly[2].precipitationChancePercent)
         assertEquals(6000.0, snapshot.hourly[2].visibilityMetres, 0.001)
         assertEquals(2.5, snapshot.hourly[2].uvIndex, 0.001)

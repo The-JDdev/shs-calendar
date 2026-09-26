@@ -48,3 +48,31 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   custom target, vibration tick, persisted count); DuaActivity
   (RecyclerView, 10-category spinner filter, copy/share per dua) over the
   32-dua DuaCollection. All three activities registered in AndroidManifest.
+
+- M6 complete: assembleDebug + testDebugUnitTest green (94/94 tests).
+  HolidayEngine resolves rules to dated Holiday records for 1900..3000,
+  computing every date rather than tabulating: fixed Gregorian month/day
+  rules, Islamic rules via HijriEngine, Bengali rules via BengaliEngine,
+  and Easter via the anonymous Gregorian computus. Rule sources split into
+  FixedHolidays (BD/IN/SA/US/UK fixed, nth-weekday and Easter rules),
+  IslamicHolidays (11) and BengaliHolidays (14); HolidayDatabase adds
+  country filter, month and range queries plus asHolidayProvider() for the
+  existing HolidayProvider seam; HolidayUpdateSource is the offline
+  up-to-date check. 13 HolidayEngineTest cases cover all four categories,
+  the 1900/3000 boundaries, unsupported years returning empty rather than
+  throwing, the single-country filter, and search over Bengali + English
+  names with blank tolerance.
+  Two engine fixes were needed: islamic() now passes its adjustment into
+  HijriDate (it was accepted and silently dropped, so the moon-sighting
+  shift never moved a lunar holiday), and the Hijri year probe is guarded
+  because java.time's HijrahDate only spans ~1882..2174 CE -- outside that
+  window Islamic rules now return null while fixed/Bengali/Easter rules
+  still resolve, rather than throwing.
+  Also fixed three pre-existing M5 defects that had left the whole test
+  source set uncompilable, so M5 tests had never run: missing imports in
+  WeatherRepository, a missing HourlyPoint.isRaining member, and a
+  precipitation_probability assertion in OpenMeteoProviderTest that
+  expected the array length (3) instead of the fixture value (20).
+  Known limitation: M6 is the data layer only. There is no holiday screen
+  yet -- TraditionalCalendarActivity consumes a HolidayProvider but is not
+  wired to HolidayDatabase; holiday UI arrives with M7 widgets / M8.

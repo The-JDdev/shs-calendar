@@ -1,6 +1,8 @@
 package com.shs.calendar.weather
 
 import com.shs.calendar.data.entity.SettingsEntity
+import com.shs.calendar.data.entity.isWeatherEnabled
+import com.shs.calendar.data.entity.weatherProviderOrDefault
 import java.util.Locale
 
 /**

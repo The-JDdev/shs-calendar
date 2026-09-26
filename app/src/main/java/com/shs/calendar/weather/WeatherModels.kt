@@ -40,6 +40,9 @@ data class HourlyPoint(
     val isDay: Boolean
 ) {
     val conditionLabel: String get() = WeatherCodes.describe(weatherCode)
+
+    /** True when the WMO code denotes rain, drizzle or a rain shower. */
+    val isRaining: Boolean get() = WeatherCodes.isRaining(weatherCode)
 }
 
 data class DailyPoint(
