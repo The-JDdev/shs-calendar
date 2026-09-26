@@ -51,6 +51,9 @@
         <activity android:name=".ui.note.NotesActivity" android:exported="false"
             android:label="@string/note_title" />
         <!-- ============ M8 SEARCH ============ -->
+        <!-- ============ M9 CALDAV ============ -->
+        <activity android:name=".ui.caldav.CalDavAccountsActivity" android:exported="false"
+            android:label="@string/caldav_accounts_title" />
         <activity android:name=".ui.search.SearchActivity" android:exported="false"
             android:label="@string/search_title" />
         <activity android:name=".ui.traditional.TraditionalCalendarActivity" android:exported="false" />

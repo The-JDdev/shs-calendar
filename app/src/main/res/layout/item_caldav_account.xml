@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  One CalDAV account row: colour swatch, label, server URL, and a status line
+  that states the last sync honestly. The status text is the point of this row:
+  a calendar app that silently stops syncing is worse than one that says so,
+  so the error and the last-success time are rendered from real account
+  state rather than inferred from connectivity.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/caldav_account_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_compact"
+    android:layout_marginBottom="@dimen/shs_space_sm"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/shs_space_md">
+
+    <View
+        android:id="@+id/caldav_account_color"
+        android:layout_width="4dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="@dimen/shs_space_md" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/caldav_account_label"
+            style="@style/SHS.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/shs_text_primary" />
+
+        <TextView
+            android:id="@+id/caldav_account_server"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textColor="@color/shs_text_secondary" />
+
+        <TextView
+            android:id="@+id/caldav_account_status"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shs_space_xs"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/shs_text_muted" />
+    </LinearLayout>
+
+    <SwitchMaterial
+        android:id="@+id/caldav_account_enabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

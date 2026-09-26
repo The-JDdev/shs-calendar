@@ -330,6 +330,21 @@
     <string name="io_conflicts">%1$d scheduling conflict(s)</string>
     <string name="io_no_conflicts">No conflicts</string>
 
+    <!-- ============ CALDAV (M9) ============ -->
+    <string name="caldav_accounts_title">Sync accounts</string>
+    <string name="caldav_accounts_add">Add account</string>
+    <string name="caldav_accounts_empty">No sync accounts yet.\n\nAdd one to keep this calendar in step with a CalDAV server. Everything stays on this device until you do.</string>
+    <string name="caldav_sync_now">Sync now</string>
+    <string name="caldav_never_synced">Not synced yet</string>
+    <string name="caldav_last_synced">Last synced %1$s</string>
+    <string name="caldav_sync_error">Sync failed: %1$s</string>
+    <string name="caldav_disabled">Off</string>
+    <string name="caldav_sync_running">Syncing…</string>
+    <string name="caldav_sync_done">Synced — %1$d pushed, %2$d pulled</string>
+    <string name="caldav_partial">Synced %1$d account(s); %2$d failed</string>
+    <string name="caldav_offline">Could not reach the server. Check your connection.</string>
+    <string name="caldav_add_unavailable">Add-account form is not available yet</string>
+
     <!-- ============ WIDGETS (M7) ============ -->
     <string name="widget_generic_desc">SHS Calendar home-screen widget</string>
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CalDAV accounts screen. Deliberately mirrors activity_notes.xml: same
+  toolbar / list / empty-state / FAB shape, so the screen reads as part of the
+  app rather than as an imported feature.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/caldav_accounts_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:title="@string/caldav_accounts_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/shs_space_md"
+        android:paddingEnd="@dimen/shs_space_md"
+        android:paddingBottom="@dimen/shs_space_sm">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/caldav_sync_now"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/caldav_sync_now" />
+
+        <TextView
+            android:id="@+id/caldav_sync_summary"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/shs_space_sm"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/shs_text_muted" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/caldav_accounts_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/shs_space_md"
+            android:paddingTop="@dimen/shs_space_sm"
+            android:paddingEnd="@dimen/shs_space_md"
+            android:paddingBottom="88dp" />
+
+        <TextView
+            android:id="@+id/caldav_accounts_empty"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/shs_space_lg"
+            android:text="@string/caldav_accounts_empty"
+            android:textColor="@color/shs_text_muted"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/caldav_accounts_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/shs_space_md"
+        android:contentDescription="@string/caldav_accounts_add" />
+</LinearLayout>
