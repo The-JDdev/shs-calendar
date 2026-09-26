@@ -271,4 +271,7 @@
     <string name="weather_rain_chance">Rain %1$d%%</string>
     <string name="weather_max_min">%1$s / %2$s</string>
 
+    <!-- ============ WIDGETS (M7) ============ -->
+    <string name="widget_generic_desc">SHS Calendar home-screen widget</string>
+
 </resources>

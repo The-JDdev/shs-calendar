@@ -53,6 +53,89 @@
             android:name=".reminders.ReminderReceiver"
             android:exported="false" />
 
+        <!-- ============ M7 HOME-SCREEN WIDGETS ============ -->
+        <receiver
+            android:name=".widget.SHSWidgetRefreshReceiver"
+            android:exported="false" />
+
+        <receiver android:name=".widget.CalendarWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_calendar" />
+        </receiver>
+        <receiver android:name=".widget.TodayWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_today" />
+        </receiver>
+        <receiver android:name=".widget.BengaliDateWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_bengali" />
+        </receiver>
+        <receiver android:name=".widget.HijriDateWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_hijri" />
+        </receiver>
+        <receiver android:name=".widget.UpcomingEventsWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_upcoming" />
+        </receiver>
+        <receiver android:name=".widget.AgendaWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_agenda" />
+        </receiver>
+        <receiver android:name=".widget.PrayerWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_prayer" />
+        </receiver>
+        <receiver android:name=".widget.CountdownWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_countdown" />
+        </receiver>
+        <receiver android:name=".widget.WeatherWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_weather" />
+        </receiver>
+        <receiver android:name=".widget.ClockWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_clock" />
+        </receiver>
+        <receiver android:name=".widget.MoonPhaseWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/shs_widget_moon" />
+        </receiver>
+
         <receiver
             android:name=".reminders.BootCompletedReceiver"
             android:exported="true">

@@ -11,7 +11,7 @@ STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TAS
 ## Phase 3 — Weather, Holidays, Widgets, Tasks/Notes, Search, Portability
 - [x] M5 Weather (Open-Meteo provider, cache, offline) — committed 11e4178
 - [x] M6 Holiday DB (BD/IN/SA/US/UK + Bengali cultural + Islamic) — data layer + tests, 94/94 green (UI lands in M7/M8)
-- [ ] M7 All 11 widgets
+- [x] M7 All 11 widgets — calendar/today/bengali/hijri/upcoming/agenda/prayer/countdown/weather/clock/moon; build green, 102/102 tests
 - [ ] M8 Tasks + Notes + Search + Conflicts + ICS/CSV/Backup
 
 ## Phase 4 — CalDAV

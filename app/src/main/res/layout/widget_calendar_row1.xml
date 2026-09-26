@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+            android:id="@+id/r1_c0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+        <TextView
+            android:id="@+id/r1_c1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+        <TextView
+            android:id="@+id/r1_c2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+        <TextView
+            android:id="@+id/r1_c3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+        <TextView
+            android:id="@+id/r1_c4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+        <TextView
+            android:id="@+id/r1_c5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+        <TextView
+            android:id="@+id/r1_c6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/shs_text_primary"
+            android:textSize="11sp"
+            android:maxLines="1" />
+</LinearLayout>
