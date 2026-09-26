@@ -227,3 +227,44 @@ Remaining M9 work, in order:
      be validated in the sandbox. Currently the FAB toasts "not available".
   2. Periodic/background sync (WorkManager) — manual sync is done.
   3. Per-calendar colour, offline UI states.
+
+## M9 periodic/background sync (uncommitted at time of writing)
+Added, on the app's existing AlarmManager convention rather than WorkManager:
+  - sync/SyncScheduler.kt   — arms one inexact RTC_WAKEUP alarm, fixed request
+    code so re-scheduling updates rather than stacks, SharedPreferences-backed
+    enabled switch. Deliberately not WorkManager: the app already schedules
+    this way for reminders and restores on boot, and a second scheduling
+    idiom for a job sharing the same DB is a second lifecycle to reason about.
+  - sync/SyncReceiver.kt     — goAsync + CoroutineScope(SupervisorJob + IO),
+    re-arms itself in a finally block so a failed night doesn't end background
+    sync until the app is next opened.
+  - AndroidManifest.xml      — receiver registered, exported=false, NO
+    intent-filter (see below).
+  - BootCompletedReceiver    — re-arms sync on boot/package-replace/time change,
+    same trigger set as reminders.
+
+TWO DEFECTS CAUGHT IN SELF-REVIEW, both before compiling:
+  1. I gave SyncReceiver an <intent-filter> for BOOT_COMPLETED. Wrong twice
+     over: unnecessary (AlarmManager delivers via explicit-component
+     PendingIntent) and harmful — the boot broadcast would also be delivered
+     to a receiver whose onReceive never inspects the action, causing a sync
+     pass on every boot via a second unaccounted path. Removed the filter.
+  2. Three unused coroutine imports in SyncScheduler carried over from
+     ReminderScheduler, plus a missing SyncScheduler import in
+     BootCompletedReceiver that would have broken the build.
+
+KNOWN LIMITATION, deliberately documented not hidden: goAsync() allows ~10s
+before the system may reclaim the process. A pass over several accounts on a
+slow connection can exceed that. Safe to interrupt (mergePullled writes only
+after each pull returns; the next alarm re-arms from finally), so an
+interrupted pass costs at most one account and is retried. Migrating to
+WorkManager would remove the ceiling — tracked, not silently omitted.
+
+Verified: detached gradlew BUILD SUCCESSFUL; compileDebugKotlin actually
+executed; SyncScheduler.class + SyncReceiver.class present; 25 suites,
+276 tests, 0 failures read from fresh JUnit XML. The zero-warning result is
+real but scoped — only changed files recompiled, and they emit no warnings;
+the 4 pre-existing warnings belong to untouched files.
+
+STILL MISSING: add-account form (needs live PROPFIND, unverifiable in
+sandbox), per-calendar colour, offline UI states.

@@ -3,6 +3,7 @@ package com.shs.calendar.reminders
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.shs.calendar.sync.SyncScheduler
 
 /**
  * Re-arms reminder alarms after reboot, app update, clock changes or
@@ -20,7 +21,18 @@ class BootCompletedReceiver : BroadcastReceiver() {
         // Alarms do not survive reboot; goAsync keeps the process alive until
         // the DB-driven reschedule has actually completed.
         val pending = goAsync()
-        ReminderScheduler(context).rescheduleAll(onDone = { pending.finish() })
+        val appContext = context.applicationContext
+        ReminderScheduler(context).rescheduleAll(onDone = {
+            // Re-arm periodic sync on the same boot trigger. Alarms do not
+            // survive a reboot, and SyncReceiver only re-arms itself after it
+            // fires — so without this, background sync stays dead until the
+            // user next opens the app. Cheap: a SharedPreferences read, and the
+            // switch defaults off.
+            if (SyncScheduler(appContext).isEnabled()) {
+                SyncScheduler(appContext).schedule()
+            }
+            pending.finish()
+        })
     }
 
     companion object {
