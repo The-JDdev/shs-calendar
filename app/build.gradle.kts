@@ -62,4 +62,8 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    // Test-only: org.json ships inside the Android platform, so JVM unit tests
+    // need a real implementation to exercise the Open-Meteo parser. The app
+    // itself gains no new dependency.
+    testImplementation("org.json:json:20231013")
 }

@@ -2,6 +2,8 @@ package com.shs.calendar.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.shs.calendar.weather.OpenMeteoProvider
+import com.shs.calendar.weather.WeatherRepository
 
 /**
  * Single-row settings store (Phase 1 subset per SPEC, M2 extends prayer fields).
@@ -20,6 +22,12 @@ import androidx.room.PrimaryKey
  *
  * M2 columns are nullable with null = documented default so the Room schema
  * (ALTER TABLE ADD COLUMN with no default) validates exactly.
+ *
+ * M5 columns follow the same nullable convention:
+ * @param weatherEnabled    null = true (weather on by default; row is seeded before M5 so
+ *                          an existing install sees null and is treated as enabled)
+ * @param weatherUnits      null = METRIC
+ * @param weatherProvider   null = OpenMeteoProvider.ID
  */
 @Entity(tableName = "settings")
 data class SettingsEntity(
@@ -38,9 +46,21 @@ data class SettingsEntity(
     val prayerMethod: String? = null,
     val prayerMadhab: String? = null,
     val highLatitudeRule: String? = null,
-    val prayerOffsetsCsv: String? = null
+    val prayerOffsetsCsv: String? = null,
+    val weatherEnabled: Boolean? = null,
+    val weatherUnits: String? = null,
+    val weatherProvider: String? = null
 ) {
     companion object {
         const val SINGLE_ROW_ID = 1
     }
 }
+
+/** M5: null in the settings row means "weather enabled" (documented default). */
+fun SettingsEntity.isWeatherEnabled(): Boolean = weatherEnabled ?: true
+
+fun SettingsEntity.weatherUnitsOrDefault(): String =
+    weatherUnits ?: WeatherRepository.UNITS_METRIC
+
+fun SettingsEntity.weatherProviderOrDefault(): String =
+    weatherProvider ?: OpenMeteoProvider.ID

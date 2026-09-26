@@ -252,4 +252,23 @@
     <string name="travel_mode_summary">Follow the device timezone while travelling; recalculate prayer and sun times</string>
     <string name="travel_mode_recalc">Timezone changed while travelling - times refreshed</string>
     <string name="location_timezone_label">Timezone: %1$s</string>
+    <!-- ============ WEATHER (M5) ============ -->
+    <string name="weather_unavailable">Weather unavailable</string>
+    <string name="weather_dash">—°</string>
+    <string name="weather_refresh">↻</string>
+    <string name="weather_title">Weather</string>
+    <string name="weather_disabled">Weather is off</string>
+    <string name="weather_no_location">Set a location in Settings to show weather</string>
+    <string name="weather_cached">Showing last saved forecast</string>
+    <string name="weather_updated">Updated %1$s</string>
+    <string name="weather_offline">Offline — showing last saved forecast</string>
+    <string name="weather_failed">Could not load weather</string>
+    <string name="weather_feels_like">Feels like %1$s</string>
+    <string name="weather_humidity">Humidity %1$d%%</string>
+    <string name="weather_wind">Wind %1$s</string>
+    <string name="weather_visibility">Visibility %1$s</string>
+    <string name="weather_uv">UV %1$s</string>
+    <string name="weather_rain_chance">Rain %1$d%%</string>
+    <string name="weather_max_min">%1$s / %2$s</string>
+
 </resources>

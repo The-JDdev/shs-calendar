@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
  */
 @Database(
     entities = [EventEntity::class, TaskEntity::class, NoteEntity::class, SettingsEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class CalendarDatabase : RoomDatabase() {
@@ -49,6 +49,19 @@ abstract class CalendarDatabase : RoomDatabase() {
             }
         }
 
+        /**
+         * 2 -> 3 (M5): weather settings columns. Nullable with NULL = documented
+         * default (enabled / metric / Open-Meteo), so no data rewrite is needed
+         * and schema validation matches the entity exactly.
+         */
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE settings ADD COLUMN weatherEnabled INTEGER")
+                db.execSQL("ALTER TABLE settings ADD COLUMN weatherUnits TEXT")
+                db.execSQL("ALTER TABLE settings ADD COLUMN weatherProvider TEXT")
+            }
+        }
+
         @Volatile
         private var instance: CalendarDatabase? = null
 
@@ -62,6 +75,7 @@ abstract class CalendarDatabase : RoomDatabase() {
         private fun build(context: Context): CalendarDatabase =
             Room.databaseBuilder(context.applicationContext, CalendarDatabase::class.java, "shs_calendar.db")
                 .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_2_3)
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         seedScope.launch {

@@ -20,6 +20,8 @@ import com.shs.calendar.calendar.BengaliNumerals
 import com.shs.calendar.calendar.GregorianEngine
 import com.shs.calendar.calendar.HijriEngine
 import com.shs.calendar.data.CalendarDatabase
+import com.shs.calendar.data.entity.isWeatherEnabled
+import com.shs.calendar.data.entity.weatherUnitsOrDefault
 import com.shs.calendar.data.repository.SettingsRepository
 import com.shs.calendar.reminders.ReminderScheduler
 import com.shs.calendar.ui.adapters.MonthGridAdapter
@@ -29,6 +31,9 @@ import com.shs.calendar.ui.event.EventsAgendaActivity
 import com.shs.calendar.ui.placeholder.PlaceholderActivity
 import com.shs.calendar.ui.tools.AgeCalculatorActivity
 import com.shs.calendar.ui.tools.DateConverterActivity
+import com.shs.calendar.weather.WeatherFailureReason
+import com.shs.calendar.weather.WeatherRepository
+import com.shs.calendar.weather.WeatherResult
 import com.shs.calendar.ui.SettingsActivity
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -62,6 +67,9 @@ class MainActivity : AppCompatActivity() {
     private var longitude: Double = DEFAULT_LON
     private var locationName: String = ""
     private var zone: ZoneId = ZoneId.of(DEFAULT_ZONE)
+    private var weatherUnits: String = WeatherRepository.UNITS_METRIC
+    private var weatherEnabled: Boolean = true
+    private lateinit var weatherRepo: WeatherRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,11 +92,14 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        weatherRepo = WeatherRepository(settings = { settingsRepo.get() })
+
         bindNavigation()
         bindCalendarControls()
         bindLocationPill()
         bindQuickTools()
         bindInspiration()
+        bindWeather()
 
         lifecycleScope.launch {
             settingsRepo.observe().collectLatest { s ->
@@ -98,11 +109,14 @@ class MainActivity : AppCompatActivity() {
                 s.latitude?.let { latitude = it }
                 s.longitude?.let { longitude = it }
                 locationName = s.locationName
+                weatherUnits = s.weatherUnitsOrDefault()
+                weatherEnabled = s.isWeatherEnabled()
                 if (!s.useDeviceTimezone && s.timezone.isNotBlank()) {
                     runCatching { zone = ZoneId.of(s.timezone) }
                 }
                 refreshDashboard()
                 renderMonth()
+                refreshWeather(force = false)
             }
         }
 
@@ -258,6 +272,110 @@ class MainActivity : AppCompatActivity() {
         findViewById<android.view.View>(R.id.location_pill).setOnClickListener {
             startActivity(Intent(this, com.shs.calendar.location.LocationPickerActivity::class.java))
         }
+    }
+
+    private fun bindWeather() {
+        findViewById<android.view.View>(R.id.weather_refresh).setOnClickListener {
+            refreshWeather(force = true)
+        }
+        findViewById<android.view.View>(R.id.weather_card).setOnClickListener {
+            if (weatherEnabled) refreshWeather(force = true)
+        }
+    }
+
+    /** Refresh the card. Never throws: every failure degrades to a labelled state. */
+    private fun refreshWeather(force: Boolean) {
+        lifecycleScope.launch {
+            val result = runCatching { weatherRepo.refresh(force) }.getOrElse {
+                WeatherResult.Failure(WeatherFailureReason.UNPARSEABLE)
+            }
+            renderWeather(result)
+        }
+    }
+
+    private fun renderWeather(result: WeatherResult) {
+        val card = findViewById<android.view.View>(R.id.weather_card)
+        val temp = findViewById<TextView>(R.id.weather_temp)
+        val condition = findViewById<TextView>(R.id.weather_condition)
+        val details = findViewById<TextView>(R.id.weather_details)
+        val status = findViewById<TextView>(R.id.weather_status)
+        val refresh = findViewById<TextView>(R.id.weather_refresh)
+
+        // Weather off: hide the card rather than showing an error the user can't fix.
+        if (!weatherEnabled) {
+            card.visibility = android.view.View.GONE
+            return
+        }
+        card.visibility = android.view.View.VISIBLE
+        refresh.isEnabled = true
+
+        when (result) {
+            is WeatherResult.Success -> renderSnapshot(result.snapshot, temp, condition, details, status, "")
+            is WeatherResult.Cached -> renderSnapshot(
+                result.snapshot, temp, condition, details, status,
+                getString(R.string.weather_cached)
+            )
+            is WeatherResult.Failure -> {
+                temp.text = getString(R.string.weather_dash)
+                condition.text = getString(R.string.weather_unavailable)
+                details.text = ""
+                status.text = failureMessage(result.reason)
+            }
+        }
+    }
+
+    private fun renderSnapshot(
+        snapshot: com.shs.calendar.weather.WeatherSnapshot,
+        temp: TextView,
+        condition: TextView,
+        details: TextView,
+        status: TextView,
+        staleNote: String
+    ) {
+        val c = snapshot.current
+        temp.text = WeatherRepository.formatTempWithUnit(c.temperatureC, weatherUnits)
+        condition.text = c.conditionLabel
+
+        val parts = mutableListOf<String>()
+        parts += getString(
+            R.string.weather_feels_like,
+            WeatherRepository.formatTemp(c.apparentTemperatureC, weatherUnits)
+        )
+        parts += getString(R.string.weather_humidity, c.humidityPercent)
+        parts += getString(R.string.weather_wind, WeatherRepository.formatWind(c.windSpeedKmh, weatherUnits))
+        snapshot.hourly.firstOrNull()?.let { h ->
+            parts += getString(R.string.weather_visibility, WeatherRepository.formatVisibility(h.visibilityMetres, weatherUnits))
+            parts += getString(R.string.weather_uv, String.format(Locale.US, "%.1f", h.uvIndex))
+        }
+        details.text = parts.joinToString("  ·  ")
+
+        // Never hide staleness: a cached snapshot must still say so, even when we
+        // have a high/low to show alongside it.
+        // Compare against the *location's* date, not the device's: the provider
+        // returns daily points in the snapshot timezone, and a user who is
+        // travelling (or near midnight) would otherwise see no high/low at all.
+        val today = runCatching {
+            LocalDate.now(ZoneId.of(snapshot.timezone)).toString()
+        }.getOrElse { LocalDate.now().toString() }
+
+        val range = snapshot.daily.firstOrNull { it.dateIso == today }?.let { d ->
+            getString(
+                R.string.weather_max_min,
+                WeatherRepository.formatTemp(d.maxTempC, weatherUnits),
+                WeatherRepository.formatTemp(d.minTempC, weatherUnits)
+            )
+        }.orEmpty()
+
+        status.text = listOf(staleNote, range)
+            .filter { it.isNotBlank() }
+            .joinToString("  ·  ")
+    }
+
+    private fun failureMessage(reason: WeatherFailureReason): String = when (reason) {
+        WeatherFailureReason.NOT_ENABLED -> getString(R.string.weather_disabled)
+        WeatherFailureReason.NO_LOCATION -> getString(R.string.weather_no_location)
+        WeatherFailureReason.NO_NETWORK -> getString(R.string.weather_offline)
+        else -> getString(R.string.weather_failed)
     }
 
     private fun bindNavigation() {

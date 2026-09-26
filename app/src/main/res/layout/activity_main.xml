@@ -313,6 +313,71 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- ============ WEATHER CARD (M5) ============ -->
+            <LinearLayout
+                android:id="@+id/weather_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/shs_space_sm"
+                android:layout_marginBottom="@dimen/shs_space_xs"
+                android:background="@drawable/bg_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/weather_condition"
+                            style="@style/SHS.Text.Body"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/weather_unavailable" />
+
+                        <TextView
+                            android:id="@+id/weather_details"
+                            style="@style/SHS.Text.Caption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/shs_text_muted" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/weather_temp"
+                        style="@style/SHS.Text.Hero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weather_dash" />
+
+                    <TextView
+                        android:id="@+id/weather_refresh"
+                        style="@style/SHS.Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:gravity="center"
+                        android:text="@string/weather_refresh"
+                        android:contentDescription="@string/weather_refresh" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/weather_status"
+                    style="@style/SHS.Text.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shs_space_xxs"
+                    android:textColor="@color/shs_text_muted" />
+            </LinearLayout>
+
             <!-- ============ DAILY INSPIRATION ============ -->
             <LinearLayout
                 android:id="@+id/inspiration_card"
