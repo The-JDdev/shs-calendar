@@ -369,4 +369,56 @@
     <!-- ============ WIDGETS (M7) ============ -->
     <string name="widget_generic_desc">SHS Calendar home-screen widget</string>
 
+    <!-- M10: appearance & accessibility -->
+    <string name="settings_appearance_section">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_system">Follow system</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_amoled">AMOLED (true black)</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_accent">Accent colour</string>
+    <string name="settings_accent_summary">Applied to buttons, highlights and the calendar selection</string>
+    <string name="settings_font_scale">Text size</string>
+    <string name="settings_font_scale_system">Follow system text size</string>
+    <string name="settings_font_scale_small">Small</string>
+    <string name="settings_font_scale_normal">Normal</string>
+    <string name="settings_font_scale_large">Large</string>
+    <string name="settings_font_scale_xl">Extra large</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_system">Follow system language</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_bn">বাংলা</string>
+    <string name="settings_language_ar">العربية</string>
+    <string name="settings_a11y_section">Accessibility</string>
+    <string name="settings_contrast_summary">All text pairs meet WCAG AA (4.5:1)</string>
+
+    <!--
+      Spinner backings for the M10 appearance card. The order here is the
+      order of Accent.entries and Theme.entries respectively, so the spinner
+      index maps straight onto the enum without a lookup table. Labels are
+      referenced rather than duplicated so a translation can change the
+      wording without desynchronising the two places.
+    -->
+    <string-array name="appearance_accents">
+        <item>@string/settings_accent_cyan</item>
+        <item>@string/settings_accent_teal</item>
+        <item>@string/settings_accent_indigo</item>
+        <item>@string/settings_accent_purple</item>
+        <item>@string/settings_accent_magenta</item>
+        <item>@string/settings_accent_amber</item>
+    </string-array>
+
+    <string-array name="appearance_languages">
+        <item>@string/settings_language_system</item>
+        <item>@string/settings_language_en</item>
+        <item>@string/settings_language_bn</item>
+        <item>@string/settings_language_ar</item>
+    </string-array>
+
+    <string name="settings_accent_cyan">Cyan</string>
+    <string name="settings_accent_teal">Teal</string>
+    <string name="settings_accent_indigo">Indigo</string>
+    <string name="settings_accent_purple">Purple</string>
+    <string name="settings_accent_magenta">Magenta</string>
+    <string name="settings_accent_amber">Amber</string>
 </resources>

@@ -45,4 +45,55 @@
         <item name="cornerSize">@dimen/shs_radius_card</item>
     </style>
 
+    <!--
+      M10 accent overlays.
+
+      Each overlay re-tints only the accent roles, leaving surfaces and text
+      untouched, so switching accent cannot change contrast. The _deep
+      container colours are computed (not eyeballed) to clear WCAG AA 4.5:1
+      against shs_text_primary; ContrastTest asserts every pair below so a
+      later palette tweak cannot quietly push one under AA.
+
+      The project ships a single dark theme, so no overlay switches light and
+      dark. See AccentOverlay for why these must be style resources.
+    -->
+    <style name="ThemeOverlay.SHSCalendar.Accent.Teal" parent="">
+        <item name="colorPrimary">@color/shs_teal</item>
+        <item name="colorPrimaryContainer">@color/shs_teal_deep</item>
+        <item name="colorSecondary">@color/shs_teal</item>
+        <item name="colorSecondaryContainer">@color/shs_teal_deep</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Accent.Indigo" parent="">
+        <item name="colorPrimary">@color/shs_indigo</item>
+        <item name="colorPrimaryContainer">@color/shs_indigo_deep</item>
+        <item name="colorSecondary">@color/shs_indigo</item>
+        <item name="colorSecondaryContainer">@color/shs_indigo_deep</item>
+        <item name="colorTertiary">@color/shs_indigo</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Accent.Purple" parent="">
+        <item name="colorPrimary">@color/shs_purple</item>
+        <item name="colorPrimaryContainer">@color/shs_purple_deep</item>
+        <item name="colorSecondary">@color/shs_purple</item>
+        <item name="colorSecondaryContainer">@color/shs_purple_deep</item>
+        <item name="colorTertiary">@color/shs_purple</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Accent.Magenta" parent="">
+        <item name="colorPrimary">@color/shs_magenta</item>
+        <item name="colorPrimaryContainer">@color/shs_magenta_deep</item>
+        <item name="colorSecondary">@color/shs_magenta</item>
+        <item name="colorSecondaryContainer">@color/shs_magenta_deep</item>
+        <item name="colorTertiary">@color/shs_magenta</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Accent.Amber" parent="">
+        <item name="colorPrimary">@color/shs_amber</item>
+        <item name="colorPrimaryContainer">@color/shs_amber_deep</item>
+        <item name="colorSecondary">@color/shs_amber</item>
+        <item name="colorSecondaryContainer">@color/shs_amber_deep</item>
+        <item name="colorTertiary">@color/shs_amber</item>
+    </style>
+
 </resources>

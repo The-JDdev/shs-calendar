@@ -419,6 +419,144 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- ===== Appearance & accessibility (M10) =====
+                 RadioButtons intentionally carry no style: the two pre-existing
+                 ones in the time-format group do not, and SHS.Text.Body is a
+                 TextView style. Styling them all consistently is left to the
+                 shared SHS.RadioButton style, which does not exist yet. -->
+            <TextView
+                style="@style/SHS.Text.Accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_appearance_section" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SHS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shs_space_xs">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/shs_space_md">
+
+                    <TextView
+                        style="@style/SHS.Text.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_theme" />
+
+                    <RadioGroup
+                        android:id="@+id/settings_theme_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/settings_theme_system"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_theme_system" />
+
+                        <RadioButton
+                            android:id="@+id/settings_theme_dark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_theme_dark" />
+
+                        <RadioButton
+                            android:id="@+id/settings_theme_amoled"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_theme_amoled" />
+
+                        <RadioButton
+                            android:id="@+id/settings_theme_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_theme_light" />
+                    </RadioGroup>
+
+                    <TextView
+                        style="@style/SHS.Text.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_md"
+                        android:text="@string/settings_accent" />
+
+                    <Spinner
+                        android:id="@+id/settings_accent_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/settings_accent" />
+
+                    <TextView
+                        style="@style/SHS.Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_accent_summary" />
+
+                    <TextView
+                        style="@style/SHS.Text.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_md"
+                        android:text="@string/settings_font_scale" />
+
+                    <RadioGroup
+                        android:id="@+id/settings_font_scale_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/settings_font_scale_system"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_font_scale_system" />
+
+                        <RadioButton
+                            android:id="@+id/settings_font_scale_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_font_scale_small" />
+
+                        <RadioButton
+                            android:id="@+id/settings_font_scale_normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_font_scale_normal" />
+
+                        <RadioButton
+                            android:id="@+id/settings_font_scale_large"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_font_scale_large" />
+
+                        <RadioButton
+                            android:id="@+id/settings_font_scale_xl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_font_scale_xl" />
+                    </RadioGroup>
+
+                    <TextView
+                        style="@style/SHS.Text.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shs_space_md"
+                        android:text="@string/settings_language" />
+
+                    <Spinner
+                        android:id="@+id/settings_language_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/settings_language" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

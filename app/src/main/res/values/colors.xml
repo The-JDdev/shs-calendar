@@ -13,8 +13,28 @@
     <!-- Accents -->
     <color name="shs_cyan">#22D3EE</color>           <!-- primary accent -->
     <color name="shs_teal">#2DD4BF</color>           <!-- secondary accent -->
-    <color name="shs_cyan_deep">#0891B2</color>
-    <color name="shs_teal_deep">#0D9488</color>
+    <!-- M10: was #0891B2. The theme pairs this container with shs_text_primary
+         as onPrimaryContainer, which measured 3.46:1 — below AA 4.5. #067B97
+         measures 4.61:1, the minimal darkening that clears it. Asserted by
+         ContrastTest so the pair cannot silently drift back. -->
+    <color name="shs_cyan_deep">#067B97</color>
+    <!-- M10: was #0D9488, which measured 3.52:1 against shs_text_primary.
+         The theme pairs these two as colorSecondaryContainer /
+         colorOnSecondaryContainer, so secondary-container text was below AA
+         and no test covered the pair. #1B7F73 is the minimal darkening that
+         clears 4.5:1 (4.56:1) while staying teal. Asserted by ContrastTest. -->
+    <color name="shs_teal_deep">#1B7F73</color>
+
+    <!-- M10 container colours. The theme pairs each _deep with
+         shs_text_primary as its on-container, so every one of these is
+         computed to clear WCAG AA 4.5:1 — not chosen by eye. Ratios:
+         indigo 4.59:1, purple 4.53:1, magenta 4.51:1, amber 4.52:1.
+         Asserted by ContrastTest so they cannot drift. -->
+    <color name="shs_indigo_deep">#626ABC</color>
+    <color name="shs_purple_deep">#7A65B6</color>
+    <color name="shs_magenta_deep">#B05283</color>
+    <color name="shs_amber_deep">#8F6D15</color>
+
     <color name="shs_indigo">#818CF8</color>         <!-- secondary / today (Gregorian) -->
     <color name="shs_purple">#A78BFA</color>
     <color name="shs_magenta">#F472B6</color>
@@ -24,7 +44,10 @@
     <!-- Text -->
     <color name="shs_text_primary">#F5F8FF</color>
     <color name="shs_text_secondary">#9AA6C9</color>
-    <color name="shs_text_muted">#64709B</color>
+    <!-- M10: was #64709B = 3.88:1 on shs_night, below WCAG AA 4.5 for text.
+         #7886BA = 5.30:1, the smallest step that clears AA without shifting the
+         palette away from the spec'd identity. Asserted by ContrastTest. -->
+    <color name="shs_text_muted">#7886BA</color>
     <color name="shs_text_on_accent">#06121F</color>
 
     <!-- Semantic -->

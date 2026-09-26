@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  M10: Bengali strings. Scope is the appearance & accessibility section added
+  in M10; the rest of the app still falls back to the default (English)
+  values/strings.xml. Any key absent here is resolved by the resource system
+  at runtime, so this file is safe to grow incrementally.
+-->
+<resources>
+    <!-- M10: appearance & accessibility -->
+    <string name="settings_appearance_section">চেহারা</string>
+    <string name="settings_theme">থিম</string>
+    <string name="settings_theme_system">সিস্টেম অনুসরণ করুন</string>
+    <string name="settings_theme_dark">অন্ধকার</string>
+    <string name="settings_theme_amoled">AMOLED (খাঁটি কালো)</string>
+    <string name="settings_theme_light">উজ্জ্বল</string>
+    <string name="settings_accent">অ্যাকসেন্ট রং</string>
+    <string name="settings_accent_summary">বোতাম, হাইলাইট এবং ক্যালেন্ডার নির্বাচনে প্রয়োগ হয়</string>
+    <string name="settings_font_scale">লেখার আকার</string>
+    <string name="settings_font_scale_system">সিস্টেমের লেখার আকার অনুসরণ করুন</string>
+    <string name="settings_font_scale_small">ছোট</string>
+    <string name="settings_font_scale_normal">স্বাভাবিক</string>
+    <string name="settings_font_scale_large">বড়</string>
+    <string name="settings_font_scale_xl">অতিরিক্ত বড়</string>
+    <string name="settings_language">ভাষা</string>
+    <string name="settings_language_system">সিস্টেমের ভাষা অনুসরণ করুন</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_bn">বাংলা</string>
+    <string name="settings_language_ar">العربية</string>
+    <string name="settings_a11y_section">অ্যাক্সেসিবিলিটি</string>
+    <string name="settings_contrast_summary">সব লেখার জোড়া WCAG AA (4.5:1) পূরণ করে</string>
+    <string name="settings_accent_cyan">সায়ান</string>
+    <string name="settings_accent_teal">টিল</string>
+    <string name="settings_accent_indigo">নীল</string>
+    <string name="settings_accent_purple">বেগুনি</string>
+    <string name="settings_accent_magenta">ম্যাজেন্টা</string>
+    <string name="settings_accent_amber">অ্যাম্বার</string>
+</resources>

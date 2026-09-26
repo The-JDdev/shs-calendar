@@ -38,10 +38,20 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var prayerMethodSpinner: Spinner
     private lateinit var prayerMadhabSpinner: Spinner
     private lateinit var prayerHighLatSpinner: Spinner
+
+    // M10 appearance
+    private lateinit var themeGroup: RadioGroup
+    private lateinit var accentSpinner: Spinner
+    private lateinit var fontScaleGroup: RadioGroup
+    private lateinit var languageSpinner: Spinner
+    private val appearanceStore by lazy { com.shs.calendar.ui.appearance.AppearanceStore.get(this) }
     private var updatingUi = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Accent overlay must be applied before setContentView, otherwise
+        // already-inflated views keep resolving the base theme's colours.
+        com.shs.calendar.ui.appearance.AccentOverlay.apply(this)
         setContentView(R.layout.activity_settings)
 
         findViewById<MaterialToolbar>(R.id.settings_toolbar)?.apply {
@@ -70,6 +80,25 @@ class SettingsActivity : AppCompatActivity() {
         prayerMethodSpinner = findViewById(R.id.settings_prayer_method_spinner)
         prayerMadhabSpinner = findViewById(R.id.settings_prayer_madhab_spinner)
         prayerHighLatSpinner = findViewById(R.id.settings_prayer_high_lat_spinner)
+
+        // M10 appearance. Spinner order is the enum declaration order
+        // (Accent.entries, and the language array's system-first ordering),
+        // so the index is the value and no lookup table is needed.
+        themeGroup = findViewById(R.id.settings_theme_group)
+        accentSpinner = findViewById(R.id.settings_accent_spinner)
+        fontScaleGroup = findViewById(R.id.settings_font_scale_group)
+        languageSpinner = findViewById(R.id.settings_language_spinner)
+        accentSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.appearance_accents)
+        )
+        languageSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.appearance_languages)
+        )
+        renderAppearance()
         prayerMethodSpinner.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
@@ -184,6 +213,115 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<android.view.View>(R.id.settings_sync_accounts_button)?.setOnClickListener {
             startActivity(android.content.Intent(this, com.shs.calendar.ui.caldav.CalDavAccountsActivity::class.java))
         }
+
+        // M10 appearance. Each change is written to AppearanceStore and then
+        // applied to the running process; theme and locale changes need a
+        // recreate for the new resources to be inflated.
+        themeGroup.setOnCheckedChangeListener { _, checkedId ->
+            if (updatingUi) return@setOnCheckedChangeListener
+            val theme = when (checkedId) {
+                R.id.settings_theme_dark -> com.shs.calendar.ui.appearance.Theme.DARK
+                R.id.settings_theme_amoled -> com.shs.calendar.ui.appearance.Theme.AMOLED
+                R.id.settings_theme_light -> com.shs.calendar.ui.appearance.Theme.LIGHT
+                else -> com.shs.calendar.ui.appearance.Theme.SYSTEM_DARK
+            }
+            appearanceStore.saveTheme(theme)
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                appearanceStore.load().nightMode
+            )
+        }
+        accentSpinner.onItemSelectedListener = simpleSelection { pos ->
+            appearanceStore.saveAccent(
+                com.shs.calendar.ui.appearance.Accent.entries
+                    .getOrElse(pos) { com.shs.calendar.ui.appearance.Accent.CYAN }
+            )
+        }
+        fontScaleGroup.setOnCheckedChangeListener { _, checkedId ->
+            if (updatingUi) return@setOnCheckedChangeListener
+            appearanceStore.saveFontScale(
+                when (checkedId) {
+                    R.id.settings_font_scale_small -> com.shs.calendar.ui.appearance.FontScale.SMALL
+                    R.id.settings_font_scale_large -> com.shs.calendar.ui.appearance.FontScale.LARGE
+                    R.id.settings_font_scale_xl -> com.shs.calendar.ui.appearance.FontScale.EXTRA_LARGE
+                    else -> com.shs.calendar.ui.appearance.FontScale.NORMAL
+                }
+            )
+        }
+        languageSpinner.onItemSelectedListener = simpleSelection { pos ->
+            if (updatingUi) return@simpleSelection
+            val tag = resources.getStringArray(R.array.appearance_languages)
+                .getOrNull(pos)
+                ?.let { resolveLanguageTag(it) }
+                ?: com.shs.calendar.ui.appearance.AppearanceOptions.TAG_SYSTEM
+            appearanceStore.saveLocale(tag)
+            // TAG_SYSTEM is our own marker, not a BCP-47 tag. Handing it to
+            // forLanguageTags would have the framework try to parse "s" with
+            // subtag "ystem" — the empty locale list is what actually means
+            // "follow the device language".
+            androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(
+                if (tag == com.shs.calendar.ui.appearance.AppearanceOptions.TAG_SYSTEM) {
+                    androidx.core.os.LocaleListCompat.getEmptyLocaleList()
+                } else {
+                    androidx.core.os.LocaleListCompat.forLanguageTags(tag)
+                }
+            )
+        }
+    }
+
+    /**
+     * Pushes the stored appearance into the four controls.
+     *
+     * Spinner positions are guarded with getOrElse because the stored name
+     * may belong to an older build whose enum no longer has that entry; the
+     * radio ids are checked by name for the same reason. updatingUi is set
+     * around this so the listeners bound above do not immediately write the
+     * values straight back out again.
+     */
+    private fun renderAppearance() {
+        val options = appearanceStore.load()
+        val accentIndex = com.shs.calendar.ui.appearance.Accent.entries
+            .indexOf(options.accent)
+            .coerceAtLeast(0)
+        val scaleId = when (options.fontScale) {
+            com.shs.calendar.ui.appearance.FontScale.SMALL -> R.id.settings_font_scale_small
+            com.shs.calendar.ui.appearance.FontScale.NORMAL -> R.id.settings_font_scale_system
+            com.shs.calendar.ui.appearance.FontScale.LARGE -> R.id.settings_font_scale_large
+            com.shs.calendar.ui.appearance.FontScale.EXTRA_LARGE -> R.id.settings_font_scale_xl
+        }
+        val themeId = when (options.theme) {
+            com.shs.calendar.ui.appearance.Theme.DARK -> R.id.settings_theme_dark
+            com.shs.calendar.ui.appearance.Theme.AMOLED -> R.id.settings_theme_amoled
+            com.shs.calendar.ui.appearance.Theme.LIGHT -> R.id.settings_theme_light
+            com.shs.calendar.ui.appearance.Theme.SYSTEM_DARK -> R.id.settings_theme_system
+        }
+        val languageIndex = languageOptions().indexOf(options.localeTag).coerceAtLeast(0)
+
+        updatingUi = true
+        themeGroup.check(themeId)
+        accentSpinner.setSelection(accentIndex)
+        fontScaleGroup.check(scaleId)
+        languageSpinner.setSelection(languageIndex)
+        updatingUi = false
+    }
+
+    /** Language tags offered by the spinner, in array order. */
+    private fun languageOptions(): List<String> = listOf(
+        com.shs.calendar.ui.appearance.AppearanceOptions.TAG_SYSTEM,
+        "en",
+        "bn",
+        "ar"
+    )
+
+    /**
+     * Maps a spinner label back to its language tag. Matching on the label
+     * keeps the array in strings.xml translatable while the tag stays a
+     * stable, non-localised identifier.
+     */
+    private fun resolveLanguageTag(label: String): String = when (label) {
+        getString(R.string.settings_language_en) -> "en"
+        getString(R.string.settings_language_bn) -> "bn"
+        getString(R.string.settings_language_ar) -> "ar"
+        else -> com.shs.calendar.ui.appearance.AppearanceOptions.TAG_SYSTEM
     }
 
     /** Manual minute offsets per prayer, six signed fields in one dialog. */

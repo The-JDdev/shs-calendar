@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  M10: Arabic strings. Scope is the appearance & accessibility section added
+  in M10; the rest of the app still falls back to the default (English)
+  values/strings.xml. Any key absent here is resolved by the resource system
+  at runtime, so this file is safe to grow incrementally.
+-->
+<resources>
+    <!-- M10: appearance & accessibility -->
+    <string name="settings_appearance_section">المظهر</string>
+    <string name="settings_theme">السمة</string>
+    <string name="settings_theme_system">اتّباع النظام</string>
+    <string name="settings_theme_dark">داكن</string>
+    <string name="settings_theme_amoled">AMOLED (أسود تام)</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_accent">لون التمييز</string>
+    <string name="settings_accent_summary">يُطبَّق على الأزرار والتمييزات وتحديد التقويم</string>
+    <string name="settings_font_scale">حجم النص</string>
+    <string name="settings_font_scale_system">اتّباع حجم نص النظام</string>
+    <string name="settings_font_scale_small">صغير</string>
+    <string name="settings_font_scale_normal">عادي</string>
+    <string name="settings_font_scale_large">كبير</string>
+    <string name="settings_font_scale_xl">كبير جدًا</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_language_system">اتّباع لغة النظام</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_bn">বাংলা</string>
+    <string name="settings_language_ar">العربية</string>
+    <string name="settings_a11y_section">إمكانية الوصول</string>
+    <string name="settings_contrast_summary">كل أزواج النص تستوفي معيار WCAG AA (4.5:1)</string>
+    <string name="settings_accent_cyan">سماوي</string>
+    <string name="settings_accent_teal">أزرق مخضر</string>
+    <string name="settings_accent_indigo">نيلي</string>
+    <string name="settings_accent_purple">بنفسجي</string>
+    <string name="settings_accent_magenta">أرجواني</string>
+    <string name="settings_accent_amber">كهرماني</string>
+</resources>

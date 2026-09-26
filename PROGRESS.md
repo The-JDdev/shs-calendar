@@ -309,3 +309,71 @@ suites, 295 tests, 0 failures, 0 errors, 0 skipped read from fresh JUnit
 XML. AccountInputTest alone is 19 tests. CalDavAddAccountActivity.class and
 AccountInput$Validated.class both present, so the new code really compiled
 rather than being skipped as up-to-date.
+
+M10 — appearance: theme, accent, text size, language.
+
+  Four controls on Settings: theme (system/dark/amoled/light), accent
+  (six), in-app text size (small/system/large/xl), and language (follow
+  system, en, bn, ar). Each takes effect immediately — no restart prompt,
+  no Save button — and is applied at the earliest hook that can carry it:
+  font scale in Application.attachBaseContext, before the first
+  inflation; night mode via setDefaultNightMode; locale via
+  setApplicationLocales; accent as a ThemeOverlay applied before
+  setContentView.
+
+  AppearanceStore is SharedPreferences, deliberately not SettingsEntity.
+  attachBaseContext runs long before the Room database is open, and
+  font scale has to be in the Configuration before views inflate, so a
+  synchronous in-memory read is the only thing that works there. Values
+  are stored as enum *names*, never ordinals, so reordering an enum
+  cannot silently reinterpret an existing user's choice, and an
+  unrecognised name falls back rather than throwing.
+
+  Accent.hex duplicates colors.xml as a string, which is a real
+  duplication hazard, so ContrastTest pins all six to the palette: a
+  palette edit that desyncs the enum fails the build rather than tinting
+  the app with a colour nothing else uses.
+
+  Two things this milestone found and fixed rather than shipped past.
+  shs_teal_deep was #0D9488, 3.52:1 against shs_text_primary — and
+  themes.xml pairs exactly those two as colorSecondaryContainer /
+  colorOnSecondaryContainer, so secondary-container text was below WCAG
+  AA with nothing in the build noticing. It is now #1B7F73 (4.56:1),
+  the minimal darkening that clears AA while staying teal. The other
+  five accent containers are computed, not chosen by eye: each is the
+  darkest-adjacent step that clears 4.5:1, ranging 4.51:1 (magenta) to
+  4.59:1 (indigo). ContrastTest asserts every pair, so a later palette
+  tweak fails here instead of shipping.
+
+  Accent is six ThemeOverlay style resources, not one computed style.
+  setTheme() takes a style *resource id*; a theme attribute cannot be
+  given a runtime string, so the "build the overlay from accent.hex"
+  approach cannot work. CYAN maps to 0 — the base theme is already
+  correct for it, and it must NOT map to android.R.style.ThemeOverlay,
+  which is an overlay *parent* and would replace the SHS palette
+  outright for the default user.
+
+  Known gaps, deliberately not papered over:
+    - Theme.LIGHT and Theme.AMOLED render identically to the dark theme.
+      The project ships one palette and no values-night, so those two
+      radio buttons are currently cosmetic. A light theme is its own
+      piece of work, not a switch.
+    - The accent overlay is applied in SettingsActivity only. Every other
+      Activity still renders the base cyan palette; the other four
+      accents are therefore only visible on the settings screen.
+    - resolveLanguageTag maps a spinner label back to its language tag by
+      comparing localised text, so a colliding translation could
+      mis-map. Matching on tag order instead would be more robust and is
+      not done.
+
+Verified: detached gradlew assembleDebug + testDebugUnitTest; 314 tests,
+0 failures, 0 errors, read from fresh JUnit XML. ContrastTest is 9
+tests, AppearanceOptionsTest 10. All five ThemeOverlay styles confirmed
+present in themes.xml and every R.style reference in AccentOverlay.kt
+resolved against them by grep.
+
+The tests cover the decision logic and the resource/enum consistency,
+not the wiring: the project has no Robolectric, so nothing here proves
+the spinners, RadioGroups or overlay actually drive the UI. That
+limitation is why the decision logic was kept in pure Kotlin
+(AppearanceOptions) rather than in the Activity.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  M10: the languages the app ships translations for. Required by
+  android:localeConfig, which lets the system Settings app show "Languages"
+  and lets AppCompatDelegate.setApplicationLocales persist an in-app choice.
+  Adding a locale here without adding the matching values-<tag>/strings.xml
+  would offer a language the app cannot actually display.
+-->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="en" />
+    <locale android:name="bn" />
+    <locale android:name="ar" />
+</locale-config>
