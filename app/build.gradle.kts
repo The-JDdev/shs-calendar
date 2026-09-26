@@ -59,6 +59,10 @@ dependencies {
     implementation("androidx.room:room-runtime:$room")
     implementation("androidx.room:room-ktx:$room")
     ksp("androidx.room:room-compiler:$room")
+    // M9: account passwords are stored with EncryptedSharedPreferences rather
+    // than in the Room row, so a database file copied off the device does not
+    // hand over the credentials. See SyncCredentialStore.
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
