@@ -9,7 +9,7 @@ STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TAS
 - [x] M4 Traditional Bangla calendar view + World clock — 74/74 green (assembleDebug + testDebugUnitTest)
 
 ## Phase 3 — Weather, Holidays, Widgets, Tasks/Notes, Search, Portability
-- [ ] M5 Weather (Open-Meteo provider, cache, offline)
+- [x] M5 Weather (Open-Meteo provider, cache, offline) — committed 11e4178
 - [ ] M6 Holiday DB (BD/IN/SA/US/UK + Bengali cultural + Islamic)
 - [ ] M7 All 11 widgets
 - [ ] M8 Tasks + Notes + Search + Conflicts + ICS/CSV/Backup
