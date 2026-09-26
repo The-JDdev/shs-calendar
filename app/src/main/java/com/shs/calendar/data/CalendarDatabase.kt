@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
         SettingsEntity::class,
         SyncAccountEntity::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 abstract class CalendarDatabase : RoomDatabase() {
@@ -171,6 +171,18 @@ abstract class CalendarDatabase : RoomDatabase() {
             }
         }
 
+        // M11: index the agenda/range query column. IF NOT EXISTS keeps this
+        // idempotent for fresh installs where Room already created the index
+        // from the entity annotation.
+        private val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE INDEX IF NOT EXISTS `index_events_startUtcMillis` " +
+                        "ON `events` (`startUtcMillis`)"
+                )
+            }
+        }
+
         private val MIGRATION_4_5 = object : Migration(4, 5) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(
@@ -216,6 +228,7 @@ abstract class CalendarDatabase : RoomDatabase() {
                 // Room would fail validation on the first open of an existing
                 // install rather than at compile time.
                 .addMigrations(MIGRATION_6_7)
+                .addMigrations(MIGRATION_7_8)
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         seedScope.launch {

@@ -1,37 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  M10: Arabic strings. Scope is the appearance & accessibility section added
-  in M10; the rest of the app still falls back to the default (English)
-  values/strings.xml. Any key absent here is resolved by the resource system
-  at runtime, so this file is safe to grow incrementally.
--->
+<!-- الترجمة العربية للشاشات الرئيسية (M10) -->
 <resources>
-    <!-- M10: appearance & accessibility -->
+    <string name="app_name">تقويم SHS</string>
+
+    <string name="header_widget">أداة</string>
+
+    <string name="nav_tools">الأدوات</string>
+    <string name="nav_prayer">الصلاة</string>
+    <string name="nav_calendar">التقويم</string>
+    <string name="nav_accounts">الحسابات</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <string name="location_set">تعيين الموقع</string>
+    <string name="sunrise">الشروق</string>
+    <string name="sunset">الغروب</string>
+    <string name="astronomy_unavailable">غير متوفر — عيّن موقعًا</string>
+    <string name="inspiration_title">إلهام اليوم</string>
+    <string name="inspiration_copy">نسخ</string>
+    <string name="inspiration_share">مشاركة</string>
+    <string name="inspiration_refresh">تحديث</string>
+    <string name="quick_tools">أدوات سريعة</string>
+    <string name="tool_traditional_calendar">التقويم التقليدي</string>
+    <string name="traditional_title">التقويم البنغالي التقليدي</string>
+    <string name="clock_add_zone">إضافة مدينة</string>
+    <string name="clock_add_hint">معرف المنطقة الزمنية، مثل Asia/Dhaka</string>
+    <string name="clock_zone_invalid">منطقة زمنية غير معروفة</string>
+    <string name="tool_age_calculator">حاسبة العمر</string>
+    <string name="tool_date_converter">محوّل التاريخ</string>
+    <string name="tool_tasbih">التسبيح</string>
+    <string name="tool_dua">الأدعية</string>
+    <string name="tool_widgets">الأدوات</string>
+    <string name="tool_world_clock">ساعة عالمية</string>
+    <string name="tool_qibla">القبلة</string>
+    <string name="tool_moon_phase">طور القمر</string>
+    <string name="today">اليوم</string>
+    <string name="prev_month">الشهر السابق</string>
+    <string name="next_month">الشهر التالي</string>
+
+    <string name="age_title">حاسبة العمر</string>
+    <string name="age_birthdate">تاريخ الميلاد</string>
+    <string name="age_pick">اختر تاريخ الميلاد</string>
+    <string name="age_result_placeholder">اختر تاريخ ميلادك لمعرض عمرك بدقة</string>
+    <string name="age_next_birthday">عيد الميلاد القادم: %1$s (%2$d يومًا)</string>
+    <string name="age_years_months_days">%1$d سنة، %2$d شهرًا، %3$d يومًا</string>
+    <string name="age_error_future">لا يمكن أن يكون تاريخ الميلاد في المستقبل</string>
+
+    <string name="converter_title">محوّل التاريخ</string>
+    <string name="converter_gregorian">ميلادي</string>
+    <string name="converter_bengali">بنغالي</string>
+    <string name="converter_hijri">هجري</string>
+    <string name="converter_copy">نسخ النتيجة</string>
+    <string name="converter_copied">تم النسخ</string>
+    <string name="converter_invalid">تاريخ غير صالح</string>
+
+    <string name="event_editor_title">حدث</string>
+    <string name="event_agenda_title">الأجندة</string>
+    <string name="event_new">حدث جديد</string>
+    <string name="event_title_hint">العنوان</string>
+    <string name="event_description_hint">الوصف</string>
+    <string name="event_location_hint">الموقع</string>
+    <string name="event_all_day">طوال اليوم</string>
+    <string name="event_save">حفظ</string>
+    <string name="event_delete">حذف</string>
+    <string name="event_saved">تم حفظ الحدث</string>
+    <string name="event_deleted">تم حذف الحدث</string>
+    <string name="event_title_required">العنوان مطلوب</string>
+    <string name="event_start_label">يبدأ</string>
+    <string name="event_end_label">ينتهي</string>
+    <string name="agenda_empty">لا أحداث بعد — اضغط + للإضافة</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_first_day_of_week">أول يوم في الأسبوع</string>
+    <string name="settings_time_format">تنسيق الوقت</string>
+    <string name="settings_time_format_12">١٢ ساعة</string>
+    <string name="settings_time_format_24">٢٤ ساعة</string>
+    <string name="settings_default_calendar">نظام التقويم الافتراضي</string>
+    <string name="settings_bengali_numerals">الأرقام البنغالية</string>
+    <string name="settings_hijri_adjustment">تعديل الهجري (أيام)</string>
+
+    <string name="tasbih_dhikr_label">الذكر</string>
+    <string name="tasbih_target_label">الهدف</string>
+    <string name="tasbih_target_custom">مخصص…</string>
+    <string name="tasbih_target_custom_title">هدف مخصص</string>
+    <string name="tasbih_tap_to_count">اضغط</string>
+    <string name="tasbih_reset">تصفير</string>
+    <string name="tasbih_progress_format">%1$d / %2$d</string>
+
+    <string name="qibla_calibrate">حرّك هاتفك على شكل ٨ لمعايرة البوصلة.</string>
+    <string name="qibla_no_sensor">لا يوجد مستشعر بوصلة — استخدم رقم الاتجاه أعلاه كدليل يدوي.</string>
+    <string name="qibla_location_missing">عيّن موقعًا لحساب اتجاه القبلة.</string>
+    <string name="qibla_distance_format">%1$.0f كم إلى الكعبة</string>
+
+    <string name="dua_category_label">الفئة</string>
+    <string name="dua_category_all">الكل</string>
+    <string name="dua_copy">نسخ</string>
+    <string name="dua_share">مشاركة</string>
+    <string name="dua_copied">نُسخ الدعاء إلى الحافظة</string>
+    <string name="dua_reference_format">المرجع: %1$s</string>
+    <string name="dua_count_format">%1$d دعاءً</string>
+    <string name="dua_empty">لا أدعية في هذه الفئة</string>
+
+    <string name="prayer_next">الصلاة القادمة</string>
+    <string name="prayer_countdown_in">بعد %1$s</string>
+    <string name="prayer_countdown_past">بدأت قبل %1$s</string>
+    <string name="prayer_unavailable">غير متوفر</string>
+    <string name="prayer_empty_location">عيّن موقعًا لحساب مواقيت الصلاة.</string>
+    <string name="prayer_set_location">تعيين الموقع</string>
+    <string name="prayer_no_location">لا موقع</string>
+    <string name="prayer_imsak">الإمساك</string>
+    <string name="prayer_fajr">الفجر</string>
+    <string name="prayer_sunrise">الشروق</string>
+    <string name="prayer_dhuhr">الظهر</string>
+    <string name="prayer_asr">العصر</string>
+    <string name="prayer_sunset">الغروب</string>
+    <string name="prayer_maghrib">المغرب</string>
+    <string name="prayer_isha">العشاء</string>
+    <string name="prayer_midnight">منتصف الليل</string>
+    <string name="prayer_tahajjud">التهجد (الثلث الأخير)</string>
+    <string name="prayer_note_suhoor">ينتهي السحور مع الفجر</string>
+    <string name="prayer_note_iftar">الإفطار</string>
+
+    <string name="settings_prayer_section">حساب الصلاة</string>
+    <string name="settings_prayer_method">طريقة الحساب</string>
+    <string name="settings_prayer_madhab">مذهب العصر</string>
+    <string name="settings_prayer_high_lat">قاعدة العرض العالي</string>
+    <string name="settings_prayer_offsets">تعديلات يدوية (دقائق)</string>
+    <string name="settings_prayer_offsets_adjust">تعديل</string>
+
+    <string name="settings_calendar_section">التقويم</string>
+    <string name="settings_bengali_section">البنغالية</string>
+    <string name="settings_hijri_section">الهجري</string>
+    <string name="calendar_system_gregorian">ميلادي</string>
+    <string name="calendar_system_bengali">بنغالي</string>
+    <string name="calendar_system_hijri">هجري</string>
+
+    <string name="notification_channel_reminders">التذكيرات</string>
+    <string name="notification_channel_reminders_desc">تذكيرات الأحداث والمهام</string>
+    <string name="channel_reminders_name">التذكيرات</string>
+    <string name="channel_reminders_desc">تذكيرات الأحداث والمهام</string>
+    <string name="channel_alarms_name">منبهات التقويم</string>
+    <string name="channel_alarms_desc">قناة صامتة لمنبهات التقويم</string>
+    <string name="reminder_notification_text">يبدأ %1$s</string>
+    <string name="reminder_notification_text_offset">يبدأ %2$s — قبل %1$d دقيقة</string>
+
+    <string name="action_close">إغلاق</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_ok">حسنًا</string>
+    <string name="action_back">رجوع</string>
+    <string name="copy">نسخ</string>
+    <string name="share">مشاركة</string>
+
+    <string name="location_picker_title">اختيار الموقع</string>
+    <string name="location_search_hint">ابحث عن مدينة أو بلد</string>
+    <string name="location_use_gps">استخدام الموقع الحالي</string>
+    <string name="location_manual_title">أدخل الإحداثيات</string>
+    <string name="location_latitude_hint">خط العرض (-٩٠ إلى ٩٠)</string>
+    <string name="location_longitude_hint">خط الطول (-١٨٠ إلى ١٨٠)</string>
+    <string name="location_save">حفظ الموقع</string>
+    <string name="location_invalid_coords">أدخل خط عرض وخط طول صالحين</string>
+    <string name="location_saved">تم حفظ الموقع</string>
+    <string name="location_permission_rationale_title">الموقع اختياري</string>
+    <string name="location_permission_rationale">يمكن لتقويم SHS استخدام GPS لتعبئة مواقيت الصلاة والشمس تلقائيًا. يمكنك دائمًا اختيار مدينة يدويًا — لا يُرفع أي شيء.</string>
+    <string name="location_permission_denied">تم رفض الإذن — اختر مدينة يدويًا</string>
+    <string name="location_gps_disabled">خدمات الموقع متوقفة — اختر مدينة يدويًا</string>
+    <string name="location_fix_failed">تعذر تحديد الموقع — اختر مدينة يدويًا</string>
+    <string name="location_empty_search">لا مدينة مطابقة</string>
+    <string name="travel_mode">وضع السفر</string>
+    <string name="travel_mode_summary">اتباع المنطقة الزمنية للجهاز أثناء السفر؛ إعادة حساب مواقيت الصلاة والشمس</string>
+    <string name="location_timezone_label">المنطقة الزمنية: %1$s</string>
+
+    <string name="weather_title">الطقس</string>
+    <string name="weather_unavailable">الطقس غير متوفر</string>
+    <string name="weather_disabled">الطقس متوقف</string>
+    <string name="weather_no_location">عيّن موقعًا في الإعدادات لعرض الطقس</string>
+    <string name="weather_cached">آخر توقعات محفوظة</string>
+    <string name="weather_offline">غير متصل — آخر توقعات محفوظة</string>
+    <string name="weather_failed">تعذر تحميل الطقس</string>
+    <string name="weather_feels_like">يبدو كـ %1$s</string>
+    <string name="weather_humidity">الرطوبة %1$d%%</string>
+    <string name="weather_wind">الرياح %1$s</string>
+    <string name="weather_uv">UV %1$s</string>
+    <string name="weather_rain_chance">المطر %1$d%%</string>
+
+    <string name="tasks_title">المهام</string>
+    <string name="task_mark_done">تمييز كمنجزة</string>
+    <string name="task_overdue">متأخرة</string>
+    <string name="task_new">مهمة جديدة</string>
+    <string name="task_done">منجزة</string>
+    <string name="task_due">الاستحقاق</string>
+    <string name="task_priority">الأولوية</string>
+    <string name="task_convert">تحويل إلى حدث</string>
+    <string name="tasks_empty">لا مهام بعد. اضغط + للإضافة.</string>
+
+    <string name="notes_title">الملاحظات</string>
+    <string name="note_new">ملاحظة جديدة</string>
+    <string name="note_title">الملاحظات</string>
+    <string name="note_untitled">بدون عنوان</string>
+    <string name="note_edit">تحرير الملاحظة</string>
+    <string name="note_save">حفظ</string>
+    <string name="note_delete">حذف</string>
+    <string name="notes_empty">لا ملاحظات بعد. اضغط + للكتابة.</string>
+    <string name="note_title_hint">العنوان</string>
+    <string name="note_tags">الوسوم</string>
+
+    <string name="search_title">بحث</string>
+    <string name="search_hint">ابحث في الأحداث والمهام والملاحظات والتواريخ</string>
+    <string name="search_empty">لا نتائج</string>
+    <string name="search_kind_event">حدث</string>
+    <string name="search_kind_task">مهمة</string>
+    <string name="search_kind_note">ملاحظة</string>
+    <string name="search_kind_date">تاريخ</string>
+    <string name="search_kind_holiday">عطلة</string>
+    <string name="search_kind_dua">دعاء</string>
+
+    <string name="io_title">استيراد وتصدير</string>
+    <string name="io_export_ics">تصدير الكل كـ .ics</string>
+    <string name="io_import_ics">استيراد .ics</string>
+    <string name="io_export_csv">تصدير الأحداث كـ .csv</string>
+    <string name="io_import_csv">استيراد .csv</string>
+    <string name="io_done">تم</string>
+
+    <string name="caldav_accounts_title">حسابات المزامنة</string>
+    <string name="caldav_accounts_add">إضافة حساب</string>
+    <string name="caldav_sync_now">مزامنة الآن</string>
+    <string name="caldav_never_synced">لم تتم المزامنة بعد</string>
+    <string name="caldav_sync_running">جارٍ المزامنة…</string>
+    <string name="caldav_offline">تعذر الوصول إلى الخادم. تحقق من اتصالك.</string>
+    <string name="caldav_add_title">إضافة حساب CalDAV</string>
+    <string name="caldav_add_server">عنوان الخادم</string>
+    <string name="caldav_add_username">اسم المستخدم</string>
+    <string name="caldav_add_password">كلمة المرور</string>
+    <string name="caldav_add_discover">إيجاد التقويمات</string>
+    <string name="caldav_add_save">حفظ الحساب</string>
+
+    <string name="settings_sync_section">المزامنة</string>
+    <string name="settings_sync_summary">حسابات CalDAV والمزامنة اليدوية</string>
+    <string name="settings_manage">إدارة</string>
+
+    <string name="widget_generic_desc">أداة تقويم SHS للشاشة الرئيسية</string>
+
     <string name="settings_appearance_section">المظهر</string>
     <string name="settings_theme">السمة</string>
-    <string name="settings_theme_system">اتّباع النظام</string>
+    <string name="settings_theme_system">حسب النظام</string>
     <string name="settings_theme_dark">داكن</string>
     <string name="settings_theme_amoled">AMOLED (أسود تام)</string>
     <string name="settings_theme_light">فاتح</string>
     <string name="settings_accent">لون التمييز</string>
-    <string name="settings_accent_summary">يُطبَّق على الأزرار والتمييزات وتحديد التقويم</string>
     <string name="settings_font_scale">حجم النص</string>
-    <string name="settings_font_scale_system">اتّباع حجم نص النظام</string>
+    <string name="settings_font_scale_system">حجم نص النظام</string>
     <string name="settings_font_scale_small">صغير</string>
     <string name="settings_font_scale_normal">عادي</string>
     <string name="settings_font_scale_large">كبير</string>
-    <string name="settings_font_scale_xl">كبير جدًا</string>
+    <string name="settings_font_scale_xl">أكبر</string>
     <string name="settings_language">اللغة</string>
-    <string name="settings_language_system">اتّباع لغة النظام</string>
+    <string name="settings_language_system">لغة النظام</string>
     <string name="settings_language_en">English</string>
     <string name="settings_language_bn">বাংলা</string>
     <string name="settings_language_ar">العربية</string>
     <string name="settings_a11y_section">إمكانية الوصول</string>
-    <string name="settings_contrast_summary">كل أزواج النص تستوفي معيار WCAG AA (4.5:1)</string>
     <string name="settings_accent_cyan">سماوي</string>
     <string name="settings_accent_teal">أزرق مخضر</string>
     <string name="settings_accent_indigo">نيلي</string>
     <string name="settings_accent_purple">بنفسجي</string>
     <string name="settings_accent_magenta">أرجواني</string>
-    <string name="settings_accent_amber">كهرماني</string>
+    <string name="settings_accent_amber">عنبري</string>
 </resources>

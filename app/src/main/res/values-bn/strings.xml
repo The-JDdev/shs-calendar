@@ -1,37 +1,393 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  M10: Bengali strings. Scope is the appearance & accessibility section added
-  in M10; the rest of the app still falls back to the default (English)
-  values/strings.xml. Any key absent here is resolved by the resource system
-  at runtime, so this file is safe to grow incrementally.
--->
+<!-- সম্পূর্ণ বাংলা অনুবাদ (M10) — সব প্রধান স্ক্রিন কভার করে -->
 <resources>
-    <!-- M10: appearance & accessibility -->
+    <string name="app_name">SHS ক্যালেন্ডার</string>
+
+    <!-- Header -->
+    <string name="header_language_en">EN</string>
+    <string name="header_language_bn">BN</string>
+    <string name="header_language_ar">AR</string>
+    <string name="header_widget">উইজেট</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_tools">টুলস</string>
+    <string name="nav_prayer">নামাজ</string>
+    <string name="nav_calendar">ক্যালেন্ডার</string>
+    <string name="nav_accounts">অ্যাকাউন্ট</string>
+    <string name="nav_settings">সেটিংস</string>
+
+    <!-- Dashboard -->
+    <string name="location_set">অবস্থান দিন</string>
+    <string name="location_none_hint">অবস্থান পরে কনফিগার করা হবে</string>
+    <string name="sunrise">সূর্যোদয়</string>
+    <string name="sunset">সূর্যাস্ত</string>
+    <string name="astronomy_unavailable">অনুপলব্ধ — অবস্থান দিন</string>
+    <string name="inspiration_title">আজকের অনুপ্রেরণা</string>
+    <string name="inspiration_copy">কপি</string>
+    <string name="inspiration_share">শেয়ার</string>
+    <string name="inspiration_refresh">রিফ্রেশ</string>
+    <string name="quick_tools">কুইক টুলস</string>
+    <string name="tool_traditional_calendar">ঐতিহ্যবাহী ক্যালেন্ডার</string>
+    <string name="traditional_title">ঐতিহ্যবাহী বাংলা ক্যালেন্ডার</string>
+    <string name="clock_add_zone">শহর যোগ করুন</string>
+    <string name="clock_add_hint">টাইমজোন আইডি, যেমন Asia/Dhaka</string>
+    <string name="clock_zone_invalid">অজানা টাইমজোন</string>
+    <string name="clock_removed">%1$s সরানো হয়েছে</string>
+    <string name="tool_age_calculator">বয়স ক্যালকুলেটর</string>
+    <string name="tool_date_converter">তারিখ রূপান্তরকারী</string>
+    <string name="tool_tasbih">তাসবিহ</string>
+    <string name="tool_dua">দুআ</string>
+    <string name="tool_widgets">উইজেট</string>
+    <string name="tool_world_clock">বিশ্ব ঘড়ি</string>
+    <string name="tool_qibla">কিবলা</string>
+    <string name="tool_moon_phase">চন্দ্রকলা</string>
+    <string name="today">আজ</string>
+    <string name="prev_month">আগের মাস</string>
+    <string name="next_month">পরের মাস</string>
+
+    <!-- Calendar cell -->
+    <string name="calendar_cell_description">%1$s, বাংলা %2$d %3$s, হিজরি %4$d %5$s</string>
+
+    <!-- Age calculator -->
+    <string name="age_title">বয়স ক্যালকুলেটর</string>
+    <string name="age_birthdate">জন্ম তারিখ</string>
+    <string name="age_pick">জন্ম তারিখ বাছুন</string>
+    <string name="age_result_placeholder">সঠিক বয়স দেখতে জন্ম তারিখ বাছুন</string>
+    <string name="age_next_birthday">পরের জন্মদিন: %1$s (%2$d দিন)</string>
+    <string name="age_years_months_days">%1$d বছর, %2$d মাস, %3$d দিন</string>
+    <string name="age_error_future">জন্ম তারিখ ভবিষ্যতে হতে পারে না</string>
+
+    <!-- Date converter -->
+    <string name="converter_title">তারিখ রূপান্তরকারী</string>
+    <string name="converter_gregorian">গ্রেগরিয়ান</string>
+    <string name="converter_bengali">বাংলা</string>
+    <string name="converter_hijri">হিজরি</string>
+    <string name="converter_copy">ফলাফল কপি</string>
+    <string name="converter_copied">কপি হয়েছে</string>
+    <string name="converter_invalid">অবৈধ তারিখ</string>
+
+    <!-- Events -->
+    <string name="event_editor_title">ইভেন্ট</string>
+    <string name="event_agenda_title">সময়সূচি</string>
+    <string name="event_new">নতুন ইভেন্ট</string>
+    <string name="event_title_hint">শিরোনাম</string>
+    <string name="event_description_hint">বিবরণ</string>
+    <string name="event_location_hint">অবস্থান</string>
+    <string name="event_all_day">সারাদিন</string>
+    <string name="event_save">সংরক্ষণ</string>
+    <string name="event_delete">মুছুন</string>
+    <string name="event_saved">ইভেন্ট সংরক্ষিত</string>
+    <string name="event_deleted">ইভেন্ট মুছে ফেলা হয়েছে</string>
+    <string name="event_title_required">শিরোনাম আবশ্যক</string>
+    <string name="event_start_label">শুরু</string>
+    <string name="event_end_label">শেষ</string>
+    <string name="agenda_empty">কোনো ইভেন্ট নেই — যোগ করতে + চাপুন</string>
+
+    <!-- Settings -->
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_first_day_of_week">সপ্তাহের প্রথম দিন</string>
+    <string name="settings_time_format">সময়ের ফরম্যাট</string>
+    <string name="settings_time_format_12">১২ ঘণ্টা</string>
+    <string name="settings_time_format_24">২৪ ঘণ্টা</string>
+    <string name="settings_default_calendar">ডিফল্ট ক্যালেন্ডার পদ্ধতি</string>
+    <string name="settings_bengali_numerals">বাংলা সংখ্যা</string>
+    <string name="settings_hijri_adjustment">হিজরি সমন্বয় (দিন)</string>
+
+    <!-- Tasbih -->
+    <string name="tasbih_dhikr_label">যিকির</string>
+    <string name="tasbih_target_label">লক্ষ্য</string>
+    <string name="tasbih_target_custom">কাস্টম…</string>
+    <string name="tasbih_target_custom_title">কাস্টম লক্ষ্য</string>
+    <string name="tasbih_tap_to_count">চাপুন</string>
+    <string name="tasbih_reset">রিসেট</string>
+    <string name="tasbih_progress_format">%1$d / %2$d</string>
+
+    <!-- Qibla -->
+    <string name="qibla_calibrate">কম্পাস ক্যালিব্রেট করতে ফোনটি ৮ এর মতো ঘোরান।</string>
+    <string name="qibla_no_sensor">কম্পাস সেন্সর নেই — উপরের দিক-সংখ্যাটি ম্যানুয়াল দিক হিসেবে ব্যবহার করুন।</string>
+    <string name="qibla_location_missing">কিবলার দিক বের করতে অবস্থান দিন।</string>
+    <string name="qibla_distance_format">কাবা থেকে %1$.0f কিমি</string>
+
+    <!-- Dua -->
+    <string name="dua_category_label">বিভাগ</string>
+    <string name="dua_category_all">সব</string>
+    <string name="dua_copy">কপি</string>
+    <string name="dua_share">শেয়ার</string>
+    <string name="dua_copied">দুআ ক্লিপবোর্ডে কপি হয়েছে</string>
+    <string name="dua_copy_failed">এই ডিভাইসে ক্লিপবোর্ড অনুপলব্ধ</string>
+    <string name="dua_reference_format">সূত্র: %1$s</string>
+    <string name="dua_count_format">%1$dটি দুআ</string>
+    <string name="dua_empty">এই বিভাগে কোনো দুআ নেই</string>
+
+    <!-- Prayer screen -->
+    <string name="prayer_next">পরবর্তী নামাজ</string>
+    <string name="prayer_countdown_in">%1$s পরে</string>
+    <string name="prayer_countdown_past">%1$s আগে শুরু</string>
+    <string name="prayer_unavailable">অনুপলব্ধ</string>
+    <string name="prayer_empty_location">নামাজের সময় দেখতে অবস্থান দিন।</string>
+    <string name="prayer_set_location">অবস্থান দিন</string>
+    <string name="prayer_no_location">অবস্থান নেই</string>
+    <string name="prayer_imsak">ইমসাক</string>
+    <string name="prayer_fajr">ফজর</string>
+    <string name="prayer_sunrise">সূর্যোদয়</string>
+    <string name="prayer_dhuhr">যোহর</string>
+    <string name="prayer_asr">আসর</string>
+    <string name="prayer_sunset">সূর্যাস্ত</string>
+    <string name="prayer_maghrib">মাগরিব</string>
+    <string name="prayer_isha">ইশা</string>
+    <string name="prayer_midnight">মধ্যরাত</string>
+    <string name="prayer_tahajjud">তাহাজ্জুদ (শেষ তৃতীয়াংশ)</string>
+    <string name="prayer_note_suhoor">সেহরি ফজর পর্যন্ত</string>
+    <string name="prayer_note_iftar">ইফতার</string>
+
+    <!-- Prayer settings -->
+    <string name="settings_prayer_section">নামাজের হিসাব</string>
+    <string name="settings_prayer_method">হিসাব পদ্ধতি</string>
+    <string name="settings_prayer_madhab">আসরের মাযহাব</string>
+    <string name="settings_prayer_high_lat">উচ্চ-অক্ষাংশ নিয়ম</string>
+    <string name="settings_prayer_offsets">ম্যানুয়াল সমন্বয় (মিনিট)</string>
+    <string name="settings_prayer_offsets_adjust">সমন্বয়</string>
+
+    <string name="settings_calendar_section">ক্যালেন্ডার</string>
+    <string name="settings_bengali_section">বাংলা</string>
+    <string name="settings_hijri_section">হিজরি</string>
+    <string name="calendar_system_gregorian">গ্রেগরিয়ান</string>
+    <string name="calendar_system_bengali">বাংলা</string>
+    <string name="calendar_system_hijri">হিজরি</string>
+
+    <!-- Reminders -->
+    <string name="notification_channel_reminders">রিমাইন্ডার</string>
+    <string name="notification_channel_reminders_desc">ইভেন্ট ও কাজের রিমাইন্ডার</string>
+    <string name="channel_reminders_name">রিমাইন্ডার</string>
+    <string name="channel_reminders_desc">ইভেন্ট ও কাজের রিমাইন্ডার</string>
+    <string name="channel_alarms_name">ক্যালেন্ডার অ্যালার্ম</string>
+    <string name="channel_alarms_desc">ক্যালেন্ডার-ট্রিগার অ্যালার্মের শান্ত চ্যানেল</string>
+    <string name="reminder_notification_title">%1$s</string>
+    <string name="reminder_notification_text">শুরু %1$s</string>
+    <string name="reminder_notification_text_offset">শুরু %2$s — %1$d মিনিট আগে</string>
+
+    <!-- Common -->
+    <string name="action_close">বন্ধ</string>
+    <string name="action_cancel">বাতিল</string>
+    <string name="action_ok">ঠিক আছে</string>
+    <string name="action_back">পিছনে</string>
+    <string name="copy">কপি</string>
+    <string name="share">শেয়ার</string>
+    <string name="location_picker_title">অবস্থান বাছুন</string>
+    <string name="location_search_hint">শহর বা দেশ খুঁজুন</string>
+    <string name="location_use_gps">বর্তমান অবস্থান ব্যবহার করুন</string>
+    <string name="location_manual_title">স্থানাঙ্ক লিখুন</string>
+    <string name="location_latitude_hint">অক্ষাংশ (-৯০ থেকে ৯০)</string>
+    <string name="location_longitude_hint">দ্রাঘিমাংশ (-১৮০ থেকে ১৮০)</string>
+    <string name="location_save">অবস্থান সংরক্ষণ</string>
+    <string name="location_invalid_coords">বৈধ অক্ষাংশ ও দ্রাঘিমাংশ দিন</string>
+    <string name="location_saved">অবস্থান সংরক্ষিত</string>
+    <string name="location_permission_rationale_title">অবস্থান ঐচ্ছিক</string>
+    <string name="location_permission_rationale">SHS ক্যালেন্ডার নামাজ ও সূর্যের সময় স্বয়ংক্রিয়ভাবে দিতে GPS ব্যবহার করতে পারে। চাইলে সবসময় নিজে শহর বাছতে পারেন — কিছুই আপলোড হয় না।</string>
+    <string name="location_permission_denied">অনুমতি দেওয়া হয়নি — নিজে শহর বাছুন</string>
+    <string name="location_gps_disabled">লোকেশন সার্ভিস বন্ধ — নিজে শহর বাছুন</string>
+    <string name="location_fix_failed">অবস্থান পাওয়া যায়নি — নিজে শহর বাছুন</string>
+    <string name="location_empty_search">মিলে যাওয়া কোনো শহর নেই</string>
+    <string name="travel_mode">ট্রাভেল মোড</string>
+    <string name="travel_mode_summary">ভ্রমণে ডিভাইসের টাইমজোন অনুসরণ করুন; নামাজ ও সূর্যের সময় নতুন করে গণনা হবে</string>
+    <string name="travel_mode_recalc">ভ্রমণে টাইমজোন বদলেছে — সময় রিফ্রেশ হয়েছে</string>
+    <string name="location_timezone_label">টাইমজোন: %1$s</string>
+
+    <!-- Weather -->
+    <string name="weather_unavailable">আবহাওয়া অনুপলব্ধ</string>
+    <string name="weather_dash">—°</string>
+    <string name="weather_refresh">↻</string>
+    <string name="weather_title">আবহাওয়া</string>
+    <string name="weather_disabled">আবহাওয়া বন্ধ</string>
+    <string name="weather_no_location">আবহাওয়া দেখতে সেটিংসে অবস্থান দিন</string>
+    <string name="weather_cached">শেষ সংরক্ষিত পূর্বাভাস দেখানো হচ্ছে</string>
+    <string name="weather_updated">আপডেট %1$s</string>
+    <string name="weather_offline">অফলাইন — শেষ সংরক্ষিত পূর্বাভাস</string>
+    <string name="weather_failed">আবহাওয়া লোড করা যায়নি</string>
+    <string name="weather_feels_like">অনুভূত %1$s</string>
+    <string name="weather_humidity">আর্দ্রতা %1$d%%</string>
+    <string name="weather_wind">বাতাস %1$s</string>
+    <string name="weather_visibility">দৃশ্যমানতা %1$s</string>
+    <string name="weather_uv">UV %1$s</string>
+    <string name="weather_rain_chance">বৃষ্টি %1$d%%</string>
+    <string name="weather_max_min">%1$s / %2$s</string>
+
+    <!-- Tasks -->
+    <string name="task_mark_done">সম্পন্ন করুন</string>
+    <string name="task_overdue">সময় পেরিয়েছে</string>
+    <string name="tasks_title">কাজসমূহ</string>
+    <string name="tasks_empty">এখনো কোনো কাজ নেই। যোগ করতে + চাপুন।</string>
+    <string name="task_new">নতুন কাজ</string>
+    <string name="task_open">খোলা</string>
+    <string name="task_done">সম্পন্ন</string>
+    <string name="task_due">শেষ সময়</string>
+    <string name="task_priority">প্রাধিকার</string>
+    <string name="task_convert">ইভেন্টে রূপান্তর</string>
+    <string name="task_converted">কাজ ইভেন্টে রূপান্তরিত</string>
+    <string name="task_deleted">কাজ মুছে ফেলা হয়েছে</string>
+
+    <!-- Notes -->
+    <string name="notes_title">নোট</string>
+    <string name="notes_empty">এখনো কোনো নোট নেই। লিখতে + চাপুন।</string>
+    <string name="note_new">নতুন নোট</string>
+    <string name="note_title">নোট</string>
+    <string name="note_untitled">শিরোনামহীন</string>
+    <string name="note_pin">📌</string>
+    <string name="note_edit">নোট সম্পাদনা</string>
+    <string name="note_save">সংরক্ষণ</string>
+    <string name="note_delete">মুছুন</string>
+    <string name="note_empty">এখনো কোনো নোট নেই। লিখতে + চাপুন।</string>
+    <string name="notes_search_hint">নোট খুঁজুন…</string>
+    <string name="note_title_hint">শিরোনাম</string>
+    <string name="note_body_hint">আপনার নোট লিখুন…</string>
+    <string name="note_tags_hint">ট্যাগ, কমা দিয়ে আলাদা</string>
+    <string name="note_linked_date">সংযুক্ত তারিখ</string>
+    <string name="note_tags">ট্যাগ</string>
+    <string name="note_deleted">নোট মুছে ফেলা হয়েছে</string>
+
+    <!-- Search -->
+    <string name="search_title">খুঁজুন</string>
+    <string name="search_hint">ইভেন্ট, কাজ, নোট, তারিখ খুঁজুন</string>
+    <string name="search_empty">কোনো মিল নেই</string>
+    <string name="search_kind_event">ইভেন্ট</string>
+    <string name="search_kind_task">কাজ</string>
+    <string name="search_kind_note">নোট</string>
+    <string name="search_kind_date">তারিখ</string>
+    <string name="search_kind_holiday">ছুটি</string>
+    <string name="search_kind_dua">দুআ</string>
+
+    <!-- Import / Export -->
+    <string name="io_title">ইমপোর্ট ও এক্সপোর্ট</string>
+    <string name="io_export_ics">সব .ics হিসেবে এক্সপোর্ট</string>
+    <string name="io_import_ics">.ics ইমপোর্ট</string>
+    <string name="io_export_csv">ইভেন্ট .csv হিসেবে এক্সপোর্ট</string>
+    <string name="io_import_csv">ইভেন্ট .csv ইমপোর্ট</string>
+    <string name="io_export_backup">JSON ব্যাকআপ</string>
+    <string name="io_import_backup">JSON থেকে পুনরুদ্ধার</string>
+    <string name="io_done">সম্পন্ন</string>
+    <string name="io_failed">ব্যর্থ: %1$s</string>
+    <string name="io_conflicts">%1$dটি সময়-দ্বন্দ্ব</string>
+    <string name="io_no_conflicts">দ্বন্দ্ব নেই</string>
+
+    <!-- CalDAV -->
+    <string name="caldav_accounts_title">সিঙ্ক অ্যাকাউন্ট</string>
+    <string name="caldav_accounts_add">অ্যাকাউন্ট যোগ</string>
+    <string name="caldav_accounts_empty">এখনো কোনো সিঙ্ক অ্যাকাউন্ট নেই।\n\nCalDAV সার্ভারের সাথে মেলাতে একটি যোগ করুন। যোগ না করা পর্যন্ত সবকিছু এই ডিভাইসেই থাকে।</string>
+    <string name="caldav_sync_now">এখনই সিঙ্ক</string>
+    <string name="caldav_never_synced">এখনো সিঙ্ক হয়নি</string>
+    <string name="caldav_last_synced">শেষ সিঙ্ক %1$s</string>
+    <string name="caldav_sync_error">সিঙ্ক ব্যর্থ: %1$s</string>
+    <string name="caldav_disabled">বন্ধ</string>
+    <string name="caldav_sync_running">সিঙ্ক হচ্ছে…</string>
+    <string name="caldav_sync_done">সিঙ্ক হয়েছে — %1$d পাঠানো, %2$d আনা</string>
+    <string name="caldav_partial">%1$dটি অ্যাকাউন্ট সিঙ্ক; %2$dটি ব্যর্থ</string>
+    <string name="caldav_offline">সার্ভারে পৌঁছানো যায়নি। সংযোগ দেখুন।</string>
+    <string name="caldav_add_title">CalDAV অ্যাকাউন্ট যোগ</string>
+    <string name="caldav_add_server">সার্ভার ঠিকানা</string>
+    <string name="caldav_add_server_hint">cloud.example.com</string>
+    <string name="caldav_add_username">ব্যবহারকারীর নাম</string>
+    <string name="caldav_add_password">পাসওয়ার্ড</string>
+    <string name="caldav_add_password_optional">পাসওয়ার্ড (সার্ভারে লাগলে লিখুন)</string>
+    <string name="caldav_add_label">ক্যালেন্ডারের নাম</string>
+    <string name="caldav_add_label_hint">খালি রাখলে সার্ভারের নাম ব্যবহৃত হবে</string>
+    <string name="caldav_add_discover">ক্যালেন্ডার খুঁজুন</string>
+    <string name="caldav_add_discovering">ক্যালেন্ডার খোঁজা হচ্ছে…</string>
+    <string name="caldav_add_save">অ্যাকাউন্ট সংরক্ষণ</string>
+    <string name="caldav_add_saved">অ্যাকাউন্ট যোগ হয়েছে</string>
+    <string name="caldav_add_no_calendars">সার্ভারে সাবস্ক্রাইবযোগ্য কোনো ক্যালেন্ডার নেই।</string>
+    <string name="caldav_add_pick_calendar">ক্যালেন্ডার বাছুন</string>
+    <string name="caldav_add_offline_hint">ক্যালেন্ডার খুঁজতে সংযোগ লাগে। ডিভাইসে থাকা সবকিছু সংযোগ ছাড়াও কাজ করে।</string>
+    <string name="caldav_problem_empty_server">সার্ভার ঠিকানা দিন</string>
+    <string name="caldav_problem_malformed">এটি সার্ভার ঠিকানার মতো দেখাচ্ছে না</string>
+    <string name="caldav_problem_empty_username">ব্যবহারকারীর নাম দিন</string>
+    <string name="caldav_problem_no_calendar">আগে ক্যালেন্ডার খুঁজে বাছুন</string>
+    <string name="settings_sync_section">সিঙ্ক</string>
+    <string name="settings_sync_summary">CalDAV অ্যাকাউন্ট ও ম্যানুয়াল সিঙ্ক</string>
+    <string name="settings_manage">ব্যবস্থাপনা</string>
+
+    <!-- Widgets -->
+    <string name="widget_generic_desc">SHS ক্যালেন্ডার হোম-স্ক্রিন উইজেট</string>
+
+    <!-- Appearance -->
     <string name="settings_appearance_section">চেহারা</string>
     <string name="settings_theme">থিম</string>
-    <string name="settings_theme_system">সিস্টেম অনুসরণ করুন</string>
-    <string name="settings_theme_dark">অন্ধকার</string>
-    <string name="settings_theme_amoled">AMOLED (খাঁটি কালো)</string>
-    <string name="settings_theme_light">উজ্জ্বল</string>
+    <string name="settings_theme_system">সিস্টেম অনুসরণ</string>
+    <string name="settings_theme_dark">ডার্ক</string>
+    <string name="settings_theme_amoled">AMOLED (সম্পূর্ণ কালো)</string>
+    <string name="settings_theme_light">লাইট</string>
     <string name="settings_accent">অ্যাকসেন্ট রং</string>
-    <string name="settings_accent_summary">বোতাম, হাইলাইট এবং ক্যালেন্ডার নির্বাচনে প্রয়োগ হয়</string>
+    <string name="settings_accent_summary">বোতাম, হাইলাইট ও ক্যালেন্ডার নির্বাচনে প্রযোজ্য</string>
     <string name="settings_font_scale">লেখার আকার</string>
-    <string name="settings_font_scale_system">সিস্টেমের লেখার আকার অনুসরণ করুন</string>
+    <string name="settings_font_scale_system">সিস্টেমের লেখার আকার অনুসরণ</string>
     <string name="settings_font_scale_small">ছোট</string>
     <string name="settings_font_scale_normal">স্বাভাবিক</string>
     <string name="settings_font_scale_large">বড়</string>
-    <string name="settings_font_scale_xl">অতিরিক্ত বড়</string>
+    <string name="settings_font_scale_xl">খুব বড়</string>
     <string name="settings_language">ভাষা</string>
-    <string name="settings_language_system">সিস্টেমের ভাষা অনুসরণ করুন</string>
+    <string name="settings_language_system">সিস্টেমের ভাষা অনুসরণ</string>
     <string name="settings_language_en">English</string>
     <string name="settings_language_bn">বাংলা</string>
     <string name="settings_language_ar">العربية</string>
     <string name="settings_a11y_section">অ্যাক্সেসিবিলিটি</string>
-    <string name="settings_contrast_summary">সব লেখার জোড়া WCAG AA (4.5:1) পূরণ করে</string>
+    <string name="settings_contrast_summary">সব লেখার জোড়া WCAG AA (৪.৫:১) মানে</string>
     <string name="settings_accent_cyan">সায়ান</string>
     <string name="settings_accent_teal">টিল</string>
-    <string name="settings_accent_indigo">নীল</string>
-    <string name="settings_accent_purple">বেগুনি</string>
+    <string name="settings_accent_indigo">ইন্ডিগো</string>
+    <string name="settings_accent_purple">পার্পল</string>
     <string name="settings_accent_magenta">ম্যাজেন্টা</string>
     <string name="settings_accent_amber">অ্যাম্বার</string>
+
+    <string-array name="tasbih_presets">
+        <item>সুবহানাল্লাহ</item>
+        <item>আলহামদুলিল্লাহ</item>
+        <item>আল্লাহু আকবার</item>
+        <item>আস্তাগফিরুল্লাহ</item>
+        <item>লা ইলাহা ইল্লাল্লাহ</item>
+    </string-array>
+
+    <string-array name="prayer_methods">
+        <item>মুসলিম ওয়ার্ল্ড লিগ</item>
+        <item>ISNA (উত্তর আমেরিকা)</item>
+        <item>মিসরীয় সাধারণ কর্তৃপক্ষ</item>
+        <item>উম্মুল কুরা, মক্কা</item>
+        <item>ইসলামী বিজ্ঞান বিশ্ববিদ্যালয়, করাচি</item>
+        <item>দুবাই</item>
+        <item>কুয়েত</item>
+        <item>কাতার</item>
+        <item>মজলিস উগামা ইসলাম, সিঙ্গাপুর</item>
+        <item>দিয়ানেত, তুরস্ক</item>
+    </string-array>
+
+    <string-array name="prayer_madhabs">
+        <item>স্ট্যান্ডার্ড (শাফে&#8217;ই, মালিকি, হাম্বলি)</item>
+        <item>হানাফি</item>
+    </string-array>
+
+    <string-array name="prayer_high_lat_rules">
+        <item>নেই</item>
+        <item>কোণ-ভিত্তিক</item>
+        <item>রাতের এক-সপ্তমাংশ</item>
+        <item>মধ্যরাত্রির সূর্য</item>
+    </string-array>
+
+    <string-array name="calendar_systems">
+        <item>গ্রেগরিয়ান</item>
+        <item>বাংলা</item>
+        <item>হিজরি</item>
+    </string-array>
+
+    <string-array name="inspiration_quotes">
+        <item>হাজার দিনের অধ্যবসায়ী চেষ্টার চেয়ে একজন শ্রেষ্ঠ শিক্ষকের সাথে একদিন শ্রেয়।</item>
+        <item>ভবিষ্যৎ অনুমানের সেরা উপায় হলো তা নিজে তৈরি করা।</item>
+        <item>সময়ই মানুষের সবচেয়ে মূল্যবান সম্পদ।</item>
+        <item>পরিকল্পনাহীন লক্ষ্য শুধুই একটা আকাঙ্ক্ষা।</item>
+        <item>প্রতিটি মুহূর্ত একটি নতুন সূচনা।</item>
+    </string-array>
+    <string-array name="inspiration_authors">
+        <item>জাপানি প্রবাদ</item>
+        <item>পিটার ড্রাকার</item>
+        <item>থিওফ্রাস্টাস</item>
+        <item>অঁতোয়ান দ্য সেন্ত-এগজুপেরি</item>
+        <item>টি. এস. এলিয়ট</item>
+    </string-array>
 </resources>

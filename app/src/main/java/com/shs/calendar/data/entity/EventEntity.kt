@@ -1,6 +1,7 @@
 package com.shs.calendar.data.entity
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 /**
@@ -15,7 +16,12 @@ import androidx.room.PrimaryKey
  *                       (null = single occurrence)
  * @param privacy        RFC 5545 PARTSTAT-style flag: PUBLIC | PRIVATE | CONFIDENTIAL
  */
-@Entity(tableName = "events")
+@Entity(
+    tableName = "events",
+    // M11: agenda/range queries filter and sort on startUtcMillis; without the
+    // index Room degrades to a full table scan as the event count grows.
+    indices = [Index(value = ["startUtcMillis"])]
+)
 data class EventEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val title: String,

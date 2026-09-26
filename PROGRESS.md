@@ -1,6 +1,6 @@
 # SHS Calendar — Progress
 
-STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHASES_2_5_TASK.md.
+STATUS: ALL-PHASES-DONE — Phases 2-5 complete (M1-M12). v2.0.0 shipped.
 
 ## Phase 1 (historical)
 - COMPLETE: scaffold, engines (Bengali/Hijri/Gregorian + NOAA astronomy), Room + RRULE,

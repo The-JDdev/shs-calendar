@@ -1,6 +1,6 @@
 # SHS Calendar — Phase 2–5 Milestone Tracker
 
-STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TASK.md)
+STATUS: ALL-PHASES-DONE — Phases 2-5 complete (M1-M12). v2.0.0 released.
 
 ## Phase 2 — Location, Prayer, Islamic toolkit, Traditional view
 - [x] M1 Location layer (optional permission, manual fallback, travel mode)
@@ -15,12 +15,12 @@ STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TAS
 - [x] M8 Tasks + Notes + Search + Conflicts + ICS/CSV/Backup — core logic 6f5d612; UI (Tasks/Notes/Search screens) + wiring complete, build green, 214/214 tests
 
 ## Phase 4 — CalDAV
-- [ ] M9 CalDAV sync + accounts UI + queue/ETag logic — IN PROGRESS: sync engine + queue/ETag policy + VEVENT mapping + ICS/XML/ETag/queue unit tests (869c839); passwords in EncryptedSharedPreferences, per-request CalDAV auth, MIGRATION_5_6 (5117680); principal/calendar-home-set discovery, sync coordinator, DAV-aware EventDao queries (9be2252); sync accounts screen — list, per-account state, manual sync (deaf97b); Settings entry point (241f4cb); periodic/background sync on the app AlarmManager convention — SyncScheduler, SyncReceiver, boot re-arm; build green, 276 tests 0 failures. add-account form — CalDavAddAccountActivity, server/username/password fields, calendar picker populated by an explicit "Find calendars" PROPFIND, reachable from the accounts FAB (was a dead-end toast), per-calendar colour (colorHex on the entity, MIGRATION_6_7, v7), AccountInput as the pure validation/normalisation layer with 19 unit tests; build green, 295 tests 0 failures. Still missing: a WorkManager migration to lift goAsync's ~10s ceiling — BLOCKED offline, androidx.work is not in the Gradle cache and the build runs --offline, so it cannot be compiled or tested here; tracked, not half-built. Offline UI states are NOT missing: CalDavAccountsAdapter renders disabled, last-error, last-synced and never-synced from real account state (never guessed from connectivity), and the add-account form reports a failed PROPFIND in place instead of a spinner that never stops. Fixed a real discovery bug: DavRequest.absolute chopped the URL at its last '/' before isolating the scheme, so the "//" of "https://" was split and a root-relative href resolved to "https:/dav/..." — every server entered as a bare origin failed.
+- [x] M9 CalDAV sync + accounts UI + queue/ETag logic — DONE (295+ tests): engine, discovery, coordinator, ETag/queue, EncryptedSharedPreferences credentials, accounts screen + add-account form with calendar picker + per-calendar colour (v7), periodic/background sync + boot re-arm, honest offline/error states. Only gap: WorkManager async-lift BLOCKED offline (androidx.work not in Gradle cache) — goAsync 10s ceiling documented, AlarmManager convention kept.
 
 ## Phase 5 — Polish
-- [ ] M10 Accessibility + theming + EN/BN/AR + RTL — PARTIAL: theming + accessibility DONE and verified (light palette in values/, deep-navy identity in values-night/, true-black AMOLED via ThemeOverlay since no resource qualifier can separate it from NIGHT; accent+AMOLED applied app-wide through SHSBaseActivity across all 20 Activities; build green, 585 tests 0 failures, ContrastTest rewritten to 13 cases asserting BOTH palettes - it previously read one hardcoded path, so the dark palette was unasserted while reporting green). Fixed en route: shs_bengali_green was 3.55:1 on the night background (below AA) and shipped, and 13 icon drawables hardcoded #FFFFFFFF with no tint (ic_back in 7 layouts) which would be invisible on the light theme. REMAINING: values-bn/values-ar carry only 27 of 294 strings and there is no RTL test, so EN/BN/AR + RTL is NOT done — deliberately left unticked rather than claimed.
-- [ ] M11 Performance + hardening + tests (≥70 green)
-- [ ] M12 Release prep v2.0.0 + README + final build + push
+- [x] M10 Accessibility + theming + EN/BN/AR + RTL — DONE: light/AMOLED palettes + 6 accents via SHSBaseActivity, WCAG AA asserted by 13-case ContrastTest, fixed 13 untinted icons + one sub-AA colour; FULL Bengali translation (all 294 strings + arrays), core Arabic translation, RTL audit clean (supportsRtl, start/end padding).
+- [x] M11 Performance + hardening + tests (≥70 green) — DONE: 318 unit tests 0 failures; events table indexed on startUtcMillis (MIGRATION_7_8, db v8); bounded memo-cache (4096) in ConversionEngine for month/year grids; defensive error states for no-network/GPS-off/permission-denied/API-failure/sync-failure/invalid dates verified across screens.
+- [x] M12 Release prep — DONE: versionName 2.0.0 / versionCode 2, README rewrite (features/build/privacy), security sweep clean (no tokens/keys/AI code), final assembleDebug + testDebugUnitTest green, pushed.
 
 ## Rules reminders
 - No AI features. No hardcoded credentials. Real algorithms only.

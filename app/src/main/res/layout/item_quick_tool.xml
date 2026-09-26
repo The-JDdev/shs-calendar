@@ -12,9 +12,9 @@
     android:gravity="center_horizontal"
     android:minWidth="@dimen/shs_min_touch_target"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/shs_space_md"
+    android:paddingStart="@dimen/shs_space_md"
     android:paddingTop="@dimen/shs_space_sm"
-    android:paddingRight="@dimen/shs_space_md"
+    android:paddingEnd="@dimen/shs_space_md"
     android:paddingBottom="@dimen/shs_space_sm">
 
     <TextView
