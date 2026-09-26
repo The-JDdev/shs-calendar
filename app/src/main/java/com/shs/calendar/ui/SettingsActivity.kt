@@ -249,9 +249,10 @@ class SettingsActivity : AppCompatActivity() {
         }
         languageSpinner.onItemSelectedListener = simpleSelection { pos ->
             if (updatingUi) return@simpleSelection
-            val tag = resources.getStringArray(R.array.appearance_languages)
-                .getOrNull(pos)
-                ?.let { resolveLanguageTag(it) }
+            // Indexed into languageOptions() rather than matched on the
+            // spinner label: a localised label could collide or change and
+            // silently mis-map to the wrong language.
+            val tag = languageOptions().getOrNull(pos)
                 ?: com.shs.calendar.ui.appearance.AppearanceOptions.TAG_SYSTEM
             appearanceStore.saveLocale(tag)
             // TAG_SYSTEM is our own marker, not a BCP-47 tag. Handing it to
@@ -311,18 +312,6 @@ class SettingsActivity : AppCompatActivity() {
         "bn",
         "ar"
     )
-
-    /**
-     * Maps a spinner label back to its language tag. Matching on the label
-     * keeps the array in strings.xml translatable while the tag stays a
-     * stable, non-localised identifier.
-     */
-    private fun resolveLanguageTag(label: String): String = when (label) {
-        getString(R.string.settings_language_en) -> "en"
-        getString(R.string.settings_language_bn) -> "bn"
-        getString(R.string.settings_language_ar) -> "ar"
-        else -> com.shs.calendar.ui.appearance.AppearanceOptions.TAG_SYSTEM
-    }
 
     /** Manual minute offsets per prayer, six signed fields in one dialog. */
     private fun showOffsetsDialog() {

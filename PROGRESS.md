@@ -361,10 +361,23 @@ M10 — appearance: theme, accent, text size, language.
     - The accent overlay is applied in SettingsActivity only. Every other
       Activity still renders the base cyan palette; the other four
       accents are therefore only visible on the settings screen.
-    - resolveLanguageTag maps a spinner label back to its language tag by
-      comparing localised text, so a colliding translation could
-      mis-map. Matching on tag order instead would be more robust and is
-      not done.
+
+  Language selection is by index into languageOptions(), not by matching
+  the spinner's label text. The original label round-trip could mis-map a
+  language if a translation collided or a label were reworded, so the tag
+  is now read positionally and the label never participates in the
+  decision. The labels are still strings.xml entries, so they remain
+  translated — only the mapping became non-localised.
+
+  The cost of that is a real, unguarded coupling: position N of
+  R.array.appearance_languages must be languageOptions()[N]. Verified by
+  hand (4 items, order system/en/bn/ar) but not by any test, because
+  languageOptions() is a private Activity method and this project has no
+  Robolectric. Reordering the array without reordering the list would make
+  every language silently select the wrong one. If that coupling matters,
+  the next step is to move the tag list into AppearanceOptions where a
+  plain JUnit test can assert it against strings.xml — the same treatment
+  Accent.hex already gets.
 
 Verified: detached gradlew assembleDebug + testDebugUnitTest; 314 tests,
 0 failures, 0 errors, read from fresh JUnit XML. ContrastTest is 9
