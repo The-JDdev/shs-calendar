@@ -76,3 +76,23 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   Known limitation: M6 is the data layer only. There is no holiday screen
   yet -- TraditionalCalendarActivity consumes a HolidayProvider but is not
   wired to HolidayDatabase; holiday UI arrives with M7 widgets / M8.
+
+- M8 UI complete: the Tasks/Notes/Search screens that were left as
+  uncommitted work-in-progress are now wired and verified. TasksActivity
+  (checklist with overdue marking, open/done filters, CSV export) and
+  NotesActivity (pinned notes, tags, linked-entry chips) sit on the
+  repositories committed in 6f5d612, with SearchActivity providing one
+  entry point across events, tasks, notes and holidays. All three are
+  registered in AndroidManifest and Tasks is reachable from the home
+  quick-tools row.
+  Verified, not assumed: pre-build static checks confirmed 3/3 referenced
+  strings, 6/6 @layout references and 30/30 R.id references resolve.
+  The build was then run detached with --rerun-tasks so nothing could be
+  served from cache: 44/44 tasks executed, BUILD SUCCESSFUL, and the
+  test task line was bare (no UP-TO-DATE / FROM-CACHE). Test counts were
+  read from the XML reports, not the console: 18 report files, 214 tests,
+  0 failures, 0 errors, 0 skipped.
+  Note the first build log examined was 18 minutes stale and showed
+  43 of 44 tasks UP-TO-DATE; it predated this work and was discarded
+  rather than quoted. An earlier "build still running" signal was a false
+  positive from pgrep matching the long-lived Gradle and Kotlin daemons.

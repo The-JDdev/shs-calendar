@@ -271,6 +271,65 @@
     <string name="weather_rain_chance">Rain %1$d%%</string>
     <string name="weather_max_min">%1$s / %2$s</string>
 
+    <!-- ============ TASKS (M8) ============ -->
+    <string name="task_mark_done">Mark done</string>
+    <string name="task_overdue">Overdue</string>
+    <string name="tasks_title">Tasks</string>
+    <string name="tasks_empty">No tasks yet. Tap + to add one.</string>
+    <string name="task_new">New task</string>
+    <string name="task_open">Open</string>
+    <string name="task_done">Done</string>
+    <string name="task_due">Due</string>
+    <string name="task_priority">Priority</string>
+    <string name="task_convert">Convert to event</string>
+    <string name="task_converted">Task converted to event</string>
+    <string name="task_deleted">Task deleted</string>
+
+    <!-- ============ NOTES (M8) ============ -->
+    <string name="notes_title">Notes</string>
+    <string name="notes_empty">No notes yet. Tap + to write one.</string>
+    <string name="note_new">New note</string>
+    <!-- Screen title, matching the <feature>__title convention used by tasks_title. -->
+    <string name="note_title">Notes</string>
+    <!-- ============ M8 ============ -->
+    <string name="note_untitled">Untitled</string>
+    <string name="note_pin">📌</string>
+    <string name="note_edit">Edit note</string>
+    <string name="note_save">Save</string>
+    <string name="note_delete">Delete</string>
+    <string name="note_empty">No notes yet. Tap + to write one.</string>
+    <string name="notes_search_hint">Search notes…</string>
+    <string name="note_title_hint">Title</string>
+    <string name="note_body_hint">Write your note…</string>
+    <string name="note_tags_hint">tags, comma separated</string>
+    <string name="note_linked_date">Linked date</string>
+    <string name="note_tags">Tags</string>
+    <string name="note_deleted">Note deleted</string>
+
+    <!-- ============ SEARCH (M8) ============ -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search events, tasks, notes, dates</string>
+    <string name="search_empty">No matches</string>
+    <string name="search_kind_event">Event</string>
+    <string name="search_kind_task">Task</string>
+    <string name="search_kind_note">Note</string>
+    <string name="search_kind_date">Date</string>
+    <string name="search_kind_holiday">Holiday</string>
+    <string name="search_kind_dua">Dua</string>
+
+    <!-- ============ IMPORT / EXPORT (M8) ============ -->
+    <string name="io_title">Import &amp; export</string>
+    <string name="io_export_ics">Export all as .ics</string>
+    <string name="io_import_ics">Import .ics</string>
+    <string name="io_export_csv">Export events as .csv</string>
+    <string name="io_import_csv">Import events .csv</string>
+    <string name="io_export_backup">Back up to JSON</string>
+    <string name="io_import_backup">Restore from JSON</string>
+    <string name="io_done">Done</string>
+    <string name="io_failed">Failed: %1$s</string>
+    <string name="io_conflicts">%1$d scheduling conflict(s)</string>
+    <string name="io_no_conflicts">No conflicts</string>
+
     <!-- ============ WIDGETS (M7) ============ -->
     <string name="widget_generic_desc">SHS Calendar home-screen widget</string>
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tasks screen (VTODO): filter chips + list + FAB, same shell as the agenda. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tasks_toolbar"
+        style="@style/SHS.TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/tasks_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/shs_screen_padding"
+        android:paddingEnd="@dimen/shs_screen_padding">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tasks_filter_open"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_open" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tasks_filter_done"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_done" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tasks_convert"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_convert" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tasks_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/shs_screen_padding"
+            android:paddingBottom="@dimen/shs_bottom_nav_height"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/tasks_empty"
+            style="@style/SHS.Text.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/tasks_empty"
+            android:textColor="@color/shs_text_muted"
+            android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/tasks_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/shs_space_lg"
+            android:layout_marginBottom="@dimen/shs_bottom_nav_height"
+            android:contentDescription="@string/task_new"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/shs_cyan"
+            app:tint="@color/shs_night" />
+    </FrameLayout>
+</LinearLayout>

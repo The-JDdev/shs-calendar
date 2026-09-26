@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One task row: title, due/priority line, checklist progress, overdue styling. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/task_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_compact"
+    android:layout_marginBottom="@dimen/shs_space_sm"
+    android:orientation="vertical"
+    android:padding="@dimen/shs_space_md">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/task_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/task_mark_done" />
+
+        <TextView
+            android:id="@+id/task_title"
+            style="@style/SHS.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/shs_space_sm"
+            android:layout_weight="1"
+            android:textColor="@color/shs_text_primary" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/task_meta"
+        style="@style/SHS.Text.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shs_space_lg"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:textColor="@color/shs_text_muted" />
+
+    <TextView
+        android:id="@+id/task_checklist"
+        style="@style/SHS.Text.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shs_space_lg"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:textColor="@color/shs_cyan"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/task_overdue"
+        style="@style/SHS.Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shs_space_lg"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:text="@string/task_overdue"
+        android:textColor="@color/shs_danger"
+        android:visibility="gone" />
+</LinearLayout>

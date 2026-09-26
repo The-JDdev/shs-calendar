@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One note row: pinned marker, title, body preview, tag chips, linked date. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/note_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_compact"
+    android:layout_marginBottom="@dimen/shs_space_sm"
+    android:orientation="vertical"
+    android:padding="@dimen/shs_space_md">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/note_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/shs_space_sm"
+            android:text="@string/note_pin"
+            android:textColor="@color/shs_amber"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/note_title"
+            style="@style/SHS.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/shs_text_primary" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/note_body"
+        style="@style/SHS.Text.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@color/shs_text_secondary"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/note_tags"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/shs_cyan"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/note_linked"
+            style="@style/SHS.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/shs_space_sm"
+            android:textColor="@color/shs_text_muted"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

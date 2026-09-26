@@ -44,6 +44,15 @@
         <activity android:name=".ui.qibla.QiblaActivity" android:exported="false" />
         <activity android:name=".ui.tasbih.TasbihActivity" android:exported="false" />
         <activity android:name=".ui.dua.DuaActivity" android:exported="false" />
+        <!-- ============ M8 TASKS ============ -->
+        <activity android:name=".ui.task.TasksActivity" android:exported="false"
+            android:label="@string/tasks_title" />
+        <!-- ============ M8 NOTES ============ -->
+        <activity android:name=".ui.note.NotesActivity" android:exported="false"
+            android:label="@string/note_title" />
+        <!-- ============ M8 SEARCH ============ -->
+        <activity android:name=".ui.search.SearchActivity" android:exported="false"
+            android:label="@string/search_title" />
         <activity android:name=".ui.traditional.TraditionalCalendarActivity" android:exported="false" />
         <activity android:name=".ui.clock.WorldClockActivity" android:exported="false" />
         <activity android:name=".location.LocationPickerActivity" android:exported="false"
