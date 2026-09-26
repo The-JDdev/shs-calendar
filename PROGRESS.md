@@ -170,3 +170,38 @@ test.
 STILL MISSING for M9: accounts UI, calendar list, manual + periodic sync
 wiring, per-calendar color, offline UI states. Sync is not reachable from the
 UI yet — SyncCoordinator has no caller.
+
+## Next
+(M9 — accounts screen committed deaf97b, build green, 276 tests)
+
+Landed this round:
+  - ui/caldav/CalDavAccountsActivity.kt + CalDavAccountsAdapter.kt
+  - layout/activity_caldav_accounts.xml, layout/item_caldav_account.xml
+  - 12 new strings (M9 block), manifest entry.
+  SyncCoordinator now has its first caller, so a pass can actually be
+  started from the app for the first time. The coordinator writes
+  lastSyncMillis / lastErrorMessage back to the account rows and the screen
+  re-renders from observeAll(), so the result outlives the process.
+
+GAPS TO CLOSE, in order:
+  1. NO ENTRY POINT. CalDavAccountsActivity is registered and working but
+     nothing navigates to it; SettingsActivity has no row for it. It is
+     currently reachable only by adb. This is the next task.
+  2. Add-account form — needs a live PROPFIND to list calendars, so it
+     cannot be validated in the sandbox. The FAB toasts that it is
+     unavailable rather than opening a screen that cannot finish.
+  3. Periodic/background sync (WorkManager), per-calendar colour, offline
+     states.
+  Note: 3 of the 4 remaining items are the "manual + periodic sync wiring"
+  from the M9 line — manual sync IS done (deaf97b), periodic is not.
+
+Three self-review catches, all found before compiling:
+  1. R.color.shs_red does not exist in this app; the error colour is
+     shs_danger. Found by grepping colors.xml, not assumed.
+  2. The add-account FAB handler set syncNow.text, relabelling the Sync
+     button to explain the FAB's absence — hiding a control that works to
+     explain one that doesn't. Now Toast.
+  3. Toast was used without its import; caught by scanning used-but-not-
+     imported symbols.
+  Build then compiled all six files (18 tasks executed, not UP-TO-DATE) with
+  no new warnings. All four warnings are pre-existing files.
