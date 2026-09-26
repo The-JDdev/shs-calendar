@@ -22,8 +22,16 @@ import androidx.core.content.edit
  */
 class AppearanceStore(context: Context) {
 
+    // Fall back to [context] itself: when AppearanceStore is built from
+    // Application.attachBaseContext (the pre-inflation locale/font-scale
+    // read), the application context is NOT yet attached and
+    // Context.getApplicationContext() returns null on a real device —
+    // dereferencing it there crashed the process before any Activity could
+    // exist (the "app installs but never opens" crash). The Application
+    // instance itself is already an app-scoped Context, so
+    // getSharedPreferences on it returns exactly the same file.
     private val prefs: SharedPreferences =
-        context.applicationContext.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+        (context.applicationContext ?: context).getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
     fun load(): AppearanceOptions = AppearanceOptions(
         theme = Theme.from(prefs.getString(KEY_THEME, null)),
@@ -60,5 +68,16 @@ class AppearanceStore(context: Context) {
             instance ?: synchronized(this) {
                 instance ?: AppearanceStore(context).also { instance = it }
             }
+
+        /**
+         * Test hook: forget the cached instance, exactly like
+         * [com.shs.calendar.data.CalendarDatabase.destroyInstance]. Robolectric
+         * builds a fresh Application per test, so a stale singleton would keep
+         * reading the previous test's preference file and silently ignore the
+         * appearance the test just saved.
+         */
+        fun resetForTest() {
+            synchronized(this) { instance = null }
+        }
     }
 }

@@ -196,10 +196,14 @@ class MainActivity : SHSBaseActivity() {
     // ---- interactions -------------------------------------------------------
 
     private fun bindCalendarControls() {
-        findViewById<ImageButton>(R.id.btn_prev_month).setOnClickListener {
+        // M10 made the month steppers styled text buttons (SHS.Button.Ghost),
+        // so they inflate as MaterialTextView — casting them to ImageButton
+        // here threw ClassCastException inside onCreate and crashed every
+        // launch. The ids are unchanged; only the view type is.
+        findViewById<TextView>(R.id.btn_prev_month).setOnClickListener {
             month = GregorianEngine.previousMonth(month); renderMonth()
         }
-        findViewById<ImageButton>(R.id.btn_next_month).setOnClickListener {
+        findViewById<TextView>(R.id.btn_next_month).setOnClickListener {
             month = GregorianEngine.nextMonth(month); renderMonth()
         }
         findViewById<TextView>(R.id.btn_today).setOnClickListener {
@@ -224,20 +228,31 @@ class MainActivity : SHSBaseActivity() {
             QuickToolsAdapter.Tool("prayer", "☾", R.string.nav_prayer, true),
             QuickToolsAdapter.Tool("notes", "✎", R.string.nav_accounts, true)
         )
-        val recycler = findViewById<RecyclerView>(R.id.quick_tools_row)
-        recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recycler.adapter = QuickToolsAdapter(tools) { tool ->
-            when (tool.id) {
-                "age" -> startActivity(Intent(this, AgeCalculatorActivity::class.java))
-                "convert" -> startActivity(Intent(this, DateConverterActivity::class.java))
-                "events" -> startActivity(Intent(this, EventsAgendaActivity::class.java))
-                "tasks" -> startActivity(Intent(this, TasksActivity::class.java))
-                "traditional" -> startActivity(Intent(this, com.shs.calendar.ui.traditional.TraditionalCalendarActivity::class.java))
-                "worldclock" -> startActivity(Intent(this, com.shs.calendar.ui.clock.WorldClockActivity::class.java))
-                "prayer" -> startActivity(Intent(this, com.shs.calendar.ui.prayer.PrayerActivity::class.java))
-                else -> openPlaceholder(tool.id)
+        // The dashboard layout puts the tools inside a HorizontalScrollView
+        // whose child is a plain LinearLayout meant to be filled by this
+        // method (the layout comment says so). MainActivity still treated it
+        // as a RecyclerView, which threw ClassCastException in onCreate and
+        // crashed every launch. Inflate the tiles directly instead.
+        val row = findViewById<LinearLayout>(R.id.quick_tools_row)
+        val inflater = android.view.LayoutInflater.from(this)
+        tools.forEach { tool ->
+            val item = inflater.inflate(R.layout.item_quick_tool, row, false)
+            item.findViewById<TextView>(R.id.quick_tool_glyph).text = tool.glyph
+            item.findViewById<TextView>(R.id.quick_tool_label).setText(tool.labelRes)
+            item.contentDescription = getString(tool.labelRes)
+            item.setOnClickListener {
+                when (tool.id) {
+                    "age" -> startActivity(Intent(this, AgeCalculatorActivity::class.java))
+                    "convert" -> startActivity(Intent(this, DateConverterActivity::class.java))
+                    "events" -> startActivity(Intent(this, EventsAgendaActivity::class.java))
+                    "tasks" -> startActivity(Intent(this, TasksActivity::class.java))
+                    "traditional" -> startActivity(Intent(this, com.shs.calendar.ui.traditional.TraditionalCalendarActivity::class.java))
+                    "worldclock" -> startActivity(Intent(this, com.shs.calendar.ui.clock.WorldClockActivity::class.java))
+                    "prayer" -> startActivity(Intent(this, com.shs.calendar.ui.prayer.PrayerActivity::class.java))
+                    else -> openPlaceholder(tool.id)
+                }
             }
+            row.addView(item)
         }
     }
 
@@ -253,10 +268,14 @@ class MainActivity : SHSBaseActivity() {
             author.text = authors.getOrElse(index) { "" }
         }
         render()
-        findViewById<TextView>(R.id.inspiration_refresh).setOnClickListener {
+        // M10 layout: refresh/share are icon ImageButtons, and the language
+        // "chips" are styled TextViews — the old TextView/Chip casts here
+        // threw ClassCastException in onCreate and crashed every launch.
+        // View is used for the buttons; the chips only need setOnClickListener.
+        findViewById<android.view.View>(R.id.inspiration_refresh).setOnClickListener {
             index = (index + 1) % quotes.size; render()
         }
-        findViewById<TextView>(R.id.inspiration_share).setOnClickListener {
+        findViewById<android.view.View>(R.id.inspiration_share).setOnClickListener {
             startActivity(
                 Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
@@ -264,10 +283,12 @@ class MainActivity : SHSBaseActivity() {
                 }
             )
         }
-        listOf<Chip>(findViewById(R.id.chip_lang_en), findViewById(R.id.chip_lang_bn), findViewById(R.id.chip_lang_ar))
-            .forEach { chip ->
-                chip.setOnClickListener { render() }
-            }
+        val langChips: List<android.view.View> = listOf(
+            findViewById(R.id.chip_lang_en),
+            findViewById(R.id.chip_lang_bn),
+            findViewById(R.id.chip_lang_ar)
+        )
+        langChips.forEach { it.setOnClickListener { render() } }
     }
 
     private fun bindLocationPill() {

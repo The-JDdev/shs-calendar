@@ -12,8 +12,8 @@ android {
         applicationId = "com.shs.calendar"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "2.0.0"
+        versionCode = 3
+        versionName = "2.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -36,6 +36,8 @@ android {
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
+        // Robolectric needs the merged resources/manifest to launch real Activities.
+        unitTests.isIncludeAndroidResources = true
     }
     packaging {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -66,6 +68,10 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    // Launch smoke test: boots ShsCalendarApp + MainActivity on a JVM Android
+    // framework so a startup crash is reproduced with its real stack trace
+    // before the APK ships, not on the user's device afterwards.
+    testImplementation("org.robolectric:robolectric:4.13")
     // Test-only: org.json ships inside the Android platform, so JVM unit tests
     // need a real implementation to exercise the Open-Meteo parser. The app
     // itself gains no new dependency.

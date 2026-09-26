@@ -70,7 +70,10 @@ class DateConverterActivity : SHSBaseActivity() {
             Toast.makeText(this, R.string.converter_copied, Toast.LENGTH_SHORT).show()
         }
 
-        findViewById<MaterialButton>(R.id.conv_picked_date).setOnClickListener {
+        // The M10 layout renders conv_picked_date as a styled TextView, not a
+        // MaterialButton — the old cast threw ClassCastException when this
+        // screen opened. pickedDate above is already the same view.
+        pickedDate.setOnClickListener {
             val picker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText(R.string.converter_title)
                 .setSelection(picked.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli())

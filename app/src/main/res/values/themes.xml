@@ -69,7 +69,7 @@
       Text colours are deliberately NOT touched: they already clear AA on the
       near-black surfaces below, so re-tinting them would only risk breaking it.
     -->
-    <style name="ThemeOverlay.SHSCalendar.Amoled" parent="">
+    <style name="ThemeOverlay.SHSCalendar.Amoled" parent="Theme.SHSCalendar">
         <item name="android:colorBackground">@color/shs_night_amoled</item>
         <item name="android:windowBackground">@color/shs_night_amoled</item>
         <item name="android:statusBarColor">@color/shs_night_amoled</item>
@@ -89,14 +89,14 @@
       These are shared by the light and dark themes: they reference only
       @color/... names, so the same overlay resolves correctly in either.
     -->
-    <style name="ThemeOverlay.SHSCalendar.Accent.Teal" parent="">
+    <style name="ThemeOverlay.SHSCalendar.Accent.Teal" parent="Theme.SHSCalendar">
         <item name="colorPrimary">@color/shs_teal</item>
         <item name="colorPrimaryContainer">@color/shs_teal_deep</item>
         <item name="colorSecondary">@color/shs_teal</item>
         <item name="colorSecondaryContainer">@color/shs_teal_deep</item>
     </style>
 
-    <style name="ThemeOverlay.SHSCalendar.Accent.Indigo" parent="">
+    <style name="ThemeOverlay.SHSCalendar.Accent.Indigo" parent="Theme.SHSCalendar">
         <item name="colorPrimary">@color/shs_indigo</item>
         <item name="colorPrimaryContainer">@color/shs_indigo_deep</item>
         <item name="colorSecondary">@color/shs_indigo</item>
@@ -104,7 +104,7 @@
         <item name="colorTertiary">@color/shs_indigo</item>
     </style>
 
-    <style name="ThemeOverlay.SHSCalendar.Accent.Purple" parent="">
+    <style name="ThemeOverlay.SHSCalendar.Accent.Purple" parent="Theme.SHSCalendar">
         <item name="colorPrimary">@color/shs_purple</item>
         <item name="colorPrimaryContainer">@color/shs_purple_deep</item>
         <item name="colorSecondary">@color/shs_purple</item>
@@ -112,7 +112,7 @@
         <item name="colorTertiary">@color/shs_purple</item>
     </style>
 
-    <style name="ThemeOverlay.SHSCalendar.Accent.Magenta" parent="">
+    <style name="ThemeOverlay.SHSCalendar.Accent.Magenta" parent="Theme.SHSCalendar">
         <item name="colorPrimary">@color/shs_magenta</item>
         <item name="colorPrimaryContainer">@color/shs_magenta_deep</item>
         <item name="colorSecondary">@color/shs_magenta</item>
@@ -120,7 +120,7 @@
         <item name="colorTertiary">@color/shs_magenta</item>
     </style>
 
-    <style name="ThemeOverlay.SHSCalendar.Accent.Amber" parent="">
+    <style name="ThemeOverlay.SHSCalendar.Accent.Amber" parent="Theme.SHSCalendar">
         <item name="colorPrimary">@color/shs_amber</item>
         <item name="colorPrimaryContainer">@color/shs_amber_deep</item>
         <item name="colorSecondary">@color/shs_amber</item>
