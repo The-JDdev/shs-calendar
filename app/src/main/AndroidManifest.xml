@@ -44,6 +44,8 @@
         <activity android:name=".ui.qibla.QiblaActivity" android:exported="false" />
         <activity android:name=".ui.tasbih.TasbihActivity" android:exported="false" />
         <activity android:name=".ui.dua.DuaActivity" android:exported="false" />
+        <activity android:name=".ui.traditional.TraditionalCalendarActivity" android:exported="false" />
+        <activity android:name=".ui.clock.WorldClockActivity" android:exported="false" />
         <activity android:name=".location.LocationPickerActivity" android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

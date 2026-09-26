@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M4: Traditional Bangla printed-calendar screen.
+     Deep-green frame, 5-line live header, Bengali weekday strip, 7x6 grid. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/trad_toolbar"
+        style="@style/SHS.TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Printed frame: thick green border, deep-green field. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/shs_space_sm"
+        android:background="@drawable/bg_traditional_frame"
+        android:orientation="vertical"
+        android:padding="@dimen/shs_space_xs">
+
+        <!-- Header: 5 lines, computed live by TraditionalHeader. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/shs_surface"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/shs_space_sm"
+            android:paddingEnd="@dimen/shs_space_sm"
+            android:paddingTop="@dimen/shs_space_xs"
+            android:paddingBottom="@dimen/shs_space_xs">
+
+            <TextView
+                android:id="@+id/trad_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:textColor="@color/shs_bengali_green"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="আজ ২৫ সেপ্টেম্বর ২০২৬ ইংরেজি" />
+
+            <TextView
+                android:id="@+id/trad_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/shs_hijri_blue"
+                android:textSize="9sp"
+                tools:text="শ্রাবণ ১৪৩৩ বাংলা" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/shs_divider_height"
+            android:background="@color/shs_bengali_green" />
+
+        <!-- Bengali weekday strip: Sunday-first, exactly as the brief specifies. -->
+        <LinearLayout
+            android:id="@+id/trad_weekday_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <!-- 7 x 6 grid of printed cells. -->
+        <LinearLayout
+            android:id="@+id/trad_grid"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M4: one row of the world clock list - city name, local time, date, offset. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/shs_surface"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/shs_min_touch_target"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/shs_space_sm"
+    android:paddingEnd="@dimen/shs_space_sm"
+    android:paddingTop="@dimen/shs_space_sm"
+    android:paddingBottom="@dimen/shs_space_sm">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/clock_row_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SHS.Text.Body"
+            tools:text="Dhaka" />
+
+        <TextView
+            android:id="@+id/clock_row_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/shs_text_secondary"
+            android:textSize="@dimen/shs_text_micro"
+            tools:text="Sat, 26 Sep 2026" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/clock_row_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/shs_cyan"
+            android:textSize="@dimen/shs_text_title"
+            android:textStyle="bold"
+            tools:text="00:30" />
+
+        <TextView
+            android:id="@+id/clock_row_offset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/shs_text_muted"
+            android:textSize="@dimen/shs_text_micro"
+            tools:text="UTC+06:00" />
+    </LinearLayout>
+</LinearLayout>

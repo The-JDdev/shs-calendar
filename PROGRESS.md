@@ -26,6 +26,21 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   nav + quick-tools routing. Dhaka fajr window validated against an
   independent NOAA derivation (04:41 vs engine 04:41:34).
 
+- M4 complete: assembleDebug + testDebugUnitTest green (74/74 tests).
+  TraditionalHeader renders the spec's five-line Bangla header from the live
+  Bengali/Hijri engines ("আজ ২৫ সেপ্টেম্বর ২০২৬ ইংরেজি / রোজ - শুক্রবার /
+  আগস্ট ২০২৬ / শ্রাবণ — ভাদ্র ১৪৩৩ বাংলা / সফর — রবিউল আউয়াল ১৪৪৮ হিজরি")
+  plus a TraditionalCalendarActivity (green frame, red holiday cells, yellow
+  + cyan Bengali/Hijri sub-strips, Bangla weekday headers) over a new
+  HolidayProvider. WorldClock (ZoneId entry, offset label, 12/24h + date
+  formatters) + WorldClockActivity: seeded with the device zone, add via a
+  zone-id dialog with invalid-zone toast, remove on row long-press, 60s
+  tick that rebinds without rebuilding the list, and the 12/24h preference
+  read from SettingsRepository.observe(). Both screens registered in
+  AndroidManifest and wired into the dashboard quick tools.
+  Known limitation: the Traditional header renders once and does not
+  refresh at midnight (the world clock does tick).
+
 - M3 complete: assembleDebug + testDebugUnitTest green (57/57 tests).
   QiblaEngine (great-circle bearing/distance to Kaaba 21.4225,39.8262, shortestDelta)
   + QiblaCompassView dial + QiblaActivity (magnetometer, calibration hint,

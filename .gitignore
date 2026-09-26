@@ -14,3 +14,7 @@ externalNativeBuild/
 secrets.properties
 workspace/
 logs/
+
+# build artifacts from local/CI builds
+build_output.log
+relaunching

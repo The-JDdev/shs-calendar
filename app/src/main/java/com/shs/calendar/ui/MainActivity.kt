@@ -204,6 +204,8 @@ class MainActivity : AppCompatActivity() {
             QuickToolsAdapter.Tool("age", "⧗", R.string.tool_age_calculator, false),
             QuickToolsAdapter.Tool("convert", "⇄", R.string.tool_date_converter, false),
             QuickToolsAdapter.Tool("events", "☰", R.string.event_agenda_title, false),
+            QuickToolsAdapter.Tool("traditional", "❁", R.string.tool_traditional_calendar, false),
+            QuickToolsAdapter.Tool("worldclock", "⌛", R.string.tool_world_clock, false),
             QuickToolsAdapter.Tool("prayer", "☾", R.string.nav_prayer, true),
             QuickToolsAdapter.Tool("notes", "✎", R.string.nav_accounts, true)
         )
@@ -215,6 +217,8 @@ class MainActivity : AppCompatActivity() {
                 "age" -> startActivity(Intent(this, AgeCalculatorActivity::class.java))
                 "convert" -> startActivity(Intent(this, DateConverterActivity::class.java))
                 "events" -> startActivity(Intent(this, EventsAgendaActivity::class.java))
+                "traditional" -> startActivity(Intent(this, com.shs.calendar.ui.traditional.TraditionalCalendarActivity::class.java))
+                "worldclock" -> startActivity(Intent(this, com.shs.calendar.ui.clock.WorldClockActivity::class.java))
                 "prayer" -> startActivity(Intent(this, com.shs.calendar.ui.prayer.PrayerActivity::class.java))
                 else -> openPlaceholder(tool.id)
             }

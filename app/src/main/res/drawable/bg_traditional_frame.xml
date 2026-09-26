@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M4: thick green printed-calendar frame for the Traditional Bangla view. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/shs_night_deep" />
+
+    <stroke
+        android:width="6dp"
+        android:color="@color/shs_bengali_green" />
+
+    <corners android:radius="@dimen/shs_radius_cell" />
+</shape>

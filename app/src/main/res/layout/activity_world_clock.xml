@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M4: world clock screen - list of watched cities with live local times. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shs_night"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/clock_toolbar"
+        style="@style/SHS.TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/shs_screen_padding"
+        android:paddingEnd="@dimen/shs_screen_padding"
+        android:paddingTop="@dimen/shs_space_xs"
+        android:paddingBottom="@dimen/shs_space_xs"
+        android:text="@string/tool_world_clock"
+        android:textAppearance="@style/SHS.Text.Subtitle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clock_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shs_screen_padding"
+        android:layout_marginTop="@dimen/shs_space_xs"
+        android:text="@string/clock_add_zone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shs_divider_height"
+        android:background="@color/shs_stroke" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/clock_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/shs_screen_padding"
+        android:paddingEnd="@dimen/shs_screen_padding"
+        android:paddingTop="@dimen/shs_space_xs"
+        android:paddingBottom="@dimen/shs_space_lg"
+        tools:listitem="@layout/item_world_clock" />
+</LinearLayout>

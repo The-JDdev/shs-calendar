@@ -26,6 +26,12 @@
     <string name="inspiration_share">Share</string>
     <string name="inspiration_refresh">Refresh</string>
     <string name="quick_tools">Quick tools</string>
+    <string name="tool_traditional_calendar">Traditional Calendar</string>
+    <string name="traditional_title">Traditional Bangla Calendar</string>
+    <string name="clock_add_zone">Add city</string>
+    <string name="clock_add_hint">Time zone id, e.g. Asia/Dhaka</string>
+    <string name="clock_zone_invalid">Unknown time zone</string>
+    <string name="clock_removed">Removed %1$s</string>
     <string name="tool_age_calculator">Age Calculator</string>
     <string name="tool_date_converter">Date Converter</string>
     <string name="tool_tasbih">Tasbih</string>
