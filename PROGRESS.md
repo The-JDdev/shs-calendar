@@ -134,3 +134,39 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   so all 39 new tests genuinely ran.
   Note: the two DavXml failures were pre-existing uncommitted WIP, not a
   regression from this milestone.
+
+## Next
+(M9 session — 276 tests green, committed 9be2252)
+
+Just landed, all compiling and unit-tested:
+  - sync/DavDiscovery.kt — principal -> calendar-home-set -> calendar-list
+    PROPFIND chain. Per-hop Depth 0/0/1: depth 1 on the server root would
+    enumerate every principal on the host. resourcetype is read as two
+    sibling elements, which is why it has no entry in DavXml's map.
+  - sync/SyncCoordinator.kt — runs a pass over enabled accounts. Push runs
+    before pull, because mergePulled refuses to overwrite a dirty row and so
+    the local edit survives to be pushed. mergePulled is pure and returns a
+    MergePlan; that is the half worth unit-testing, since insert-vs-update is
+    what silently loses user data when wrong.
+  - EventDao — dirtyForAccount / dirtyWithoutAccount / findByDavUid /
+    findAllByDavUid / findByCalendarHref / deleteAllForAccount. The five
+    dav* columns were written by the mapper and never read back until now.
+  - test/sync/DavDiscoveryTest.kt — 9 tests.
+
+Defect found and fixed this session:
+  DavRequest.absolute() resolved an origin by substringBeforeLast('/') twice.
+  For a bare-origin serverUrl like "https://dav.example.com/" the second cut
+  landed inside the scheme's "//", giving "https:/" — so a root-relative
+  href became "https:/dav/..." and the request went to a nonexistent host.
+  This broke discovery for every server entered as a bare origin, i.e. the
+  common case. Replaced with explicit origin()/base() helpers that skip past
+  the scheme before looking for a path separator.
+
+Lesson worth keeping: the failing test was written against the spec, not
+against the implementation, and the implementation was wrong. When a new
+test fails on fresh code, establish which side is wrong before "fixing" the
+test.
+
+STILL MISSING for M9: accounts UI, calendar list, manual + periodic sync
+wiring, per-calendar color, offline UI states. Sync is not reachable from the
+UI yet — SyncCoordinator has no caller.

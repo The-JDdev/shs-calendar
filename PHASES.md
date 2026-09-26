@@ -15,7 +15,7 @@ STATUS: IN-PROGRESS — Phase 2-5 continuous session running (see PHASES_2_5_TAS
 - [x] M8 Tasks + Notes + Search + Conflicts + ICS/CSV/Backup — core logic 6f5d612; UI (Tasks/Notes/Search screens) + wiring complete, build green, 214/214 tests
 
 ## Phase 4 — CalDAV
-- [ ] M9 CalDAV sync + accounts UI + queue/ETag logic — IN PROGRESS: sync engine + queue/ETag policy + VEVENT mapping + ICS/XML/ETag/queue unit tests (869c839); passwords in EncryptedSharedPreferences, per-request CalDAV auth, MIGRATION_5_6 (5117680); build green, 24 test classes 0 failures. STILL MISSING: accounts UI, principal/calendar-home-set discovery, calendar list, manual + periodic sync wiring, per-calendar color, offline UI states.
+- [ ] M9 CalDAV sync + accounts UI + queue/ETag logic — IN PROGRESS: sync engine + queue/ETag policy + VEVENT mapping + ICS/XML/ETag/queue unit tests (869c839); passwords in EncryptedSharedPreferences, per-request CalDAV auth, MIGRATION_5_6 (5117680); principal/calendar-home-set discovery, sync coordinator, DAV-aware EventDao queries (9be2252); build green, 276 tests 0 failures. Fixed a real discovery bug: DavRequest.absolute chopped the URL at its last '/' before isolating the scheme, so the "//" of "https://" was split and a root-relative href resolved to "https:/dav/..." — every server entered as a bare origin failed. STILL MISSING: accounts UI, calendar list, manual + periodic sync wiring, per-calendar color, offline UI states.
 
 ## Phase 5 — Polish
 - [ ] M10 Accessibility + theming + EN/BN/AR + RTL
