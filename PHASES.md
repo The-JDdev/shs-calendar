@@ -1,6 +1,24 @@
 # SHS Calendar — Phase 2–5 Milestone Tracker
 
-STATUS: ALL-PHASES-DONE — Phases 2-5 complete (M1-M12). v2.0.0 released.
+STATUS: ALL-PHASES-DONE — Phases 2-5 complete (M1-M12). v2.0.0 shipped with a
+fatal startup crash; **v2.0.1 (versionCode 3) supersedes it and must be the
+installed build**.
+
+## v2.0.1 hotfix (post-M12, launch-crash fix)
+- [x] Reproduced on the JVM Android framework (Robolectric 4.13): the v2.0.0
+      APK crashed before any Activity — ShsCalendarApp.attachBaseContext read
+      appearance prefs via Context.getApplicationContext(), which is NULL
+      during Application.attach on a real device (NPE, process dead on launch).
+- [x] Fixed 5 further view-type mismatches left by the M10 redesign that
+      crashed MainActivity onCreate (month steppers, quick-tools row,
+      inspiration strip, language chips) and EventsAgenda/DateConverter on
+      first open; AMOLED/accent overlays re-parented so setTheme() keeps the
+      Material3 base.
+- [x] LaunchSmokeTest now boots the real Application+MainActivity in EN/BN/AR
+      and AMOLED/accent variants — a build that cannot open can never ship.
+      scripts/check_view_casts.py statically cross-checks all 122 findViewById
+      casts against layout tags (0 problems).
+- [x] 325 unit tests, 0 failures; assembleDebug green; released as v2.0.1.
 
 ## Phase 2 — Location, Prayer, Islamic toolkit, Traditional view
 - [x] M1 Location layer (optional permission, manual fallback, travel mode)
