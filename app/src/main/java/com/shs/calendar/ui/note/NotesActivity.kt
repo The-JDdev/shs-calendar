@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
  * the data model stores body as a String, so styled spans (Phase 3) will layer
  * on top of this without a schema change.
  */
-class NotesActivity : AppCompatActivity() {
+class NotesActivity : SHSBaseActivity() {
 
     private val noteRepo: NoteRepository by lazy { NoteRepository(CalendarDatabase.get(this)) }
     private lateinit var adapter: NotesAdapter

@@ -2,7 +2,7 @@ package com.shs.calendar.ui.placeholder
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import com.shs.calendar.R
 
 /**
@@ -10,7 +10,7 @@ import com.shs.calendar.R
  * (prayer times, accounts, advanced tools). Shows a title, explanatory body
  * and the phase badge so navigation never dead-ends on an empty screen.
  */
-class PlaceholderActivity : AppCompatActivity() {
+class PlaceholderActivity : SHSBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

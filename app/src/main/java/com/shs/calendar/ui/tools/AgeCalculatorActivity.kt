@@ -3,7 +3,7 @@ package com.shs.calendar.ui.tools
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -17,7 +17,7 @@ import java.time.temporal.ChronoUnit
  * days, with the date of the next birthday. All arithmetic runs through
  * [java.time.Period] / [ChronoUnit] — no calendar tables of our own.
  */
-class AgeCalculatorActivity : AppCompatActivity() {
+class AgeCalculatorActivity : SHSBaseActivity() {
 
     private var birthDate: LocalDate? = null
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NIGHT: the only difference from values/themes.xml is the Material3 Dark
+     parent. Everything else — every colour item — is inherited from the single
+     Theme.SHSCalendar definition, which references @color/... names that are
+     themselves qualified into values-night/colors.xml. Duplicating the theme
+     block here would be the drift hazard this split exists to avoid. -->
+<resources>
+    <style name="Theme.SHSParent" parent="Theme.Material3.Dark.NoActionBar" />
+</resources>

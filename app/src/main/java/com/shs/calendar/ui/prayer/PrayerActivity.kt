@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
@@ -34,7 +34,7 @@ import java.util.Locale
  * high-latitude rule and manual offsets. Null times render as
  * "Unavailable" (polar day/night) — never fabricated.
  */
-class PrayerActivity : AppCompatActivity() {
+class PrayerActivity : SHSBaseActivity() {
 
     private val repo: SettingsRepository by lazy {
         SettingsRepository(CalendarDatabase.get(this))

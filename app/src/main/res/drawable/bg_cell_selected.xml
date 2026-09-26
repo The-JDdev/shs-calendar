@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Selection background: rounded, cyan-tinted. -->
+<!-- Selection background: rounded, accent-tinted.
+
+     M10: the solid was a literal #2E22D3EE — the DARK palette's cyan at 18%
+     alpha. On a light surface that reads as a grey smudge, so it now uses
+     shs_ripple, which is the same 20%-alpha accent and is config-qualified. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#2E22D3EE" />
+    <solid android:color="@color/shs_ripple" />
     <corners android:radius="@dimen/shs_radius_cell" />
     <stroke android:width="1dp" android:color="@color/shs_cyan" />
 </shape>

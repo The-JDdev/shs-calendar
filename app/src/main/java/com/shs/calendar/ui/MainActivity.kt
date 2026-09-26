@@ -6,7 +6,6 @@ import android.widget.GridView
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,7 +51,7 @@ import kotlinx.coroutines.launch
  * Calendar tab is the primary surface; tools/prayer/accounts/settings tabs either
  * open dedicated screens or fall back to [PlaceholderActivity].
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : SHSBaseActivity() {
 
     private lateinit var grid: GridView
     private lateinit var adapter: MonthGridAdapter

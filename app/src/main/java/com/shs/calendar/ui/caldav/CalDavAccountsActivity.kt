@@ -3,7 +3,7 @@ package com.shs.calendar.ui.caldav
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
  * flow. Keeping the outcome in the database rather than in a local field is
  * what lets the same result show up after a process death or on the widget.
  */
-class CalDavAccountsActivity : AppCompatActivity() {
+class CalDavAccountsActivity : SHSBaseActivity() {
 
     private val db: CalendarDatabase by lazy { CalendarDatabase.get(this) }
     private val accountDao by lazy { db.syncAccountDao() }

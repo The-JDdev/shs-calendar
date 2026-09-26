@@ -5,7 +5,13 @@ package com.shs.calendar.ui.appearance
  * be renamed without a migration path.
  */
 enum class Theme {
-    /** Follow the system setting; the app's own palette is dark-only. */
+    /**
+     * Follow the system setting.
+     *
+     * M10: the app is no longer dark-only. The light palette is the default
+     * values/ slot and the deep-navy identity is qualified into values-night/,
+     * so this follows the device's day/night setting across both palettes.
+     */
     SYSTEM_DARK,
     DARK,
     /** True-black surfaces for OLED panels. */

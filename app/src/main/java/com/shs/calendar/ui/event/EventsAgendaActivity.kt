@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
  * chronological list (empty-state until the first event), and opens the
  * editor on tap or via the "new" action.
  */
-class EventsAgendaActivity : AppCompatActivity() {
+class EventsAgendaActivity : SHSBaseActivity() {
 
     private val repo: EventRepository by lazy { EventRepository(CalendarDatabase.get(this)) }
     private var rows: List<EventEntity> = emptyList()

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NIGHT palette = the original SHS deep-navy identity, unchanged.
+
+     M10 moved the identity out of values/ so the light theme could own the
+     default slot. This file is the dark palette verbatim; ContrastTest pins
+     every pair asserted below, so moving a colour between the two palettes
+     cannot silently break contrast. -->
+<resources>
+    <!-- Core surfaces -->
+    <color name="shs_night">#0B1026</color>
+    <color name="shs_night_deep">#070B1B</color>
+    <color name="shs_surface">#121A36</color>
+    <color name="shs_surface_high">#1A2447</color>
+    <color name="shs_surface_low">#0E1530</color>
+    <color name="shs_stroke">#243059</color>
+
+    <!-- Accents -->
+    <color name="shs_cyan">#22D3EE</color>
+    <color name="shs_teal">#2DD4BF</color>
+    <color name="shs_cyan_deep">#067B97</color>
+    <color name="shs_teal_deep">#1B7F73</color>
+    <color name="shs_indigo_deep">#626ABC</color>
+    <color name="shs_purple_deep">#7A65B6</color>
+    <color name="shs_magenta_deep">#B05283</color>
+    <color name="shs_amber_deep">#8F6D15</color>
+
+    <color name="shs_indigo">#818CF8</color>
+    <color name="shs_purple">#A78BFA</color>
+    <color name="shs_magenta">#F472B6</color>
+    <color name="shs_orange">#FB923C</color>
+    <color name="shs_amber">#FBBF24</color>
+
+    <!-- Text -->
+    <color name="shs_text_primary">#F5F8FF</color>
+    <color name="shs_text_secondary">#9AA6C9</color>
+    <color name="shs_text_muted">#7886BA</color>
+    <color name="shs_text_on_accent">#06121F</color>
+
+    <!-- Semantic -->
+    <color name="shs_success">#34D399</color>
+    <color name="shs_danger">#FB7185</color>
+    <color name="shs_warning">#FBBF24</color>
+
+    <!-- M10: was #0F7B4F, which measured 3.55:1 on this palette's shs_night —
+         below AA. Bengali day numbers use this as TEXT, and the previous
+         ContrastTest never checked semantic colours, so it shipped.
+         #139962 measures 5.16:1 here and 5.29:1 on true-black AMOLED.
+         Asserted by ContrastTest, which now runs every palette. -->
+    <color name="shs_bengali_green">#139962</color>
+    <color name="shs_hijri_blue">#60A5FA</color>
+
+    <color name="shs_gradient_start">#14204A</color>
+    <color name="shs_gradient_end">#0B1026</color>
+    <color name="shs_hero_start">#1B2B5E</color>
+    <color name="shs_hero_end">#101737</color>
+
+    <color name="shs_scrim">#66000000</color>
+    <color name="shs_transparent">#00000000</color>
+
+    <color name="shs_nav_bg">#0D132C</color>
+    <color name="shs_nav_inactive">#64709B</color>
+    <color name="shs_ripple">#3322D3EE</color>
+    <!-- M10 AMOLED: true black so an OLED panel lights only the pixels it must. -->
+    <color name="shs_night_amoled">#000000</color>
+    <color name="shs_surface_amoled">#0A0A0A</color>
+</resources>

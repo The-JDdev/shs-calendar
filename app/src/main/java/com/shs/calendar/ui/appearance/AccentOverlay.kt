@@ -8,9 +8,14 @@ import com.shs.calendar.R
  *
  * A theme attribute cannot be given a runtime string — setTheme() takes a
  * style *resource id* — so each accent needs its own small overlay style
- * rather than a computed one. The overlays only re-tint the accent roles; the
- * project's palette is a single dark theme (no values-night), so nothing here
- * switches light and dark.
+ * rather than a computed one. The overlays only re-tint the accent roles;
+ * surfaces and text are left alone, so switching accent cannot change
+ * contrast. The @color/ names they reference are config-qualified, so the same
+ * overlay resolves correctly under both the light and the night palette.
+ *
+ * AMOLED is handled by [ThemeManager], which composes the accent into the
+ * AMOLED overlay — setTheme() takes one style id, so the two cannot be
+ * applied as separate calls.
  *
  * Call before setContentView(): an overlay applied afterwards reaches already
  * inflated views only if they re-resolve their attributes.

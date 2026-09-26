@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
  * the device zone so the screen is never empty on first launch, and a
  * lightweight handler ticks once a minute to keep the times current.
  */
-class WorldClockActivity : AppCompatActivity() {
+class WorldClockActivity : SHSBaseActivity() {
 
     private val handler = Handler(Looper.getMainLooper())
     private val settingsRepo: SettingsRepository by lazy {

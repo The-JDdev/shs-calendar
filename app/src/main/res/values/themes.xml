@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- SHS Calendar premium dark theme: deep navy, cyan/teal accents, Material Components. -->
+<!-- SHS Calendar theme.
+
+     M10: the base is now LIGHT (Material3.Light). The dark identity lives in
+     values-night/themes.xml + values-night/colors.xml, and AppCompat's night
+     mode — already applied in ShsCalendarApp.onCreate — selects between them.
+     This is what makes Theme.LIGHT stop being a cosmetic radio button.
+
+     Theme.SHSParent exists only to hold the Light/Dark Material3 parent, and
+     is the ONE line that differs between values/ and values-night/. Every
+     colour below references @color/..., which is itself config-qualified, so
+     the whole palette switches without the theme style being duplicated —
+     a duplicated theme block would be a silent-drift hazard. -->
 <resources>
 
-    <style name="Theme.SHSCalendar" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.SHSParent" parent="Theme.Material3.Light.NoActionBar" />
+
+    <style name="Theme.SHSCalendar" parent="Theme.SHSParent">
         <item name="colorPrimary">@color/shs_cyan</item>
         <item name="colorOnPrimary">@color/shs_text_on_accent</item>
         <item name="colorPrimaryContainer">@color/shs_cyan_deep</item>
@@ -46,16 +59,35 @@
     </style>
 
     <!--
+      M10 AMOLED overlay.
+
+      AMOLED cannot be a resource qualifier: it is also a NIGHT configuration,
+      so values-night-v? would not separate it from the ordinary dark theme.
+      It is instead a ThemeOverlay that forces true black on the surfaces an
+      OLED panel benefits from, applied per-Activity — see ThemeManager.
+
+      Text colours are deliberately NOT touched: they already clear AA on the
+      near-black surfaces below, so re-tinting them would only risk breaking it.
+    -->
+    <style name="ThemeOverlay.SHSCalendar.Amoled" parent="">
+        <item name="android:colorBackground">@color/shs_night_amoled</item>
+        <item name="android:windowBackground">@color/shs_night_amoled</item>
+        <item name="android:statusBarColor">@color/shs_night_amoled</item>
+        <item name="colorSurface">@color/shs_surface_amoled</item>
+        <item name="colorSurfaceVariant">@color/shs_surface_amoled</item>
+        <item name="android:navigationBarColor">@color/shs_night_amoled</item>
+    </style>
+
+    <!--
       M10 accent overlays.
 
       Each overlay re-tints only the accent roles, leaving surfaces and text
       untouched, so switching accent cannot change contrast. The _deep
-      container colours are computed (not eyeballed) to clear WCAG AA 4.5:1
-      against shs_text_primary; ContrastTest asserts every pair below so a
-      later palette tweak cannot quietly push one under AA.
+      container colours are computed (not eyeballed) to clear WCAG AA 4.5:1 in
+      the palette they sit in; ContrastTest and LightPaletteTest assert them.
 
-      The project ships a single dark theme, so no overlay switches light and
-      dark. See AccentOverlay for why these must be style resources.
+      These are shared by the light and dark themes: they reference only
+      @color/... names, so the same overlay resolves correctly in either.
     -->
     <style name="ThemeOverlay.SHSCalendar.Accent.Teal" parent="">
         <item name="colorPrimary">@color/shs_teal</item>
@@ -89,6 +121,51 @@
     </style>
 
     <style name="ThemeOverlay.SHSCalendar.Accent.Amber" parent="">
+        <item name="colorPrimary">@color/shs_amber</item>
+        <item name="colorPrimaryContainer">@color/shs_amber_deep</item>
+        <item name="colorSecondary">@color/shs_amber</item>
+        <item name="colorSecondaryContainer">@color/shs_amber_deep</item>
+        <item name="colorTertiary">@color/shs_amber</item>
+    </style>
+
+    <!--
+      Composed overlays. setTheme() accepts a single style id, so an AMOLED
+      overlay and an accent overlay cannot simply be stacked — the second call
+      would replace the first. The accent is therefore expressed inside each
+      AMOLED variant. ThemeManager picks exactly one of these per Activity.
+    -->
+    <style name="ThemeOverlay.SHSCalendar.Amoled.Accent.Teal" parent="ThemeOverlay.SHSCalendar.Amoled">
+        <item name="colorPrimary">@color/shs_teal</item>
+        <item name="colorPrimaryContainer">@color/shs_teal_deep</item>
+        <item name="colorSecondary">@color/shs_teal</item>
+        <item name="colorSecondaryContainer">@color/shs_teal_deep</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Amoled.Accent.Indigo" parent="ThemeOverlay.SHSCalendar.Amoled">
+        <item name="colorPrimary">@color/shs_indigo</item>
+        <item name="colorPrimaryContainer">@color/shs_indigo_deep</item>
+        <item name="colorSecondary">@color/shs_indigo</item>
+        <item name="colorSecondaryContainer">@color/shs_indigo_deep</item>
+        <item name="colorTertiary">@color/shs_indigo</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Amoled.Accent.Purple" parent="ThemeOverlay.SHSCalendar.Amoled">
+        <item name="colorPrimary">@color/shs_purple</item>
+        <item name="colorPrimaryContainer">@color/shs_purple_deep</item>
+        <item name="colorSecondary">@color/shs_purple</item>
+        <item name="colorSecondaryContainer">@color/shs_purple_deep</item>
+        <item name="colorTertiary">@color/shs_purple</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Amoled.Accent.Magenta" parent="ThemeOverlay.SHSCalendar.Amoled">
+        <item name="colorPrimary">@color/shs_magenta</item>
+        <item name="colorPrimaryContainer">@color/shs_magenta_deep</item>
+        <item name="colorSecondary">@color/shs_magenta</item>
+        <item name="colorSecondaryContainer">@color/shs_magenta_deep</item>
+        <item name="colorTertiary">@color/shs_magenta</item>
+    </style>
+
+    <style name="ThemeOverlay.SHSCalendar.Amoled.Accent.Amber" parent="ThemeOverlay.SHSCalendar.Amoled">
         <item name="colorPrimary">@color/shs_amber</item>
         <item name="colorPrimaryContainer">@color/shs_amber_deep</item>
         <item name="colorSecondary">@color/shs_amber</item>

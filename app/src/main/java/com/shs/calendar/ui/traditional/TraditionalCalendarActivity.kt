@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import com.shs.calendar.R
 import com.shs.calendar.calendar.BengaliEngine
 import com.shs.calendar.calendar.BengaliNumerals
@@ -29,7 +29,7 @@ import java.time.YearMonth
  * Holiday cells are driven entirely by [HolidayProvider]; the M6 database
  * will supply the data without any change here.
  */
-class TraditionalCalendarActivity : AppCompatActivity() {
+class TraditionalCalendarActivity : SHSBaseActivity() {
 
     private lateinit var grid: LinearLayout
     private lateinit var headerView: TextView

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -21,7 +21,7 @@ import java.time.ZoneOffset
  * side by side, with a copy-to-clipboard action. All conversions go through
  * [ConversionEngine] so the Hijri adjustment setting applies automatically.
  */
-class DateConverterActivity : AppCompatActivity() {
+class DateConverterActivity : SHSBaseActivity() {
 
     private var picked: LocalDate = LocalDate.now()
 

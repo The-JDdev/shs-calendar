@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
  * [TaskRepository.observeAll], toggles completion, and converts a task into a
  * real calendar event (sharing the task's due moment) when the user asks.
  */
-class TasksActivity : AppCompatActivity() {
+class TasksActivity : SHSBaseActivity() {
 
     private val taskRepo: TaskRepository by lazy { TaskRepository(CalendarDatabase.get(this)) }
     private val eventRepo: EventRepository by lazy { EventRepository(CalendarDatabase.get(this)) }

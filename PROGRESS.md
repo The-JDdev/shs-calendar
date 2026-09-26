@@ -353,14 +353,30 @@ M10 — appearance: theme, accent, text size, language.
   which is an overlay *parent* and would replace the SHS palette
   outright for the default user.
 
-  Known gaps, deliberately not papered over:
-    - Theme.LIGHT and Theme.AMOLED render identically to the dark theme.
-      The project ships one palette and no values-night, so those two
-      radio buttons are currently cosmetic. A light theme is its own
-      piece of work, not a switch.
-    - The accent overlay is applied in SettingsActivity only. Every other
-      Activity still renders the base cyan palette; the other four
-      accents are therefore only visible on the settings screen.
+  Both gaps above are now CLOSED (M10 LIGHT + AMOLED):
+    - Theme.LIGHT and Theme.AMOLED render a real light / true-black theme.
+      values/colors.xml is the light palette and values-night/colors.xml
+      holds the original deep-navy identity, both computed to clear WCAG
+      AA 4.5:1. ContrastTest asserts every text pair in BOTH palettes;
+      it previously read one hardcoded path, so the dark palette would
+      have gone entirely unasserted while the test still reported green.
+    - The accent and AMOLED choices now apply to all 20 Activities via
+      SHSBaseActivity, which applies the theme before super.onCreate, so
+      a newly added Activity inherits it and cannot forget to.
+    - AMOLED needed a ThemeOverlay, not a values-night-v? qualifier: it is
+      also a NIGHT configuration, so no resource qualifier can separate it.
+      setTheme() takes one style id, so the accent is composed INSIDE each
+      AMOLED overlay rather than applied as a second call.
+
+  Two real defects found and fixed while doing this, both of which the
+  previous test suite could not see:
+    - shs_bengali_green measured 3.55:1 on the night background (below AA)
+      and shipped that way, because the old ContrastTest never checked
+      semantic colours. Now 5.16:1, and asserted.
+    - 13 icon drawables hardcoded #FFFFFFFF with no tint - notably ic_back,
+      used in 7 layouts - which would have been invisible on the light
+      theme. They now use @color/shs_text_primary, which is itself
+      config-qualified and so follows the palette.
 
   Language selection is by index into languageOptions(), not by matching
   the spinner's label text. The original label round-trip could mis-map a

@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shs.calendar.R
@@ -24,7 +24,7 @@ import com.shs.calendar.dua.DuaCollection
  * M3 Dua collection screen: browse the curated duas, filter by category,
  * and copy or share any entry. Fully offline - all content ships in-app.
  */
-class DuaActivity : AppCompatActivity() {
+class DuaActivity : SHSBaseActivity() {
 
     private lateinit var listView: RecyclerView
     private lateinit var emptyHint: TextView

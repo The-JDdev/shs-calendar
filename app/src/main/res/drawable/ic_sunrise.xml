@@ -2,6 +2,6 @@
     android:width="24dp" android:height="24dp"
     android:viewportWidth="24" android:viewportHeight="24">
     <!-- Sun half above horizon with up arrow -->
-    <path android:fillColor="#FFFFFFFF"
+    <path android:fillColor="@color/shs_text_primary"
         android:pathData="M12,4a1,1 0,0 1,1 1v2a1,1 0,0 1,-2 0V5a1,1 0,0 1,1 -1zM4.22,7.22a1,1 0,0 1,0 1.41l1.42,1.42a1,1 0,0 1,-1.42 1.41l-1.41,-1.41a1,1 0,0 1,0 -1.42zM12,15a5,5 0,0 1,5 -5a5,5 0,0 1,-5 5a5,5 0,0 1,-5 -5a5,5 0,0 1,5 5zM2,17h20a1,1 0,0 1,0 2H2a1,1 0,0 1,0 -2zM19.78,7.22a1,1 0,0 1,0 1.42l-1.41,1.41a1,1 0,1 1,-1.42 -1.41l1.42,-1.42a1,1 0,0 1,1.41 0z" />
 </vector>

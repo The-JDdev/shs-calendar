@@ -13,7 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
@@ -30,7 +30,7 @@ import kotlinx.coroutines.withContext
  * lat/lon entry. Optional "use current location" GPS path with a rationale
  * dialog — denying it never blocks the manual flow.
  */
-class LocationPickerActivity : AppCompatActivity() {
+class LocationPickerActivity : SHSBaseActivity() {
 
     private val repo: SettingsRepository by lazy {
         SettingsRepository(CalendarDatabase.get(this))

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +32,7 @@ import java.time.Year
  * because a search is a one-shot question — re-querying the database on every
  * keystroke would be wasteful and would make results flicker.
  */
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : SHSBaseActivity() {
 
     private val eventRepo: EventRepository by lazy { EventRepository(CalendarDatabase.get(this)) }
     private val taskRepo: TaskRepository by lazy { TaskRepository(CalendarDatabase.get(this)) }

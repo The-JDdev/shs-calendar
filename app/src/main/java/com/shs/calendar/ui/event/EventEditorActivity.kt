@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
  * location, start/end, all-day). Start defaults to "now", end to start +1h.
  * Saving persists through [EventRepository]; editing an existing id loads it.
  */
-class EventEditorActivity : AppCompatActivity() {
+class EventEditorActivity : SHSBaseActivity() {
 
     private val repo: EventRepository by lazy { EventRepository(CalendarDatabase.get(this)) }
 

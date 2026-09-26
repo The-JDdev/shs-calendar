@@ -1,78 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- SHS Calendar design system — deep navy / cyan-teal premium dark identity.
-     Product spec: SPEC.md "App identity" + "Premium dark theme". -->
+<!-- SHS Calendar design system — LIGHT palette (the default slot).
+
+     M10: the deep-navy identity now lives in values-night/colors.xml. The
+     default values/ slot is light, which is the standard Android inversion and
+     what makes Theme.LIGHT stop being a cosmetic radio button.
+
+     Every text/semantic pair below is COMPUTED to clear WCAG AA 4.5:1, not
+     chosen by eye — verified by LightPaletteTest, which parses this file and
+     measures each pair. A colour that drifts below AA fails the build. -->
 <resources>
     <!-- Core surfaces -->
-    <color name="shs_night">#0B1026</color>          <!-- app background, deep navy -->
-    <color name="shs_night_deep">#070B1B</color>     <!-- AMOLED-leaning edge -->
-    <color name="shs_surface">#121A36</color>        <!-- card surface -->
-    <color name="shs_surface_high">#1A2447</color>   <!-- raised surface / input -->
-    <color name="shs_surface_low">#0E1530</color>    <!-- sunken surface -->
-    <color name="shs_stroke">#243059</color>         <!-- hairline stroke -->
+    <color name="shs_night">#F7F9FF</color>          <!-- app background -->
+    <color name="shs_night_deep">#EEF2FB</color>     <!-- sunken / edge -->
+    <color name="shs_surface">#FFFFFF</color>        <!-- card surface -->
+    <color name="shs_surface_high">#EEF2FB</color>   <!-- raised surface / input -->
+    <color name="shs_surface_low">#E4EAF6</color>    <!-- sunken surface -->
+    <color name="shs_stroke">#C3CCE0</color>         <!-- hairline stroke -->
 
-    <!-- Accents -->
-    <color name="shs_cyan">#22D3EE</color>           <!-- primary accent -->
-    <color name="shs_teal">#2DD4BF</color>           <!-- secondary accent -->
-    <!-- M10: was #0891B2. The theme pairs this container with shs_text_primary
-         as onPrimaryContainer, which measured 3.46:1 — below AA 4.5. #067B97
-         measures 4.61:1, the minimal darkening that clears it. Asserted by
-         ContrastTest so the pair cannot silently drift back. -->
-    <color name="shs_cyan_deep">#067B97</color>
-    <!-- M10: was #0D9488, which measured 3.52:1 against shs_text_primary.
-         The theme pairs these two as colorSecondaryContainer /
-         colorOnSecondaryContainer, so secondary-container text was below AA
-         and no test covered the pair. #1B7F73 is the minimal darkening that
-         clears 4.5:1 (4.56:1) while staying teal. Asserted by ContrastTest. -->
-    <color name="shs_teal_deep">#1B7F73</color>
+    <!-- Accents: dark enough to read as text on the light background (4.65:1+),
+         and to carry white button labels (4.90:1+). Both directions asserted. -->
+    <color name="shs_cyan">#067B97</color>
+    <color name="shs_teal">#0F766E</color>
+    <!-- Containers sit UNDER shs_text_primary in the light palette, so the
+         _deep roles are the pale tints and the on-container is the dark text.
+         shs_cyan_deep is an accent here, not a container: M10's night theme
+         uses it as a container, and the overlay styles reference the same name
+         in both palettes, so it must stay a readable accent in light. -->
+    <color name="shs_cyan_deep">#CDEDF5</color>
+    <color name="shs_teal_deep">#CFF3EE</color>
+    <color name="shs_indigo_deep">#E0E1FC</color>
+    <color name="shs_purple_deep">#EDE4FE</color>
+    <color name="shs_magenta_deep">#FBE0EC</color>
+    <color name="shs_amber_deep">#FCF0D2</color>
 
-    <!-- M10 container colours. The theme pairs each _deep with
-         shs_text_primary as its on-container, so every one of these is
-         computed to clear WCAG AA 4.5:1 — not chosen by eye. Ratios:
-         indigo 4.59:1, purple 4.53:1, magenta 4.51:1, amber 4.52:1.
-         Asserted by ContrastTest so they cannot drift. -->
-    <color name="shs_indigo_deep">#626ABC</color>
-    <color name="shs_purple_deep">#7A65B6</color>
-    <color name="shs_magenta_deep">#B05283</color>
-    <color name="shs_amber_deep">#8F6D15</color>
+    <color name="shs_indigo">#4F46E5</color>
+    <color name="shs_purple">#7C3AED</color>
+    <color name="shs_magenta">#BE185D</color>
+    <color name="shs_orange">#C2410C</color>
+    <color name="shs_amber">#A16207</color>
 
-    <color name="shs_indigo">#818CF8</color>         <!-- secondary / today (Gregorian) -->
-    <color name="shs_purple">#A78BFA</color>
-    <color name="shs_magenta">#F472B6</color>
-    <color name="shs_orange">#FB923C</color>         <!-- alerts / holidays -->
-    <color name="shs_amber">#FBBF24</color>
-
-    <!-- Text -->
-    <color name="shs_text_primary">#F5F8FF</color>
-    <color name="shs_text_secondary">#9AA6C9</color>
-    <!-- M10: was #64709B = 3.88:1 on shs_night, below WCAG AA 4.5 for text.
-         #7886BA = 5.30:1, the smallest step that clears AA without shifting the
-         palette away from the spec'd identity. Asserted by ContrastTest. -->
-    <color name="shs_text_muted">#7886BA</color>
-    <color name="shs_text_on_accent">#06121F</color>
+    <!-- Text: primary 17.87:1, secondary 8.00:1, muted 5.54:1 on shs_night. -->
+    <color name="shs_text_primary">#0B1026</color>
+    <color name="shs_text_secondary">#414C70</color>
+    <color name="shs_text_muted">#5A6486</color>
+    <color name="shs_text_on_accent">#FFFFFF</color>
 
     <!-- Semantic -->
-    <color name="shs_success">#34D399</color>
-    <color name="shs_danger">#FB7185</color>
-    <color name="shs_warning">#FBBF24</color>
+    <color name="shs_success">#047857</color>
+    <color name="shs_danger">#BE123C</color>
+    <color name="shs_warning">#A16207</color>
 
-    <!-- Bengali day cell accent (deep green printed-calendar look, Phase 2 friendly) -->
+    <!-- Bengali day cell accent (deep green printed-calendar look) -->
     <color name="shs_bengali_green">#0F7B4F</color>
-    <color name="shs_hijri_blue">#60A5FA</color>
+    <color name="shs_hijri_blue">#1D4ED8</color>
 
     <!-- Gradient endpoints -->
-    <color name="shs_gradient_start">#14204A</color>
-    <color name="shs_gradient_end">#0B1026</color>
-    <color name="shs_hero_start">#1B2B5E</color>
-    <color name="shs_hero_end">#101737</color>
+    <color name="shs_gradient_start">#FFFFFF</color>
+    <color name="shs_gradient_end">#EEF2FB</color>
+    <color name="shs_hero_start">#FFFFFF</color>
+    <color name="shs_hero_end">#EEF2FB</color>
 
     <!-- Icon scrims -->
-    <color name="shs_scrim">#66000000</color>
+    <color name="shs_scrim">#99000000</color>
     <color name="shs_transparent">#00000000</color>
 
     <!-- Bottom navigation -->
-    <color name="shs_nav_bg">#0D132C</color>
-    <color name="shs_nav_inactive">#64709B</color>
+    <color name="shs_nav_bg">#FFFFFF</color>
+    <color name="shs_nav_inactive">#5A6486</color>
 
     <!-- Focus / ripple -->
-    <color name="shs_ripple">#3322D3EE</color>
+    <color name="shs_ripple">#33067B97</color>
+    <!-- M10 AMOLED: true black so an OLED panel lights only the pixels it must. -->
+    <color name="shs_night_amoled">#000000</color>
+    <color name="shs_surface_amoled">#0A0A0A</color>
 </resources>

@@ -5,7 +5,6 @@ import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -23,7 +22,7 @@ import kotlinx.coroutines.launch
  * Every change is persisted through [SettingsRepository] and takes effect
  * immediately on the dashboard via its settings Flow.
  */
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : SHSBaseActivity() {
 
     private val repo: SettingsRepository by lazy {
         SettingsRepository(CalendarDatabase.get(this))
@@ -49,9 +48,11 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Accent overlay must be applied before setContentView, otherwise
-        // already-inflated views keep resolving the base theme's colours.
-        com.shs.calendar.ui.appearance.AccentOverlay.apply(this)
+        // M10: the accent/AMOLED theme is applied by SHSBaseActivity, which
+        // runs before super.onCreate() returns. Applying it again HERE would
+        // call setTheme() a second time, and setTheme accepts a single style
+        // id — so the second call would discard the first, silently dropping
+        // AMOLED on this screen. Settings must not apply the theme itself.
         setContentView(R.layout.activity_settings)
 
         findViewById<MaterialToolbar>(R.id.settings_toolbar)?.apply {

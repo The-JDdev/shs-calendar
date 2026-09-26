@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.shs.calendar.R
@@ -20,7 +20,7 @@ import com.shs.calendar.R
  * M3 Tasbih counter: preset dhikr list, custom targets, vibration tick,
  * count persisted in SharedPreferences so a restart never loses progress.
  */
-class TasbihActivity : AppCompatActivity() {
+class TasbihActivity : SHSBaseActivity() {
 
     private val prefs by lazy { getSharedPreferences(PREFS, Context.MODE_PRIVATE) }
 

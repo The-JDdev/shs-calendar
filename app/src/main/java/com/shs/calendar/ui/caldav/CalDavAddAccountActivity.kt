@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -38,7 +38,7 @@ import kotlinx.coroutines.withContext
  * a spinner that never stops, and a failure here changes nothing already on
  * the device.
  */
-class CalDavAddAccountActivity : AppCompatActivity() {
+class CalDavAddAccountActivity : SHSBaseActivity() {
 
     private val db: CalendarDatabase by lazy { CalendarDatabase.get(this) }
     private val accountDao by lazy { db.syncAccountDao() }

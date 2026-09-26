@@ -7,7 +7,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.shs.calendar.ui.SHSBaseActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
@@ -27,7 +27,7 @@ import java.util.Locale
  * without one the dial stays north-up. Calibration hint shown while the
  * sensor reports low accuracy.
  */
-class QiblaActivity : AppCompatActivity(), SensorEventListener {
+class QiblaActivity : SHSBaseActivity(), SensorEventListener {
 
     private val repo: SettingsRepository by lazy {
         SettingsRepository(CalendarDatabase.get(this))
