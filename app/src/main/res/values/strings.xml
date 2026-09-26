@@ -344,6 +344,9 @@
     <string name="caldav_partial">Synced %1$d account(s); %2$d failed</string>
     <string name="caldav_offline">Could not reach the server. Check your connection.</string>
     <string name="caldav_add_unavailable">Add-account form is not available yet</string>
+    <string name="settings_sync_section">Sync</string>
+    <string name="settings_sync_summary">CalDAV accounts and manual sync</string>
+    <string name="settings_manage">Manage</string>
 
     <!-- ============ WIDGETS (M7) ============ -->
     <string name="widget_generic_desc">SHS Calendar home-screen widget</string>

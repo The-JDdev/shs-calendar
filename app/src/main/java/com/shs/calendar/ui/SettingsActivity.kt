@@ -178,6 +178,12 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<android.view.View>(R.id.settings_prayer_offsets_button)?.setOnClickListener {
             showOffsetsDialog()
         }
+        // Entry point for the sync stack. Registered in the manifest, but with
+        // no way to reach it from Settings the screen was only launchable by
+        // adb — a feature the user cannot find is not a feature.
+        findViewById<android.view.View>(R.id.settings_sync_accounts_button)?.setOnClickListener {
+            startActivity(android.content.Intent(this, com.shs.calendar.ui.caldav.CalDavAccountsActivity::class.java))
+        }
     }
 
     /** Manual minute offsets per prayer, six signed fields in one dialog. */

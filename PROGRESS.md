@@ -205,3 +205,25 @@ Three self-review catches, all found before compiling:
      imported symbols.
   Build then compiled all six files (18 tasks executed, not UP-TO-DATE) with
   no new warnings. All four warnings are pre-existing files.
+
+## Next — gap #1 CLOSED
+CalDavAccountsActivity is now reachable. Added to activity_settings.xml as a
+"Sync" section card (SHS.Card + SHS.Text.Accent header, matching the prayer
+card's title/subtitle/trailing-Button row) and wired in SettingsActivity:
+  findViewById<View>(R.id.settings_sync_accounts_button) -> startActivity(...)
+
+Verified: detached gradlew testDebugUnitTest BUILD SUCCESSFUL; 25 suites,
+276 tests, 0 failures, 0 errors, 0 skipped (read from the JUnit XML, not
+from memory). The SettingsActivity elvis warning moved 187 -> 193, exactly
+the 6 lines inserted, so the edit added no new warning.
+
+Lesson worth keeping: I made a no-op edit here (old_str == new_str) and it
+still reported "Replaced in ...". A successful tool return does not mean a
+change happened. Check `git diff --stat` after any edit whose old_str and
+new_str could coincide.
+
+Remaining M9 work, in order:
+  1. Add-account form — needs live PROPFIND to list calendars, so it cannot
+     be validated in the sandbox. Currently the FAB toasts "not available".
+  2. Periodic/background sync (WorkManager) — manual sync is done.
+  3. Per-calendar colour, offline UI states.
