@@ -35,7 +35,20 @@ data class EventEntity(
     val notes: String = "",
     val timezone: String = "Asia/Dhaka",
     val createdAtUtcMillis: Long = 0L,
-    val updatedAtUtcMillis: Long = 0L
+    val updatedAtUtcMillis: Long = 0L,
+    // ---- M9 CalDAV bookkeeping ----
+    // Nullable so the ALTER TABLE ADD COLUMN (no default) validates exactly
+    // against the entity, and so purely-local events stay null = "never synced".
+    /** RFC 5545 UID; the upsert key for CalDAV. null = local-only event. */
+    val davUid: String? = null,
+    /** ETag of the copy the server last confirmed; null until first push. */
+    val davEtag: String? = null,
+    /** Account id this event belongs to; null = local-only event. */
+    val davAccountId: String? = null,
+    /** Collection href on the server holding this event. */
+    val davCalendarHref: String? = null,
+    /** true when a local change has not yet been accepted by the server. */
+    val davDirty: Boolean = false
 ) {
     /** Parsed reminder offsets in minutes-before-start, sorted ascending. */
     fun reminderMinutes(): List<Int> =

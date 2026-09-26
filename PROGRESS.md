@@ -96,3 +96,41 @@ STATUS: RUNNING — Phases 2–5 continuous session active. Read PHASES.md + PHA
   43 of 44 tasks UP-TO-DATE; it predated this work and was discarded
   rather than quoted. An earlier "build still running" signal was a false
   positive from pgrep matching the long-lived Gradle and Kotlin daemons.
+
+- M9 PARTIAL — sync logic complete, transport and accounts UI NOT started.
+  PHASES.md M9 stays UNCHECKED: it reads "CalDAV sync + accounts UI +
+  queue/ETag logic" and only the third clause is done. A green build here
+  reflects the pure logic being tested, not the whole feature.
+  Delivered and unit-tested (the four testable pillars):
+    - sync/DavXml.kt    — PROPFIND/multistatus parsing, per-propstat status
+    - sync/ETagPolicy.kt — optimistic-concurrency If-Match/If-None-Match
+    - sync/SyncQueue.kt  — offline push queue: per-UID coalescing and
+      exponential backoff (60s doubling, 6h cap), clock-skew safe
+    - sync/EventMapper.kt — VEVENT <-> EventEntity mapping
+  Schema: MIGRATION_3_4 adds davUid/davEtag/davAccountId/davCalendarHref/
+  davDirty to events, version 3 -> 4, plus indices on davUid and davDirty.
+  davUid is nullable so a purely-local event stays null = "never synced".
+  Still to do for M9: the HTTP/CalDAV transport, account storage, and the
+  accounts UI. NOT testable in the sandbox (no reachable server), so those
+  need a manual/instrumented pass.
+  Three defects found and fixed while getting the suite green:
+    1. DavXml.has() tested propStatus with startsWith("2"), but RFC 4918
+       status values are full status lines ("HTTP/1.1 200 OK"), so has()
+       was false for EVERY real response and the pull path would have
+       treated all returned properties as absent. Now parses the numeric
+       code via statusCode().
+    2. The leaf-property regex required a closing tag, so a self-closing
+       property such as <d:owner/> was dropped together with the HTTP
+       status that proves the server was asked about it. Now matched
+       separately.
+    3. DavXmlTest looked up "ctag" while the fixture element is
+       <cs:getctag>, whose local name is "getctag" — and the same test
+       file's own comment at line 78 says it must be reachable as
+       "getctag". Test typo; the parser was right.
+  Verified, not assumed: detached build with --rerun-tasks, 44/44 tasks
+  executed, BUILD SUCCESSFUL, bare test task line (no UP-TO-DATE /
+  FROM-CACHE). Counts read from the XML reports: 22 report files,
+  253 tests, 0 failures, 0 errors, 0 skipped — 214 before this work,
+  so all 39 new tests genuinely ran.
+  Note: the two DavXml failures were pre-existing uncommitted WIP, not a
+  regression from this milestone.

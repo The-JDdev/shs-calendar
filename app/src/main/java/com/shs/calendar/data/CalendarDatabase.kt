@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
  */
 @Database(
     entities = [EventEntity::class, TaskEntity::class, NoteEntity::class, SettingsEntity::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class CalendarDatabase : RoomDatabase() {
@@ -62,6 +62,26 @@ abstract class CalendarDatabase : RoomDatabase() {
             }
         }
 
+        /**
+         * 3 -> 4 (M9): CalDAV sync bookkeeping on events.
+         *
+         * The DAV columns are nullable except davDirty, which is declared
+         * NOT NULL DEFAULT 0 so pre-existing local-only rows get a concrete
+         * value. davUid carries an index because the sync engine upserts by it
+         * on every pass and a table scan per remote event would not scale.
+         */
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE events ADD COLUMN davUid TEXT")
+                db.execSQL("ALTER TABLE events ADD COLUMN davEtag TEXT")
+                db.execSQL("ALTER TABLE events ADD COLUMN davAccountId TEXT")
+                db.execSQL("ALTER TABLE events ADD COLUMN davCalendarHref TEXT")
+                db.execSQL("ALTER TABLE events ADD COLUMN davDirty INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("CREATE INDEX IF NOT EXISTS idx_events_dav_uid ON events(davUid)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS idx_events_dav_dirty ON events(davDirty)")
+            }
+        }
+
         @Volatile
         private var instance: CalendarDatabase? = null
 
@@ -76,6 +96,7 @@ abstract class CalendarDatabase : RoomDatabase() {
             Room.databaseBuilder(context.applicationContext, CalendarDatabase::class.java, "shs_calendar.db")
                 .addMigrations(MIGRATION_1_2)
                 .addMigrations(MIGRATION_2_3)
+                .addMigrations(MIGRATION_3_4)
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         seedScope.launch {
